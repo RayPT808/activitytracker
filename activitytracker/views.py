@@ -21,3 +21,8 @@ def record_activity(request):
 
     return render(request, 'tracker/record_activity.html', {'form': form})
 
+def activity_list(request):
+    activities = request.user.activity_set.all()  # Assuming a foreign key to User
+    return render(request, 'tracker/activity_list.html', {'activities': activities})
+
+
