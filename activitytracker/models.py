@@ -19,6 +19,7 @@ class Activity(models.Model):
     notes = models.TextField(blank=True, null=True, help_text="Optional notes about the activity")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    excerpt = models.TextField(blank=True)
 
     class Meta:
         ordering = ['-date', '-created_at']
