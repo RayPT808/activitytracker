@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from activitytracker import views as activitytracker_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin panel
@@ -10,3 +12,4 @@ urlpatterns = [
     path('update/<int:pk>/', activitytracker_views.update_activity, name='update_activity'),  # Update activity
 ]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
