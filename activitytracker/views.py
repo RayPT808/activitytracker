@@ -3,13 +3,18 @@ from .models import Activity
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import ActivityForm
+from django.contrib.auth.decorators import login_required
 
+
+
+def home(request):
+    return render(request, 'home.html')
 
 
 def my_activitytracker(request):
     return HttpResponse("Hello, Runner!")
 
-
+@login_required
 def record_activity(request):
     if request.method == 'POST':
         form = ActivityForm(request.POST)
@@ -23,10 +28,13 @@ def record_activity(request):
 
     return render(request, 'tracker/record_activity.html', {'form': form})
 
+@login_required
 def activity_list(request):
-    activities = request.user.activity_set.all()  # Assuming a foreign key to User
+    activities = request.user.activities.all()  # Use related_name 'activities' to get user's activities
     return render(request, 'tracker/activity_list.html', {'activities': activities})
+    
 
+@login_required
 def update_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)  # Ensure only the owner can edit
     if request.method == 'POST':
