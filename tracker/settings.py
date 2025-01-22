@@ -16,6 +16,11 @@ import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
+
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    raise ValueError("The SECRET_KEY setting must not be empty.")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,12 +30,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-)b%&j@=7e^9x%2+((-e6zb_(6#-1gdqg21rfoco#6&=sb4))jk'
-SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
+                "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
                  ".herokuapp.com",
                 "localhost",
                 "127.0.0.1"
@@ -64,7 +70,7 @@ ROOT_URLCONF = 'tracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'activitytracker' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
