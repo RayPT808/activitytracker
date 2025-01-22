@@ -67,10 +67,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tracker.urls'
 
+import os
+
+import os
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'activitytracker' / 'templates'],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'activitytracker', 'templates'),  # This is the main templates directory
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,6 +88,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'tracker.wsgi.application'
 
