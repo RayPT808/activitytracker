@@ -11,6 +11,15 @@ def home(request):
     return render(request, 'activitytracker/base.html')
 
 
+def about(request):
+    return render(request, 'activitytracker/about.html')
+
+
+
+def register(request):
+    return render(request, 'activitytracker/register.html')
+
+
 def my_activitytracker(request):
     return HttpResponse("Hello, Runner!")
 
