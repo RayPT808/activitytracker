@@ -14,13 +14,17 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env
+
+# Load environment variables from .env file
+load_dotenv()
 
 
-SECRET_KEY = os.environ.get("ULBIBA6QLDGC5uGxp688Ci0hopishC5gum9y3mzvnQW8JPEJ46miQOUgQhqjDWvERz4")
+
+# Ensure the SECRET_KEY is retrieved correctly
+SECRET_KEY = os.environ.get("SECRET_KEY")
 if not SECRET_KEY:
     raise ValueError("The SECRET_KEY setting must not be empty.")
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +42,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
                 "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
+                "8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
                  ".herokuapp.com",
                 "localhost",
                 "127.0.0.1"
@@ -68,9 +73,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tracker.urls'
 
-import os
 
-import os
 
 TEMPLATES = [
     {
