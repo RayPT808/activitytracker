@@ -21,7 +21,15 @@ def about(request):
 
 @csrf_protect
 def register(request):
-    return render(request, 'activitytracker/register.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+if form.is_valid():
+    user = form.save()
+    ogin(request, user)
+    return redirect('dashboard')  # Redirect to the dashboard after successful registration
+else:
+    form = UserCreationForm()
+return render(request, 'activitytracker/register.html', {'form': form})
 
 
 def my_activitytracker(request):
