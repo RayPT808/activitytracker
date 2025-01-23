@@ -4,6 +4,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import ActivityForm
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 
 
 
@@ -15,7 +19,7 @@ def about(request):
     return render(request, 'activitytracker/about.html')
 
 
-
+@csrf_protect
 def register(request):
     return render(request, 'activitytracker/register.html')
 
