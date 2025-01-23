@@ -12,12 +12,13 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("ULBIBA6QLDGC5uGxp688Ci0hopishC5gum9y3mzvnQW8JPEJ46miQOUgQhqjDWvERz4")
 if not SECRET_KEY:
     raise ValueError("The SECRET_KEY setting must not be empty.")
 
