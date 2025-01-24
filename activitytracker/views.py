@@ -55,6 +55,11 @@ def dashboard(request):
 
 
 @login_required
+def profile_view(request):
+    return render(request, 'activitytracke/profile.html', {'user': request.user})
+
+
+@login_required
 def record_activity(request):
     if request.method == 'POST':
         form = ActivityForm(request.POST)
@@ -71,7 +76,7 @@ def record_activity(request):
 @login_required
 def activity_list(request):
     activities = request.user.activities.all()  # Use related_name 'activities' to get user's activities
-    return render(request, 'tracker/activity_list.html', {'activities': activities})
+    return render(request, 'activitytracker/activity_list.html', {'activities': activities})
     
 
 @login_required
