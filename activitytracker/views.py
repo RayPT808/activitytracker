@@ -23,13 +23,14 @@ def about(request):
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
-if form.is_valid():
-    user = form.save()
-    ogin(request, user)
-    return redirect('dashboard')  # Redirect to the dashboard after successful registration
-else:
-    form = UserCreationForm()
-return render(request, 'activitytracker/register.html', {'form': form})
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('dashboard')  # Redirect to the dashboard after successful registration
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'activitytracker/register.html', {'form': form})
 
 
 def my_activitytracker(request):
