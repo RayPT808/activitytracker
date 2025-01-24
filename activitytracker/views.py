@@ -93,8 +93,8 @@ def delete_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
     if request.method == 'POST':
         activity.delete()
-return redirect('activity_list')
-return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
+    return redirect('activity_list')
+    return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
  
 
 
