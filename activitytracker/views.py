@@ -36,6 +36,24 @@ def register(request):
 def my_activitytracker(request):
     return HttpResponse("Hello, Runner!")
 
+
+@login_required
+def dashboard(request):
+    if request.method == 'POST':
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            activity = form.save(commit=False)
+            activity.user = request.user
+            activity.save()
+            return redirect('dashboard')
+    else:
+        form = ActivityForm()
+
+    activities = request.user.activities.all().order_by('-date')
+    return render(request, 'activitytracker/dashboard.html', {'form': form, 'activities': activities})
+
+
+
 @login_required
 def record_activity(request):
     if request.method == 'POST':
@@ -67,6 +85,16 @@ def update_activity(request, pk):
     else:
         form = ActivityForm(instance=activity)
 
-    return render(request, 'tracker/update_activity.html', {'form': form})  
+    return render(request, 'tracker/update_activity.html', {'form': form})
+
+
+@login_required
+def delete_activity(request, pk):
+    activity = get_object_or_404(Activity, pk=pk, user=request.user)
+    if request.method == 'POST':
+        activity.delete()
+return redirect('activity_list')
+return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
+ 
 
 

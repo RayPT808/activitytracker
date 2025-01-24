@@ -1,0 +1,26 @@
+{% extends 'activitytracker/base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+<h2 class="text-center">Dashboard</h2>
+
+<!-- Form to add a new activity -->
+<form method="post" action="{% url 'record_activity' %}">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" class="btn btn-primary mt-3">Add Activity</button>
+</form>
+
+<!-- List of past activities -->
+<h3 class="mt-5">Past Activities</h3>
+<ul class="list-group">
+{% for activity in activities %}
+<li class="list-group-item">
+{{ activity.date }} - {{ activity.description }}
+</li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
