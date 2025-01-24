@@ -29,6 +29,25 @@
         .nav-link:hover {
             color: #ddd !important;
         }
+
+        .logout-form {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .logout-button {
+            display: inline;
+            padding: 0;
+            border: none;
+            background: none;
+            color: white;
+            line-height: 1.5;
+        }
+
+        .logout-button:hover {
+            color: #ddd;
+        }
     </style>
 </head>
 
@@ -44,14 +63,29 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" action="{% url 'logout' %}" class="logout-form">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link logout-button">Logout</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Login</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Register</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'about' %}">About</a>
-                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

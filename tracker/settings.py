@@ -139,7 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = 'dashboard'  
+LOGIN_REDIRECT_URL = 'dashboard' 
+
+LOGOUT_REDIRECT_URL = '/'
 
 
 
