@@ -55,8 +55,9 @@ def dashboard(request):
 
 
 @login_required
-def profile_view(request):
-    return render(request, 'activitytracke/profile.html', {'user': request.user})
+def profile(request):
+    return render(request, 'activitytracker/profile.html', {'user': request.user})
+
 
 
 @login_required
