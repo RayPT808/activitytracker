@@ -20,6 +20,8 @@ class Activity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
+    activity_name = models.CharField(max_length=100, blank=True, null=True)
+
 
     class Meta:
         ordering = ['-date', '-created_at']

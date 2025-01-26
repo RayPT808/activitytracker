@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'activitytracker/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
+{% block title %}User Profile{% endblock %}
 
-<body>
+{% block content %}
     <h1>User Profile</h1>
     <div>
         <p><strong>Username:</strong> {{ user.username }}</p>
@@ -15,6 +10,4 @@
         <p><strong>First Name:</strong> {{ user.first_name }}</p>
         <p><strong>Last Name:</strong> {{ user.last_name }}</p>
     </div>
-</body>
-
-</html>
+{% endblock %}
