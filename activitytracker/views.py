@@ -7,6 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
+from datetime import timedelta
+
 
 
 
@@ -67,8 +69,15 @@ def record_activity(request):
         if form.is_valid():
             activity = form.save(commit=False)
             activity.user = request.user  # Assign the logged-in user
+            hours = int(request.POST.get('hours', 0))
+            minutes = int(request.POST.get('minutes', 0))
+            seconds = int(request.POST.get('seconds', 0))
+
+
+            activity.duration = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+
             activity.save()
-            return redirect('activity_list')  # Redirect to a list of activities
+            return redirect('dashboard')  
     else:
         form = ActivityForm()
 
@@ -99,8 +108,10 @@ def delete_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
     if request.method == 'POST':
         activity.delete()
-    return redirect('activity_list')
+        return redirect('activity_list')  # Redirect after deletion
+
     return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
+
  
 
 

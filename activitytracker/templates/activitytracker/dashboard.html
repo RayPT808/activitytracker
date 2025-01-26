@@ -18,7 +18,10 @@
 <ul class="list-group">
 {% for activity in activities %}
 <li class="list-group-item">
-{{ activity.date }} - {{ activity.description }}
+<strong>{{ activity.date }}</strong> - {{ activity.activity_type }} for {{ activity.duration }} minutes
+<p>{{ activity.notes }}</p>
+<a href="{% url 'update_activity' activity.pk %}" class="btn btn-primary btn-sm">Edit</a>
+<a href="{% url 'delete_activity' activity.pk %}" class="btn btn-danger btn-sm">Delete</a>
 </li>
 {% endfor %}
 </ul>

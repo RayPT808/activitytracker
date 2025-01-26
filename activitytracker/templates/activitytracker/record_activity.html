@@ -4,44 +4,47 @@
 
 {% block content %}
 <div class="container mt-5">
-<h2 class="text-center">Record Activity</h2>
+    <h2 class="text-center">Record Activity</h2>
 
-<form method="post">
-{% csrf_token %}
-<!-- Other form fields -->
-<div class="form-group">
-<label for="id_duration">Duration (hh:mm:ss)</label>
-<div class="time-picker">
-<input type="number" id="hours" name="hours" min="0" max="23" value="0" class="time-input"> :
-<input type="number" id="minutes" name="minutes" min="0" max="59" value="0" class="time-input"> :
-<input type="number" id="seconds" name="seconds" min="0" max="59" value="0" class="time-input">
-</div>
-</div>
-<button type="submit" class="btn btn-primary mt-3">Save Activity</button>
-</form>
+    <form method="post">
+        {% csrf_token %}
+        
+        <!-- Other form fields can go here -->
+        
+        <div class="form-group">
+            <label for="id_duration">Duration (hh:mm:ss)</label>
+            <div class="time-picker">
+                <input type="number" id="hours" name="hours" min="0" max="23" value="0" class="time-input"> :
+                <input type="number" id="minutes" name="minutes" min="0" max="59" value="0" class="time-input"> :
+                <input type="number" id="seconds" name="seconds" min="0" max="59" value="0" class="time-input">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Activity</button>
+    </form>
 </div>
 
 <script>
 document.querySelector('form').addEventListener('submit', function(event) {
-event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent the default form submission
 
-// Get the values from the time inputs
-const hours = document.getElementById('hours').value;
-const minutes = document.getElementById('minutes').value;
-const seconds = document.getElementById('seconds').value;
+    // Get the values from the time inputs
+    const hours = document.getElementById('hours').value;
+    const minutes = document.getElementById('minutes').value;
+    const seconds = document.getElementById('seconds').value;
 
-// Combine the values into a single duration string
-const duration = `${hours}:${minutes}:${seconds}`;
+    // Combine the values into a single duration string
+    const duration = `${hours}:${minutes}:${seconds}`;
 
-// Create a hidden input to store the combined duration
-const durationInput = document.createElement('input');
-durationInput.type = 'hidden';
-durationInput.name = 'duration';
-durationInput.value = duration;
+    // Create a hidden input to store the combined duration
+    const durationInput = document.createElement('input');
+    durationInput.type = 'hidden';
+    durationInput.name = 'duration';
+    durationInput.value = duration;
 
-// Append the hidden input to the form and submit the form
-this.appendChild(durationInput);
-this.submit();
+    // Append the hidden input to the form and submit the form
+    this.appendChild(durationInput);
+    this.submit();
 });
 </script>
 {% endblock %}
