@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 from datetime import timedelta
+from rest_framework import generics
 from rest_framework import viewsets
 from .serializers import ActivitySerializer
 
@@ -117,6 +118,16 @@ def delete_activity(request, pk):
 
 
 class ActivityViewSet(viewsets.ModelViewSet):
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer
+
+
+class ActivityListCreateView(generics.ListCreateAPIView):
+    queryset = Activity.objects.all()
+    serializer_class = ActivitySerializer
+
+
+class ActivityRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
 
