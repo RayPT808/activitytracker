@@ -4,6 +4,8 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
+    path('api/activities/', views.ActivityListCreateView.as_view(), name='activity-list-create'),
+    path('api/activities/<int:pk>/', views.ActivityRetrieveUpdateDestroyView.as_view(), name='activity-detail'),
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('register/', views.register, name='register'),
