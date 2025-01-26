@@ -100,7 +100,7 @@ def update_activity(request, pk):
     else:
         form = ActivityForm(instance=activity)
 
-    return render(request, 'tracker/update_activity.html', {'form': form})
+    return render(request, 'activitytracker/update_activity.html', {'form': form})
 
 
 @login_required

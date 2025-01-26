@@ -81,7 +81,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'activitytracker', 'templates'),  # This is the main templates directory
+            os.path.join(BASE_DIR, 'activitytracker/templates'),  # This is the main templates directory
         ],
         'APP_DIRS': True,
         'OPTIONS': {
