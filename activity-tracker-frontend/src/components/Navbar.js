@@ -1,4 +1,6 @@
 import '../assets/css/navbar.css';
+import axios from 'axios';
+
 
 function Navbar() {
     return (
