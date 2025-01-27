@@ -3,6 +3,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Dashboard from './pages/Dashboard';
 import Navbar from './components/Navbar';
+import './components/ActivityForm.css';
+
 
 function App() {
     return (
