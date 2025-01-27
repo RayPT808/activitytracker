@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from rest_framework.serializers import ValidationError
 from rest_framework.permissions import AllowAny
 from django.contrib.auth import password_validation
+from rest_framework.decorators import permission_classes
+
 
 # Serializer for user registration
 from rest_framework import serializers

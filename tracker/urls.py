@@ -5,11 +5,12 @@ from django.conf.urls.static import static
 from activitytracker import views as activitytracker_views
 
 urlpatterns = [
-    path('', activitytracker_views.home, name='home'),  # Home page
-    path('home/', activitytracker_views.home, name='home_redirect'),  # Redirect home
-    path('admin/', admin.site.urls),  # Admin panel
-    path('activitytracker/', include('activitytracker.urls')),  # Include app URLs
-    path('accounts/', include('django.contrib.auth.urls')),  # Django auth system
+    path('', activitytracker_views.home, name='home'),  
+    path('home/', activitytracker_views.home, name='home_redirect'),  
+    path('admin/', admin.site.urls),
+    path('api/', include('users.urls')), 
+    path('activitytracker/', include('activitytracker.urls')), 
+    path('accounts/', include('django.contrib.auth.urls')),  
 ]
 
 if settings.DEBUG:
