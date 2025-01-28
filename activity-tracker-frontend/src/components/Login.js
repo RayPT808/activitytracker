@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
-import axiosInstance from '../api/axiosInstance';
+import axiosInstance from '../api/axiosInstance'; // Ensure this is configured correctly
+import { useHistory } from 'react-router-dom'; // If using React Router
 
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const history = useHistory(); // To navigate after login
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         const loginData = { email, password };
 
-        axiosInstance.post('/auth/login/', loginData) // Replace with your login endpoint
-            .then((response) => {
-                const { token } = response.data; // Adjust based on your backend response
-                // Store the token in localStorage
-                localStorage.setItem('authToken', token);
-                console.log('Login successful');
-                // Redirect to the dashboard or any other page
-                window.location.href = '/dashboard';
-            })
-            .catch((error) => {
-                console.error('Login error:', error);
-                setError('Invalid credentials'); // Customize the error message
-            });
+        try {
+            const response = await axiosInstance.post('/auth/login/', loginData); // Adjust the endpoint
+            const { token } = response.data; // Adjust according to your backend response
+
+            // Store the token in localStorage
+            localStorage.setItem('authToken', token);
+
+            // Log success
+            console.log('Login successful');
+
+            // Redirect to dashboard or any other page
+            history.push('/dashboard'); // Use React Router for navigation
+        } catch (error) {
+            console.error('Login error:', error);
+            setError('Invalid credentials'); // Display error message
+        }
     };
 
     return (
@@ -43,7 +48,7 @@ function Login() {
                 required 
             />
             <button type="submit">Login</button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Error message */}
         </form>
     );
 }

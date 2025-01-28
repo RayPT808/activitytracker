@@ -18,7 +18,7 @@ urlpatterns = [
     path('update/<int:pk>/', views.update_activity, name='update_activity'),
     path('delete_activity/<int:pk>/', views.delete_activity, name='delete_activity'),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
-    path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('accounts/logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('accounts/register/', views.register, name='register'),
     path('accounts/profile/', views.profile, name='profile'),
   

@@ -11,6 +11,7 @@ from datetime import timedelta
 from rest_framework import generics
 from rest_framework import viewsets
 from .serializers import ActivitySerializer
+from django.contrib.auth import logout
 
 
 
@@ -115,6 +116,11 @@ def delete_activity(request, pk):
         return redirect('activity_list')  # Redirect after deletion
 
     return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('home')
 
 
 class ActivityViewSet(viewsets.ModelViewSet):
