@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance'; // Ensure this is configured correctly
-import { useHistory } from 'react-router-dom'; // If using React Router
+import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState(''); // Changed from email to username
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const history = useHistory(); // To navigate after login
+    const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const loginData = { email, password };
+        const loginData = { username, password }; // Send username instead of email
 
         try {
             const response = await axiosInstance.post('/auth/login/', loginData); // Adjust the endpoint
@@ -22,8 +22,8 @@ function Login() {
             // Log success
             console.log('Login successful');
 
-            // Redirect to dashboard or any other page
-            history.push('/dashboard'); // Use React Router for navigation
+            // Redirect to dashboard or any other page using navigate
+            navigate('/dashboard'); // Use navigate for redirection
         } catch (error) {
             console.error('Login error:', error);
             setError('Invalid credentials'); // Display error message
@@ -34,10 +34,10 @@ function Login() {
         <form onSubmit={handleLogin}>
             <h2>Login</h2>
             <input 
-                type="email" 
-                placeholder="Email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+                type="text"  // Changed input type to text for username
+                placeholder="Username" // Placeholder updated
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
                 required 
             />
             <input 

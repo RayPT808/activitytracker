@@ -1,19 +1,19 @@
 import { useUser } from "../context/UserContext"; // Import the useUser hook
 import "../assets/css/navbar.css";
 import axios from "axios";
-import { useHistory } from "react-router-dom"; // For redirecting after logout
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation in React Router v6
 
 function Navbar() {
   const { user, setUser } = useUser(); // Access user data and setUser function
-  const history = useHistory(); // Initialize useHistory hook for redirecting
+  const navigate = useNavigate(); // Initialize useNavigate hook for redirecting
 
   const handleLogout = () => {
     // Clear the auth token from localStorage
     localStorage.removeItem("authToken");
     setUser(null); // Clear user context
 
-    // Redirect to login page
-    history.push("/login");
+    // Redirect to login page using navigate instead of history.push()
+    navigate("/login");
   };
 
   return (
