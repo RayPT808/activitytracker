@@ -1,9 +1,5 @@
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import React, { useEffect } from 'react'; // Import useEffect along with React
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { useUser } from "./context/UserContext"; // Import the useUser hook
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -24,7 +20,7 @@ function App() {
   }, [user, navigate]);
 
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
         {/* Define routes */}
@@ -34,7 +30,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
