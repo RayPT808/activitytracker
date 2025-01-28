@@ -10,7 +10,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('users.urls')), 
     path('activitytracker/', include('activitytracker.urls')), 
-    path('accounts/', include('django.contrib.auth.urls')),  
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('api/users/', include('users.urls')),  
 ]
 
 if settings.DEBUG:
