@@ -1,51 +1,80 @@
 import React, { useState } from 'react';
 import axiosInstance from '../api/axiosInstance'; // Ensure this is configured correctly
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom'; // For navigation
 
 function Login() {
-    const [username, setUsername] = useState(''); // Changed from email to username
+    const [username, setUsername] = useState(''); // Use username for login
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
+    const navigate = useNavigate(); // Navigation hook
+
+    // Helper to get CSRF token from cookies
+    const getCsrfToken = () => {
+        const csrfCookie = document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('csrftoken='));
+        return csrfCookie ? csrfCookie.split('=')[1] : null;
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        const loginData = { username, password }; // Send username instead of email
+        setError(''); // Clear previous errors
+
+        const loginData = { username, password };
 
         try {
-            const response = await axiosInstance.post('/auth/login/', loginData); // Adjust the endpoint
-            const { token } = response.data; // Adjust according to your backend response
+            const csrfToken = getCsrfToken();
+            if (!csrfToken) {
+                throw new Error('CSRF token missing. Please try refreshing the page.');
+            }
+
+            // Attach CSRF token to the headers and send login request
+            const response = await axiosInstance.post(
+                '/accounts/login/', // Ensure this path matches your Django URL for login
+                loginData,
+                {
+                    headers: {
+                        'X-CSRFToken': csrfToken,
+                    },
+                }
+            );
+
+            // Assuming the backend sends back a JWT or session cookie
+            const { token } = response.data; // Adjust based on your backend response structure
 
             // Store the token in localStorage
             localStorage.setItem('authToken', token);
 
-            // Log success
             console.log('Login successful');
-
-            // Redirect to dashboard or any other page using navigate
-            navigate('/dashboard'); // Use navigate for redirection
+            navigate('/dashboard'); // Redirect to dashboard (or another page)
         } catch (error) {
             console.error('Login error:', error);
-            setError('Invalid credentials'); // Display error message
+
+            // Display a more user-friendly error message
+            if (error.response && error.response.status === 401) {
+                setError('Invalid credentials. Please check your username and password.');
+            } else {
+                setError('An error occurred during login. Please try again later.');
+            }
         }
     };
 
     return (
         <form onSubmit={handleLogin}>
             <h2>Login</h2>
-            <input 
-                type="text"  // Changed input type to text for username
-                placeholder="Username" // Placeholder updated
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
-                required 
+            <input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
             />
-            <input 
-                type="password" 
-                placeholder="Password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
+            <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
             />
             <button type="submit">Login</button>
             {error && <p style={{ color: 'red' }}>{error}</p>} {/* Error message */}
@@ -54,3 +83,4 @@ function Login() {
 }
 
 export default Login;
+
