@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axiosInstance from '../api/axiosInstance'; 
-import { useNavigate } from 'react-router-dom'; 
+import axiosInstance from '../api/axiosInstance'; // Ensure axiosInstance has the correct base URL
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [username, setUsername] = useState(''); 
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(''); 
+        setError(''); // Reset any previous errors
 
         const loginData = { username, password };
 
@@ -31,19 +31,19 @@ function Login() {
 
             // Send login request to the Django API, passing the CSRF token in headers
             const response = await axiosInstance.post(
-                'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io', 
+                'http://localhost:8000/api/token/', // Adjust your API endpoint as necessary
                 loginData,
                 {
                     headers: {
-                        'X-CSRFToken': csrfToken, 
+                        'X-CSRFToken': csrfToken, // Pass the CSRF token here
                     },
                 }
             );
 
-            
+            // Extract tokens from response
             const { access, refresh } = response.data;
 
-            
+            // Store tokens in localStorage
             localStorage.setItem('authToken', access);
             localStorage.setItem('refreshToken', refresh);
 
