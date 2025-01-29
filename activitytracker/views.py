@@ -16,8 +16,13 @@ from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
 
 
+
+def get_csrf_token(request):
+    return JsonResponse({'csrfToken': get_token(request)})
 
 
 

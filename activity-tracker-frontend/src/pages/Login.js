@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import axiosInstance from '../api/axiosInstance'; // Ensure this is correctly set up
-import { useNavigate } from 'react-router-dom'; // For navigation
+import axiosInstance from '../api/axiosInstance'; 
+import { useNavigate } from 'react-router-dom'; 
 
 function Login() {
-    const [username, setUsername] = useState(''); // Use username for login
+    const [username, setUsername] = useState(''); 
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const navigate = useNavigate(); // Navigation hook
+    const navigate = useNavigate();
 
     // Helper to get CSRF token from cookies
     const getCsrfToken = () => {
@@ -18,31 +18,32 @@ function Login() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(''); // Clear previous errors
+        setError(''); 
 
         const loginData = { username, password };
 
         try {
+            // Get CSRF token from cookies
             const csrfToken = getCsrfToken();
             if (!csrfToken) {
                 throw new Error('CSRF token missing. Please try refreshing the page.');
             }
 
-            // Attach CSRF token to the headers and send login request
+            // Send login request to the Django API, passing the CSRF token in headers
             const response = await axiosInstance.post(
-                '/api/token/', // Make sure this matches your Django JWT login URL
+                'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io', 
                 loginData,
                 {
                     headers: {
-                        'X-CSRFToken': csrfToken,
+                        'X-CSRFToken': csrfToken, 
                     },
                 }
             );
 
-            // Get access and refresh tokens from the response
+            
             const { access, refresh } = response.data;
 
-            // Store tokens in localStorage
+            
             localStorage.setItem('authToken', access);
             localStorage.setItem('refreshToken', refresh);
 
@@ -51,7 +52,7 @@ function Login() {
         } catch (error) {
             console.error('Login error:', error);
 
-            // Display a more user-friendly error message
+            // Handle error responses from the backend
             if (error.response) {
                 if (error.response.status === 401) {
                     setError('Invalid credentials. Please check your username and password.');
@@ -82,7 +83,7 @@ function Login() {
                 required
             />
             <button type="submit">Login</button>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Error message */}
+            {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error message */}
         </form>
     );
 }
