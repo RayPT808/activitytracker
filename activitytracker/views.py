@@ -21,7 +21,6 @@ from rest_framework import status
 
 
 
-
 def home(request):
     return render(request, 'activitytracker/base.html')
 
