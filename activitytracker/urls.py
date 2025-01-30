@@ -19,6 +19,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'), 
     path('record/', views.record_activity, name='record_activity'),
     path('list/', views.activity_list, name='activity_list'),
+     path('api/activities/', views.ActivityListCreateView.as_view(), name='activity_list_api'),
     path('update/<int:pk>/', views.update_activity, name='update_activity'),
     path('delete_activity/<int:pk>/', views.delete_activity, name='delete_activity'),
 ]

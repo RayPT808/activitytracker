@@ -1,24 +1,22 @@
-from django.shortcuts import get_object_or_404
-from .models import Activity
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .forms import ActivityForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.middleware.csrf import get_token
 from datetime import timedelta
-from rest_framework import generics
-from rest_framework import viewsets
+
+from .models import Activity
+from .forms import ActivityForm
 from .serializers import ActivitySerializer
-from django.contrib.auth import logout
-from django.contrib.auth import authenticate, login
+
+from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework import status
-from django.http import JsonResponse
-from rest_framework.authtoken.models import Token
-from django.middleware.csrf import get_token
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authtoken.models import Token
 
 
 
@@ -158,9 +156,21 @@ class ActivityViewSet(viewsets.ModelViewSet):
     serializer_class = ActivitySerializer
 
 
-class ActivityListCreateView(generics.ListCreateAPIView):
-    queryset = Activity.objects.all()
-    serializer_class = ActivitySerializer
+class ActivityListCreateView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access this API
+
+    def get(self, request):
+        activities = request.user.activities.all()  # Filter activities by the current user
+        serializer = ActivitySerializer(activities, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        # Handle adding a new activity if needed
+        serializer = ActivitySerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)  # Assign to the logged-in user
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
 
 class ActivityRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
