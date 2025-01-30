@@ -54,12 +54,20 @@ function Navbar() {
                 </button>
               </li>
             ) : (
-              // Optionally, show a login button if the user is not logged in
-              <li className="nav-item">
-                <a className="nav-link" href="/login">
-                  Login
-                </a>
-              </li>
+              <>
+                {/* Show Register link if the user is not logged in */}
+                <li className="nav-item">
+                  <a className="nav-link" href="/register">
+                    Register
+                  </a>
+                </li>
+                {/* Show Login link if the user is not logged in */}
+                <li className="nav-item">
+                  <a className="nav-link" href="/login">
+                    Login
+                  </a>
+                </li>
+              </>
             )}
           </ul>
         </div>
