@@ -1,13 +1,16 @@
 import axios from 'axios';
 
+withCredentials: true
+
 // Create an instance of Axios
 const axiosInstance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000',  // Use the base URL for your Django API
-    timeout: 5000, 
+    baseURL: 'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/', 
     headers: {
         'Content-Type': 'application/json',
     },
+    withCredentials: true, // Allow cookies for authentication
 });
+
 
 // Function to get the CSRF token from cookies
 const getCsrfToken = () => {

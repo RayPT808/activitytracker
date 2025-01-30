@@ -6,18 +6,19 @@ from .forms import ActivityForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
 from datetime import timedelta
 from rest_framework import generics
 from rest_framework import viewsets
 from .serializers import ActivitySerializer
 from django.contrib.auth import logout
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from django.http import JsonResponse
+from rest_framework.authtoken.models import Token
 from django.middleware.csrf import get_token
+from rest_framework.decorators import api_view
 
 
 
@@ -32,6 +33,27 @@ def home(request):
 
 def about(request):
     return render(request, 'activitytracker/about.html')
+
+
+@api_view(['POST'])
+def login_view(request):
+    username = request.data.get('username')
+    password = request.data.get('password')
+
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        token, created = Token.objects.get_or_create(user=user)
+
+        
+        csrf_token = get_token(request)
+        return Response({
+            'access': token.key,
+            'csrf_token': csrf_token
+        })
+    else:
+        return Response({'error': 'Invalid credentials'}, status=401)
+
 
 
 @csrf_protect

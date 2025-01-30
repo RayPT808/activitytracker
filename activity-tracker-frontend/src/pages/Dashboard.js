@@ -7,13 +7,13 @@ function Dashboard() {
     const { user } = useUser(); // Access the user data from context
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/activities/')
+        axios.get('https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/activities/')
             .then(response => {
                 setActivities(response.data);
             })
             .catch(error => console.log(error));
     }, []);
-
+    
     // If user data isn't available yet, show loading message
     if (!user) {
         return <p>Loading user data...</p>;

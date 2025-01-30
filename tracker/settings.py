@@ -63,11 +63,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'activitytracker',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -183,15 +185,30 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React frontend
+    "http://localhost:3000",
+    "https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io", 
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True 
-CORS_ALLOW_ALL_ORIGINS = True  
-CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']  
+CORS_ALLOWED_ORIGINS = ["https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+]
+
 CORS_ALLOW_CREDENTIALS = True
 
+CSRF_TRUSTED_ORIGINS = [ "https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+]
+
 CSRF_COOKIE_HTTPONLY = False
-CSRF_COOKIE_SECURE = False  
-SESSION_COOKIE_SECURE = False 
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}
+
 

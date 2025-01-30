@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from activitytracker import views
+from .views import login_view
 
 
 urlpatterns = [
@@ -10,6 +11,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('about/', views.about, name='about'),
     path('register/', views.register, name='register'),
+    path('api/login/', login_view, name='api-login'),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),  # Django's login
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('accounts/register/', views.register, name='register'),
