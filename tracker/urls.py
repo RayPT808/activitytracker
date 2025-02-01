@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from activitytracker import views as activitytracker_views
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import get_csrf_token
+from .views import login_view
 
 urlpatterns = [
     path('', activitytracker_views.home, name='home'),  
@@ -13,7 +14,8 @@ urlpatterns = [
     
     # API endpoints
     path('api/users/', include('users.urls')), 
-    path('api/activitytracker/', include('activitytracker.urls')),  
+    path('api/activitytracker/', include('activitytracker.urls')),
+    path('api/login/', login_view, name='api-login'), 
     
     path('accounts/', include('django.contrib.auth.urls')),  # Django built-in auth URLs
 

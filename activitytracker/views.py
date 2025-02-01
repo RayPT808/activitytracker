@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.middleware.csrf import get_token
+from django.views.decorators.csrf import csrf_protect
 from datetime import timedelta
 
 from .models import Activity
@@ -17,6 +17,10 @@ from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.models import Token
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import serializers
+
+
 
 
 
@@ -40,19 +44,17 @@ def login_view(request):
 
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)
-        token, created = Token.objects.get_or_create(user=user)
-
+        login(request, user)  # Optional if you're managing sessions in the backend
         
-        csrf_token = get_token(request)
+        # Create JWT token
+        refresh = RefreshToken.for_user(user)
         return Response({
-            'access': token.key,
-            'csrf_token': csrf_token
+            'refresh': str(refresh),
+            'access': str(refresh.access_token),
         })
     else:
         return Response({'error': 'Invalid credentials'}, status=401)
-
-
+        
 
 @csrf_protect
 def register(request):
@@ -118,7 +120,7 @@ def record_activity(request):
 
 @login_required
 def activity_list(request):
-    activities = request.user.activities.all()  # Use related_name 'activities' to get user's activities
+    activities = request.user.activities.all()  
     return render(request, 'activitytracker/activity_list.html', {'activities': activities})
     
 
@@ -171,6 +173,28 @@ class ActivityListCreateView(APIView):
             serializer.save(user=request.user)  # Assign to the logged-in user
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+
+
+class UserRegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+    def create(self, validated_data):
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
+
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = UserRegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            user = serializer.save()
+            return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ActivityRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):

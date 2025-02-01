@@ -134,6 +134,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
     "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+
 ]
 
 # Password validation

@@ -9,7 +9,7 @@
     <form method="post">
         {% csrf_token %}
         
-        <!-- Other form fields can go here -->
+        
         
         <div class="form-group">
             <label for="id_duration">Duration (hh:mm:ss)</label>
@@ -28,7 +28,7 @@
 document.querySelector('form').addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent the default form submission
 
-    // Get the values from the time inputs
+    
     const hours = document.getElementById('hours').value;
     const minutes = document.getElementById('minutes').value;
     const seconds = document.getElementById('seconds').value;

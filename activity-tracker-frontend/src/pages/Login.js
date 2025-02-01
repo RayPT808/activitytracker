@@ -8,6 +8,9 @@ function Login() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
+    // Get the CSRF token from the meta tag in your base template
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
     const handleLogin = async (e) => {
         e.preventDefault();
         setError(''); // Reset any previous errors
@@ -18,21 +21,23 @@ function Login() {
         };
 
         try {
+            // Send login request to the backend API
             const response = await axiosInstance.post(
-                'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/token/',  // Ensure this matches your backend URL
+                '/api/login/',  // Update this if the backend endpoint is different
                 loginData,
                 {
                     withCredentials: true,  // Ensures cookies like CSRF tokens are sent
                     headers: {
-                        'Content-Type': 'application/json', // Make sure the content type is correct
+                        'Content-Type': 'application/json', // Ensure the correct content type
+                        'X-CSRFToken': csrfToken,  // Include the CSRF token here
                     },
                 }
             );
 
-            // Extract tokens from the response
+            // Extract tokens (if the backend is sending them)
             const { access, refresh } = response.data;
 
-            // Store tokens in localStorage
+            // Store tokens in localStorage (for persistence)
             localStorage.setItem('authToken', access);
             localStorage.setItem('refreshToken', refresh);
 
