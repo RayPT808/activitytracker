@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
+from django.middleware.csrf import get_token
 from datetime import timedelta
 
 from .models import Activity
@@ -35,6 +36,7 @@ def home(request):
 
 def about(request):
     return render(request, 'activitytracker/about.html')
+
 
 
 @api_view(['POST'])

@@ -77,7 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'tracker.urls'
@@ -129,13 +129,15 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net/",
+    "https://*.codeinstitute-ide.net",
     "https://*.herokuapp.com",
     "https://8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
     "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
-
+    "http://localhost:3000",
 ]
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -190,13 +192,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io", 
 ]
 
-CORS_ALLOWED_ORIGINS = ["https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
-]
 
 CORS_ALLOW_CREDENTIALS = True
-
-CSRF_TRUSTED_ORIGINS = [ "https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
-]
 
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
