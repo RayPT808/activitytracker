@@ -9,9 +9,14 @@ function Login() {
     const navigate = useNavigate();
 
     // Get the CSRF token from the meta tag in your base template
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    const handleLogin = async (e) => {
+    // Get the CSRF token from the meta tag in your base template
+    const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
+    const csrfToken = csrfTokenElement ? csrfTokenElement.getAttribute('content') : null;
+
+    
+        const handleLogin = async (e) => {
         e.preventDefault();
         setError(''); // Reset any previous errors
 
@@ -23,7 +28,7 @@ function Login() {
         try {
             // Send login request to the backend API
             const response = await axiosInstance.post(
-                '/api/login/',  // Update this if the backend endpoint is different
+                '/api/login/', 
                 loginData,
                 {
                     withCredentials: true,  // Ensures cookies like CSRF tokens are sent
