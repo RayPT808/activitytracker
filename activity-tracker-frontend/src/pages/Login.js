@@ -1,28 +1,35 @@
-import React, { useState } from 'react';
-import axiosInstance from '../api/axiosInstance'; // Ensure axiosInstance has correct base URL
+import React, { useState, useEffect } from 'react';
+import axiosInstance from '../api/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [csrfToken, setCsrfToken] = useState(null);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    // Get the CSRF token from the meta tag in your base template
-    //const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    // Fetch the CSRF token when the component mounts
+    useEffect(() => {
+        const getCsrfToken = async () => {
+            try {
+                const response = await axiosInstance.get('/api/get_csrf_token/');
+                setCsrfToken(response.data.csrfToken);
+            } catch (error) {
+                console.error('Error fetching CSRF token:', error);
+            }
+        };
 
-    // Get the CSRF token from the meta tag in your base template
-    const csrfTokenElement = document.querySelector('meta[name="csrf-token"]');
-    const csrfToken = csrfTokenElement ? csrfTokenElement.getAttribute('content') : null;
+        getCsrfToken();
+    }, []);
 
-    
-        const handleLogin = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
         setError(''); // Reset any previous errors
 
         const loginData = { 
-            username: username, 
-            password: password 
+            username, 
+            password 
         };
 
         try {
