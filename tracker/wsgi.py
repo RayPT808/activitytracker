@@ -6,6 +6,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tracker.settings')
 
 application = get_wsgi_application()
 
-application = WhiteNoise(get_wsgi_application())
 
+application = WhiteNoise(application, root=os.path.join(os.path.dirname(__file__), 'staticfiles'))
 
