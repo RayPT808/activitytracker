@@ -38,7 +38,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
                 "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
