@@ -1,0 +1,41 @@
+body {
+    background: url('../images/backgroundimage.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.navbar-brand img {
+    height: 40px;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.nav-link:hover {
+    color: #ddd !important;
+}
+
+.logout-form {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.logout-button {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: none;
+    color: white;
+    line-height: 1.5;
+}
+
+.logout-button:hover {
+    color: #ddd;
+}
