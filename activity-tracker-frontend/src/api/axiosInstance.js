@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-withCredentials: true
 
-// Create an instance of Axios
+
 const axiosInstance = axios.create({
     baseURL: 'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io',
 
