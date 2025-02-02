@@ -46,7 +46,7 @@ ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
                 "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io/activitytracker/register/",
                 "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
                 "8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
-                ".herokuapp.com",
+                "activitytracker.herokuapp.com",
                 "localhost",
                 "127.0.0.1"
                  ]
