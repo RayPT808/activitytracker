@@ -55,17 +55,27 @@ ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',  
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'activitytracker',
     'rest_framework',
+    'activitytracker',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
-    'corsheaders',
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.codeinstitute-ide.net",
+    "https://*.herokuapp.com",
+    "https://8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
+    "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
+    "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+    "http://localhost:3000",
 ]
 
 MIDDLEWARE = [
@@ -77,8 +87,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
+
+
 
 ROOT_URLCONF = 'tracker.urls'
 
@@ -87,8 +109,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
-
 
 
 TEMPLATES = [
@@ -128,14 +148,6 @@ DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "postgresql://neondb_owner:YXaA8Ks6MuQy@ep-bitter-scene-a2sxt9p7.eu-central-1.aws.neon.tech/stall_grant_chess_882851"))
 }
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.codeinstitute-ide.net",
-    "https://*.herokuapp.com",
-    "https://8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
-    "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
-    "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
-    "http://localhost:3000",
-]
 
 
 
@@ -167,11 +179,8 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -187,17 +196,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://8080-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io", 
-]
-
-
-CORS_ALLOW_CREDENTIALS = True
-
-CSRF_COOKIE_HTTPONLY = False
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

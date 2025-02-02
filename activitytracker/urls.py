@@ -2,20 +2,19 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from activitytracker import views
-from .views import login_view
+from .views import home, login_view, get_csrf_token, RegisterView
 from .views import RegisterView
 
 
 urlpatterns = [
+    path('api/get_csrf_token/', get_csrf_token, name='get_csrf_token'),
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/activities/', views.ActivityListCreateView.as_view(), name='activity-list-create'),
     path('api/activities/<int:pk>/', views.ActivityRetrieveUpdateDestroyView.as_view(), name='activity-detail'),
-    path('', views.home, name='home'),
+    path('', home, name='home'),
     path('about/', views.about, name='about'),
     path('register/', views.register, name='register'),
-    path('login/', login_view, name='login'),  
-    #path('api/login/', login_view, name='api-login'),
-    #path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
+    path('api/login/', login_view, name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
     path('accounts/register/', views.register, name='register'),
     path('accounts/profile/', views.profile, name='profile'),
