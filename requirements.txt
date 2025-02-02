@@ -12,3 +12,4 @@ PyJWT==2.10.1
 PySocks==1.7.1
 python-dotenv==1.0.1
 sqlparse==0.5.3
+whitenoise==6.8.2
