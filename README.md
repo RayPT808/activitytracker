@@ -18,7 +18,8 @@ At next I visualized a user friendly interface where all the required functions 
 ![p5wireframe](assets/images/p5%20wireframe.png)
 ![p5mobileview](assets/images/P5%20mobile%20view.png)
 
-This was my idea that I proudly presentet to my tutor. However some research and meetings with my tutor made me realise I don't have the techniqual skills, experience or time to create something that like the initial idea was, plus to launch an MVP product I don't even need all of that. Considering all these details I narrowed down the scope of the project to aim for an MVP outcome creating a simple user interface much like Strava ![screenshotstrava](assets/images/screenshotstrava.png) and Garmin has on their platform ![Garmin](assets/images/Garmin.png). It is basically a form with different data fields that the user can create, save, modify, delete.
+This was my idea that I proudly presentet to my tutor. However some research and meetings with my tutor made me realise I don't have the techniqual skills, experience or time to create something that like the initial idea was, plus to launch an MVP product I don't even need all of that. Considering all these details I narrowed down the scope of the project to aim for an MVP outcome creating a simple user interface much like Strava.
+![screenshotstrava](assets/images/screenshotstrava.png) or Garmin has on their platform ![Garmin](assets/images/Garmin.png). It is basically a form with different data fields that the user can create, save, modify, delete.
 ![activitytrackerloggedinview](assets/images/Activity%20Tracker%20Logged%20in%20view.png)
 
 ### User Experience
@@ -115,20 +116,27 @@ The user can set the duration of the recorded activity in a format of hh:mm:ss.
 
 The user can see on a list her/his past activities.
 
-+ Result fields
+#### Additional features to implement
 
-![Result fields](/assets/media/resultfield.png)
++ Password reset option.
 
-There are three fields which are clearly indicating the place of the expected result, depending on, in which value is the user interested.
++ Detailed user profile view.
 
-+ User guide
++ .fit, .gpx file upload option.
 
-![User guide](/assets/media/userguide.png)
++ Weekly, monthly sum and/or breakdown of activities.
 
-The user guide can be found at the bottom of the page in the footer section. Gives a brief, clear explanation on how to fill out the forms.
+### Testing
 
-#### Features left to implement
+#### Browser compatibility
 
-+ To improve user experience HTML Web storage could be used to store the previusly input values.
+Tested the website on **Chrome**, **Safari**, **Firefox**.
+Appearance was good on all three browsers.
+Intended responsiveness also good on all three.
 
-* A unit conversion feature could be added to change from metric to imperial and back.
+![responsive](/assets/images/responsive.png)
+
+
+#### Lighthouse report
+
+
