@@ -126,6 +126,8 @@ The user can see on a list her/his past activities.
 
 + Weekly, monthly sum and/or breakdown of activities.
 
++ Improved layout of fileds
+
 ### Testing
 
 #### Browser compatibility
@@ -136,7 +138,84 @@ Intended responsiveness also good on all three.
 
 ![responsive](/assets/images/responsive.png)
 
-
 #### Lighthouse report
 
+Unfotunately based on the Lighthouse report, the website has poor performance with several issues.
 
+![LighthouseReport](/assets/images/Lighthouse-Report.png)
+
+#### Features Testing
+
+| Feature                | Test                             | Expected Outcome                    |
+|------------------------|----------------------------------|-------------------------------------|
+| Registration form      | Input new user details           | New user will be registered         |
+|------------------------|----------------------------------|-------------------------------------|
+| Activities type list   | Select activity from list        | Type of activity will be set        |
+|------------------------|----------------------------------|-------------------------------------|
+| Duration field         | Set duration in hh:mm:ss format  | The selected duration will be set   |
+|------------------------|----------------------------------|-------------------------------------|
+| Date picker            | Choose date from calendar        | Selected dates are accepted         |
+|------------------------|----------------------------------|-------------------------------------|
+| Add activity button    | Click on the button              | Activity will be saved with details |
+|------------------------|----------------------------------|-------------------------------------|
+| Edit button            | Click on edit button             | Past activity form opens            |
+|------------------------|----------------------------------|-------------------------------------|
+| Delete button          | Click on delete button           | Notification pop up message         |
+|------------------------|----------------------------------|-------------------------------------|
+| Save changes button    | Click on save changes button     | Edited activity will be saved       |
+|------------------------|----------------------------------|-------------------------------------|
+
+#### Unfixed Bugs
+
++ Set activity duration not saved. Only after editing and saving again will be the duration  saved.
+
++ Date picker accepts future dates.
+
++ List view of activities doesn't show the name of the activities
+
+### Deployment
+
+The site was deployed through Heroku. First the backend part was deployed. The frontend was deployed later. A separate application was created on Heroku but connected to the same GitHub repository where the back end was saved
+The live links can be found here - <https://activitytracking-bf7924cd3676.herokuapp.com/api/activitytracker/>
+                                 - <https://reactivity-789dd5d26427.herokuapp.com/>
+
+### Credits
+
+#### Content
+
++ Favicon were taken from Favicon.io.
+
++ For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
+
+#### Code
+
++ The initial structure is based on CI's own boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
+
++ Code snipets, ideas were taken from the following repositories:
+
++ <https://docs.fittrackee.org/en/features.html>
+
++ <https://github.com/ebrithiljonas/fittrackee-uploader/tree/main>
+
++ <https://github.com/cyberjunky/python-garminconnect>
+
++ <https://github.com/Vlinking/django-rest-calendar>
+
++ <https://github.com/eoinlarkin/trax/tree/main>
+
+#### Media
+
++ Images for illustration and design were taken from open source site Pixabay.com.
+
+### Acknowledgement
+
+Grateful for the help and the input from my mentor **Iuliia Konovalova**.
+Shee always gave a different perspective on the issues and with her experience
+and eyes for details I was guided in the right direction to make this project happen.
+
+
+## ...The reality
+
+The fith and final milestone project supposed to be an advanced front end full stack project. I highly underestimated the complexity of this project. There are much more "moving parts" that supposed to sync up with each other to make this application work. Due to the lack of my experience and knowledge throughout development I lost a lot of time on issue that should have been a quick fix. As all of these factors started align I relised I won't be able to deliver an MVP product on time.
+The project unfortunately missing many parts that would make it acceptable. If this would be a real life scenario, me as a project manager/ product owner 3-4 weeks before the deadline would have reached out to the client to push deadline in exchange for a lower price and/or additinal features/services for free.
+However the idea of the activity tracker  
