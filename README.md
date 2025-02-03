@@ -27,15 +27,15 @@ This was my idea that I proudly presentet to my tutor. However some research and
 
 + As a first time visitor the goal and the purpose of the website is easily understandable.
 
-- As a first time visitor I can easily navigate through the page and locate functions.
++ As a first time visitor I can easily navigate through the page and locate functions.
 
 #### Returning visitor goals
 
 + After some contemplation as a returning visitor to the website I can find and carry on a registration.
 
-- As a registered user I can log in to my account, where my data and details are stored securely.
++ As a registered user I can log in to my account, where my data and details are stored securely.
 
-* As a logged in user I can choose from different types of activities.
++ As a logged in user I can choose from different types of activities.
 
 + As a logged in user I can save my chosen actyvity type, date, duration.
 
@@ -44,3 +44,91 @@ This was my idea that I proudly presentet to my tutor. However some research and
 + As a frequently returning user I can see my past activities on a list.
 
 + As a frequently returning user I can modify details of past activities or I can delete past activities.
+
+### Technologies Used
+
+#### Languages Used
+
++ HTML
+
++ CSS3
+
++ Javascript
+
++ Python
+
+#### Frameworks, Libraries & Programs Used
+
+1. Bootstrap
+
+2. Django Rest Framework
+
+3. Git
+
++ Git was used to commit and push the codes.
+
+4. GitHub
+
++ Github was used to store the project after being pushed.
+
+5. Pexels.com
+
++ Pexels was used to download pictures for background and illustrations.
+
+6. Balsamiq.com
+
++ Balsamiq platform was used to draw wireframes nad visualise pages.
+
+7. React
+
+### Features
+
+#### Existing Features
+
++ Logo, branding
+
+![icon](/assets/images/icon.png)
+
+Upon opening the page in the browser next to the name of the website the logo is positioned in the felt side of the navbar. Dynamic and reflecting the colour scheme of the site
+
++ Activity types list
+
+![activitytype](/assets/images/activitytype.png)
+
+ The user can choose th etype of activity from a scroll down list. The list is not limited to tha existing choices, furhter activities can be added.
+
++ Date of activity
+
+![datepicker](/assets/images/datepicker.png)
+
+The user can set the date in the past of the recorded activity.
+
++ Activities list
+
+![durationpicker](/assets/images/durationpicker.png)
+
+The user can set the duration of the recorded activity in a format of hh:mm:ss.
+
++ Activities list
+
+![activitieslist](/assets/images/activitieslist.png)
+
+The user can see on a list her/his past activities.
+
++ Result fields
+
+![Result fields](/assets/media/resultfield.png)
+
+There are three fields which are clearly indicating the place of the expected result, depending on, in which value is the user interested.
+
++ User guide
+
+![User guide](/assets/media/userguide.png)
+
+The user guide can be found at the bottom of the page in the footer section. Gives a brief, clear explanation on how to fill out the forms.
+
+#### Features left to implement
+
++ To improve user experience HTML Web storage could be used to store the previusly input values.
+
+* A unit conversion feature could be added to change from metric to imperial and back.
