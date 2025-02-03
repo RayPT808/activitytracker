@@ -18,4 +18,5 @@ At next I visualized a user friendly interface where all the required functions 
 ![p5wireframe](assets/images/p5%20wireframe.png)
 ![p5mobileview](assets/images/P5%20mobile%20view.png)
 
-This was my idea that I proudly presentet to my tutor. However some research and meetings with my tutor made me realise I don't have the techniqual skills, experience or time to create something that like the initial idea was, plus to launch an MVP product I don't even need all of that.
+This was my idea that I proudly presentet to my tutor. However some research and meetings with my tutor made me realise I don't have the techniqual skills, experience or time to create something that like the initial idea was, plus to launch an MVP product I don't even need all of that. Considering all these details I narrowed down the scope of the project to aim for an MVP outcome creating a simple user interface much like Strava ![screenshotstrava](assets/images/screenshotstrava.png) and Garmin has on their platform ![Garmin](assets/images/Garmin.png). It is basically a form with different data fields that the user can create, save, modify, delete.
+![activitytrackerloggedinview](assets/images/Activity%20Tracker%20Logged%20in%20view.png)
