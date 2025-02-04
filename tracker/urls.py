@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 from django.conf import settings
 from django.conf.urls.static import static
 from activitytracker import views as activitytracker_views
@@ -24,8 +25,13 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
     path('csrf/', get_csrf_token, name='get_csrf_token'),
+
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
 
 # Serve static/media files in development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = TemplateView.as_view(template_name='index.html')

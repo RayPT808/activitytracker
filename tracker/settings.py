@@ -64,6 +64,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'rest_framework',
     'activitytracker',
     'rest_framework.authtoken',
@@ -119,7 +121,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'activitytracker/templates'),  # This is the main templates directory
+            os.path.join(BASE_DIR, 'activitytracker/templates', 'staticfiles', 'build'),  # This is the main templates directory
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -196,7 +198,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')] 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
+
+WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 
 
 MEDIA_URL = '/media/'
