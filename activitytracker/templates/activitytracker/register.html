@@ -2,23 +2,72 @@
 
 {% block title %}Register - Activity Tracker{% endblock %}
 
+{% load static %}
+
 {% block content %}
-<div class="container mt-5 pt-5">
-    <h2 class="text-center">Register</h2>
-    <form method="POST">
+<!-- Link the CSS file here -->
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+<div class="container mt-4">
+    <h2 class="mb-4">Create an Account</h2>
+    <form method="POST" class="needs-validation" novalidate>
         {% csrf_token %}
-        {% for field in form %}
-        <div class="form-group">
-            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-            <div class="text-danger">
-                {{ field.errors|striptags }}
+
+        <div class="form-group mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="id_username" name="username" required
+                placeholder="Enter your username">
+            <div class="invalid-feedback">
+                Please provide a valid username.
             </div>
-            {% endif %}
         </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary mt-3">Register</button>
+
+        <div class="form-group mb-3">
+            <label for="id_email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="id_email" name="email" required placeholder="Enter your email">
+            <div class="invalid-feedback">
+                Please provide a valid email address.
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_password1" class="form-label">Password</label>
+            <input type="password" class="form-control" id="id_password1" name="password1" required
+                placeholder="Enter a password">
+            <div class="invalid-feedback">
+                Please provide a password.
+            </div>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="id_password2" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="id_password2" name="password2" required
+                placeholder="Confirm your password">
+            <div class="invalid-feedback">
+                Please confirm your password.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
     </form>
 </div>
+
+<script>
+    // Example of Bootstrap validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+
 {% endblock %}
