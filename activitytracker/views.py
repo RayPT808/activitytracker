@@ -10,6 +10,7 @@ from datetime import timedelta
 
 from .models import Activity
 from .forms import ActivityForm
+from .forms import CustomUserCreationForm
 from .serializers import ActivitySerializer
 
 from rest_framework import generics, viewsets, status
@@ -46,9 +47,9 @@ def login_view(request):
 
     user = authenticate(request, username=username, password=password)
     if user is not None:
-        login(request, user)  # Optional if you're managing sessions in the backend
+        login(request, user)  
         
-        # Create JWT token
+        
         refresh = RefreshToken.for_user(user)
         return Response({
             'refresh': str(refresh),
@@ -61,13 +62,13 @@ def login_view(request):
 @csrf_protect
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('dashboard')  # Redirect to the dashboard after successful registration
+            return redirect('dashboard')  
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     
     return render(request, 'activitytracker/register.html', {'form': form})
 
