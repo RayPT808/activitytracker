@@ -1,23 +1,27 @@
-from pathlib import Path
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
+import dj_database_url
 
-load_dotenv()
+# Define the path to the .env file
+env_path = Path(__file__).resolve().parent.parent / '.env'
+print(f"Loading .env from: {env_path}")
 
+# Load environment variables
+load_dotenv(dotenv_path=env_path)
 
-def get_env_variable(var_name):
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        raise ImproperlyConfigured(f"Set the {var_name} environment variable.")
+# Fetch SECRET_KEY
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+print(f"SECRET_KEY Loaded: {SECRET_KEY}")
 
-SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY not found in environment variables.")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
                 "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
@@ -41,8 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cloudinary_storage',
     'cloudinary',
+    'cloudinary_storage',
     'rest_framework',
     'activitytracker',
     'rest_framework.authtoken',
@@ -162,4 +166,11 @@ REST_FRAMEWORK = {
     ],
 }
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET')
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
