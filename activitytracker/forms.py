@@ -21,6 +21,11 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name'] 
 
 class DurationInput(forms.TextInput):
     input_type = 'time'

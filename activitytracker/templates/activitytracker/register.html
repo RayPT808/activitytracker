@@ -5,12 +5,13 @@
 {% load static %}
 
 {% block content %}
-<!-- Link the CSS file here -->
+
 <link rel="stylesheet" href="{% static 'css/register.css' %}">
 
 <div class="container mt-4">
-    <h2 class="mb-4">Create an Account</h2>
-    <form method="POST" class="needs-validation" novalidate>
+    <h2 class="mb-4 text-center">Create an Account</h2>
+    <form method="POST" class="needs-validation register-form" novalidate>
+
         {% csrf_token %}
 
         <div class="form-group mb-3">

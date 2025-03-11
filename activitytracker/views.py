@@ -11,6 +11,7 @@ from datetime import timedelta
 from .models import Activity
 from .forms import ActivityForm
 from .forms import CustomUserCreationForm
+from .forms import UserProfileForm
 from .serializers import ActivitySerializer
 
 from rest_framework import generics, viewsets, status
@@ -93,11 +94,17 @@ def dashboard(request):
     return render(request, 'activitytracker/dashboard.html', {'form': form, 'activities': activities})
 
 
-
 @login_required
 def profile(request):
-    return render(request, 'activitytracker/profile.html', {'user': request.user})
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile') 
+    else:
+        form = UserProfileForm(instance=request.user)
 
+    return render(request, 'activitytracker/profile.html', {'form': form})
 
 
 @login_required
