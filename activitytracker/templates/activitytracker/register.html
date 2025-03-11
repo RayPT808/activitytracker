@@ -14,6 +14,18 @@
 
         {% csrf_token %}
 
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
         <div class="form-group mb-3">
             <label for="id_username" class="form-label">Username</label>
             <input type="text" class="form-control" id="id_username" name="username" required
@@ -54,21 +66,22 @@
 </div>
 
 <script>
-    // Example of Bootstrap validation
+    // Example of Bootstrap validation with debugging
     (function () {
         'use strict'
         var forms = document.querySelectorAll('.needs-validation')
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
+                    console.log("Form submitted");  // Debugging line
                     if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+                        event.preventDefault();
+                        event.stopPropagation();
                     }
-                    form.classList.add('was-validated')
-                }, false)
+                    form.classList.add('was-validated');
+                }, false);
             })
-    })()
+})();
 </script>
 
 {% endblock %}
