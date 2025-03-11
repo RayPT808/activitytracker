@@ -1,15 +1,21 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import dj_database_url
+from django.core.exceptions import ImproperlyConfigured
 
 load_dotenv()
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
-if not SECRET_KEY:
-    raise ValueError("The SECRET_KEY setting must not be empty.")
+
+def get_env_variable(var_name):
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        raise ImproperlyConfigured(f"Set the {var_name} environment variable.")
+
+SECRET_KEY = get_env_variable('DJANGO_SECRET_KEY')
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 DEBUG = False
 
