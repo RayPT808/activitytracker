@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-
+from django.contrib.auth.models import User
 from .models import Activity
 
 class CustomUserCreationForm(UserCreationForm):
@@ -21,8 +20,8 @@ class CustomUserCreationForm(UserCreationForm):
         password1 = self.cleaned_data.get('password1')
         password2 = self.cleaned_data.get('password2')
 
-        if password1 != password2:
-            raise ValidationError("Passwords don't match.")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("The two password fields must match.")
         return password2
 
     def save(self, commit=True):
@@ -32,7 +31,7 @@ class CustomUserCreationForm(UserCreationForm):
             user.save()
         return user
     
-    
+
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = User
