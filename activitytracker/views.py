@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
 from django.middleware.csrf import get_token
+from django.utils.timezone import now
 from datetime import timedelta
 
 from .models import Activity
@@ -136,17 +137,27 @@ def activity_list(request):
 
 @login_required
 def update_activity(request, pk):
-    activity = get_object_or_404(Activity, pk=pk, user=request.user)  # Ensure only the owner can edit
+    activity = get_object_or_404(Activity, pk=pk, user=request.user)  
+    
     if request.method == 'POST':
         form = ActivityForm(request.POST, instance=activity)
         if form.is_valid():
+        
+            if form.has_changed():
+                changed_fields = form.changed_data
+                change_description = "; ".join([f"{field} changed" for field in changed_fields])
+                
+                
+                ActivityLog.objects.create(
+                    activity=activity,
+                    change_description=change_description
+                )
             form.save()
-            return redirect('activity_list')  # Redirect to the activity list page after updating
+            return redirect('activity_list')  
     else:
         form = ActivityForm(instance=activity)
 
     return render(request, 'activitytracker/update_activity.html', {'form': form})
-
 
 @login_required
 def delete_activity(request, pk):

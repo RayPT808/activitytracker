@@ -1,3 +1,5 @@
+{% load static %}
+
 {% extends 'activitytracker/base.html' %}
 
 {% block title %}Activity List{% endblock %}
@@ -7,7 +9,7 @@
     <h2 class="text-center">Past Activities</h2>
 
     <!-- Scrollable list of activities -->
-    <div class="activity-list" style="max-height: 400px; overflow-y: auto;">
+    <div class="activity-list">
         <ul class="list-group">
             {% for activity in activities %}
                 <li class="list-group-item">
@@ -21,4 +23,8 @@
         </ul>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/activity_list.css' %}">
 {% endblock %}

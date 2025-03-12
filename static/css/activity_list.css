@@ -1,0 +1,6 @@
+/* activity_list.css */
+.activity-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 15px; /* Prevent scrollbar overlap */
+}

@@ -17,7 +17,6 @@
 }
 
 /* RECENT ACTIONS MODULE */
-
 .module ul.actionlist {
     margin-left: 0;
 }
@@ -27,3 +26,4 @@ ul.actionlist li {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+

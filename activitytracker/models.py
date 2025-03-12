@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Activity(models.Model):
-    # Existing fields
+    
     ACTIVITY_CHOICES = [
         ('walking', 'Walking'),
         ('hiking', 'Hiking'),
@@ -10,12 +10,14 @@ class Activity(models.Model):
         ('cycling', 'Cycling'),
         ('swimming', 'Swimming'),
         ('strength_training', 'Strength Training'),
+        ('yoga', 'Yoga'),
+        ('crossfit', 'CrossFit'),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_CHOICES)
     
-    # Update the duration field to store the full duration as a string (hh:mm:ss)
+    
     duration = models.CharField(max_length=8, help_text="Duration in hh:mm:ss format")
     
     date = models.DateField()
@@ -32,3 +34,12 @@ class Activity(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.activity_type} on {self.date}"
+    
+
+class ActivityLog(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='logs')
+    change_description = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Log for {self.activity} at {self.timestamp}"
