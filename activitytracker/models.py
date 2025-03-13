@@ -43,3 +43,12 @@ class ActivityLog(models.Model):
 
     def __str__(self):
         return f"Log for {self.activity} at {self.timestamp}"
+
+
+class ChangeHistory(models.Model):
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE, related_name='change_history')
+    change_description = models.TextField()
+    changed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Change Log for {self.activity.activity_name} on {self.changed_at}"

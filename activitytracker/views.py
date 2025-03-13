@@ -9,7 +9,7 @@ from django.middleware.csrf import get_token
 from django.utils.timezone import now
 from datetime import timedelta
 
-from .models import Activity
+from .models import Activity, ChangeHistory
 from .forms import ActivityForm
 from .forms import CustomUserCreationForm
 from .forms import UserProfileForm
@@ -142,27 +142,34 @@ def activity_list(request):
 
 @login_required
 def update_activity(request, pk):
-    activity = get_object_or_404(Activity, pk=pk, user=request.user)  
+    activity = get_object_or_404(Activity, pk=pk, user=request.user)
     
     if request.method == 'POST':
         form = ActivityForm(request.POST, instance=activity)
         if form.is_valid():
-        
+            # Save the changes if the form is valid
+            updated_activity = form.save()
+
+            # Check if any fields have changed (optional)
             if form.has_changed():
                 changed_fields = form.changed_data
                 change_description = "; ".join([f"{field} changed" for field in changed_fields])
-                
-                
-                ActivityLog.objects.create(
-                    activity=activity,
+
+                # Log the changes in a separate model if you prefer
+                # Create a new ChangeHistory entry
+                ChangeHistory.objects.create(
+                    activity=updated_activity,
                     change_description=change_description
                 )
-            form.save()
-            return redirect('activity_list')  
+
+            updated_activity.save()  # Save the updated activity
+            return redirect('activity_list')  # Or wherever you want to redirect after saving
     else:
         form = ActivityForm(instance=activity)
 
     return render(request, 'activitytracker/update_activity.html', {'form': form})
+
+
 
 @login_required
 def delete_activity(request, pk):
