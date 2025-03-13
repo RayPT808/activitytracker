@@ -41,10 +41,6 @@ class UserProfileForm(forms.ModelForm):
 class DurationInput(forms.TextInput):
     input_type = 'time'
 
-from django import forms
-from django.core.exceptions import ValidationError
-from django.utils import timezone
-from .models import Activity  # Assuming Activity is your model
 
 class ActivityForm(forms.ModelForm):
     class Meta:
@@ -56,6 +52,7 @@ class ActivityForm(forms.ModelForm):
             'duration': DurationInput(attrs={'class': 'form-control', 'step': 1}),  # Custom widget for hh:mm:ss format
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Optional notes'}),
+            'file': forms.FileInput(attrs={'class': 'form-control'}),
         }
 
     def clean_duration(self):

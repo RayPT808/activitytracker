@@ -25,6 +25,7 @@ class Activity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
+    file = models.FileField(upload_to='activity_files/', blank=True, null=True, help_text="Optional GPX or FIT file")
     activity_name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
