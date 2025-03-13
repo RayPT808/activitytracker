@@ -24,6 +24,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import serializers
 
+import xml.etree.ElementTree as ET
+
 
 
 
@@ -111,12 +113,25 @@ def profile(request):
 @login_required
 def record_activity(request):
     if request.method == 'POST':
-        form = ActivityForm(request.POST)
+        form = ActivityForm(request.POST, request.FILES)  # Ensure you pass request.FILES here
         if form.is_valid():
             activity = form.save(commit=False)
-            activity.user = request.user
-            activity.save()
+            activity.user = request.user  # Associate the activity with the current user
+
+            # Process the file if it's uploaded
+            uploaded_file = request.FILES.get('file')
+            if uploaded_file:
+                # Handle the file (e.g., .gpx or .fit) here
+                if uploaded_file.name.endswith('.gpx'):
+                    # Add GPX parsing logic here
+                    pass
+                elif uploaded_file.name.endswith('.fit'):
+                    # Add FIT file parsing logic here
+                    pass
+
+            activity.save()  # Save the activity after processing
             return redirect('dashboard')
+
     else:
         form = ActivityForm()
 
