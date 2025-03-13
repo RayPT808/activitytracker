@@ -52,6 +52,7 @@ class ActivityForm(forms.ModelForm):
         fields = ['activity_type', 'activity_name', 'duration', 'date', 'notes']
         widgets = {
             'activity_type': forms.Select(attrs={'class': 'form-control'}),
+            'activity_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter activity name'}),
             'duration': DurationInput(attrs={'class': 'form-control', 'step': 1}),  # Custom widget for hh:mm:ss format
             'date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Optional notes'}),
