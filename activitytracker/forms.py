@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
+from django.utils import timezone
 from .models import Activity
 
 class CustomUserCreationForm(UserCreationForm):
@@ -40,6 +41,11 @@ class UserProfileForm(forms.ModelForm):
 class DurationInput(forms.TextInput):
     input_type = 'time'
 
+from django import forms
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from .models import Activity  # Assuming Activity is your model
+
 class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
@@ -61,3 +67,12 @@ class ActivityForm(forms.ModelForm):
         if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
             raise forms.ValidationError("Duration must only contain numbers.")
         return duration
+
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        
+        # Check if the date is in the future
+        if date > timezone.now().date():
+            raise ValidationError("The activity date cannot be in the future.")
+        
+        return date
