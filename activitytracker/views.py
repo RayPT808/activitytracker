@@ -120,14 +120,25 @@ def record_activity(request):
     else:
         form = ActivityForm()
 
-    return render(request, 'tracker/record_activity.html', {'form': form})
+    return render(request, 'activitytracker/dashboard.html', {'form': form})
 
 
 @login_required
 def activity_list(request):
-    activities = request.user.activities.all()  
-    return render(request, 'activitytracker/activity_list.html', {'activities': activities})
+    activities = request.user.activities.all()  # Get activities for the logged-in user
+    form = ActivityForm()  # Create an empty form instance
     
+    # If the request is a POST (i.e., submitting the form)
+    if request.method == 'POST':
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            # Save the new activity associated with the logged-in user
+            activity = form.save(commit=False)
+            activity.user = request.user  # Set the user to the logged-in user
+            activity.save()
+
+    return render(request, 'activitytracker/dashboard.html', {'activities': activities, 'form': form})
+
 
 @login_required
 def update_activity(request, pk):
