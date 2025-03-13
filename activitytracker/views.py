@@ -114,20 +114,14 @@ def record_activity(request):
         form = ActivityForm(request.POST)
         if form.is_valid():
             activity = form.save(commit=False)
-            activity.user = request.user  # Assign the logged-in user
-            hours = int(request.POST.get('hours', 0))
-            minutes = int(request.POST.get('minutes', 0))
-            seconds = int(request.POST.get('seconds', 0))
-
-
-            activity.duration = timedelta(hours=hours, minutes=minutes, seconds=seconds)
-
+            activity.user = request.user
             activity.save()
-            return redirect('dashboard')  
+            return redirect('dashboard')
     else:
         form = ActivityForm()
 
     return render(request, 'tracker/record_activity.html', {'form': form})
+
 
 @login_required
 def activity_list(request):
