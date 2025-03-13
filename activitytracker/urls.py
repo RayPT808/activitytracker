@@ -24,3 +24,4 @@ urlpatterns = [
     path('update/<int:pk>/', views.update_activity, name='update_activity'),
     path('delete_activity/<int:pk>/', views.delete_activity, name='delete_activity'),
 ]
+
