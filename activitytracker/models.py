@@ -17,7 +17,7 @@ class Activity(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='activities')
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_CHOICES)
-    duration = models.CharField(max_length=8, help_text="Duration in hh:mm:ss format")
+    duration = models.DurationField(help_text="Duration of activity in hh:mm:ss format")
     date = models.DateField()
     notes = models.TextField(blank=True, null=True, help_text="Optional notes about the activity")
     created_at = models.DateTimeField(auto_now_add=True)

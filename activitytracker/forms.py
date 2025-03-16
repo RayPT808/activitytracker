@@ -7,6 +7,7 @@ from django.utils.timezone import now
 from .models import Activity
 import gpxpy
 import fitparse
+from datetime import timedelta
 from datetime import datetime
 
 
@@ -91,6 +92,7 @@ class ActivityForm(forms.ModelForm):
             raise ValidationError("The activity date cannot be in the future.")
         
         return date
+    
 
 def clean_file(self):
     uploaded_file = self.cleaned_data.get('file')
@@ -113,7 +115,6 @@ def clean_file(self):
         
     return uploaded_file
 
-    
 
 def parse_gpx_file(uploaded_file):
     # Read the uploaded .gpx file content
@@ -152,7 +153,7 @@ def parse_fit_file(uploaded_file):
     
     # Set default values if data is missing
     if not start_time:
-        start_time = now()
+        start_time = timezone.now()
 
     return {
         'duration': str(timedelta(seconds=int(activity_duration))),

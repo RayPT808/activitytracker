@@ -8,8 +8,8 @@ from .views import RegisterView
 
 urlpatterns = [
     path('api/get_csrf_token/', get_csrf_token, name='get_csrf_token'),
-    path('api/register/', RegisterView.as_view(), name='register'),
-    path('api/activities/', views.ActivityListCreateView.as_view(), name='activity-list-create'),
+    path('api/register/', RegisterView.as_view(), name='user-registration'),
+    path('api/activities/', views.ActivityListCreateView.as_view(), name='activity-create'),
     path('api/activities/<int:pk>/', views.ActivityRetrieveUpdateDestroyView.as_view(), name='activity-detail'),
     path('', home, name='home'),
     path('about/', views.about, name='about'),
@@ -20,7 +20,7 @@ urlpatterns = [
     path('accounts/profile/', views.profile, name='profile'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('record/', views.record_activity, name='record_activity'),
-    path('list/', views.activity_list, name='activity_list'),
+    path('list/', views.activity_list, name='activity-log'),
     path('update/<int:pk>/', views.update_activity, name='update_activity'),
     path('delete_activity/<int:pk>/', views.delete_activity, name='delete_activity'),
 ]

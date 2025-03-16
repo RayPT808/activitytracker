@@ -10,7 +10,6 @@ from django.utils.timezone import now
 from datetime import timedelta
 
 from .models import Activity, ChangeHistory
-from .forms import parse_gpx_file, parse_fit_file 
 from .forms import ActivityForm
 from .forms import CustomUserCreationForm
 from .forms import UserProfileForm
@@ -21,29 +20,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.authtoken.models import Token
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import serializers
 
-import xml.etree.ElementTree as ET
-
-
-
-
+import logging
 
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': get_token(request)})
 
-
-
 def home(request):
     return render(request, 'activitytracker/base.html')
 
-
 def about(request):
     return render(request, 'activitytracker/about.html')
-
-
 
 @api_view(['POST'])
 def login_view(request):
@@ -53,8 +42,6 @@ def login_view(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)  
-        
-        
         refresh = RefreshToken.for_user(user)
         return Response({
             'refresh': str(refresh),
@@ -63,7 +50,6 @@ def login_view(request):
     else:
         return Response({'error': 'Invalid credentials'}, status=401)
         
-
 @csrf_protect
 def register(request):
     if request.method == 'POST':
@@ -77,10 +63,8 @@ def register(request):
     
     return render(request, 'activitytracker/register.html', {'form': form})
 
-
 def my_activitytracker(request):
     return HttpResponse("Hello, Runner!")
-
 
 @login_required
 def dashboard(request):
@@ -97,7 +81,6 @@ def dashboard(request):
     activities = request.user.activities.all().order_by('-date')
     return render(request, 'activitytracker/dashboard.html', {'form': form, 'activities': activities})
 
-
 @login_required
 def profile(request):
     if request.method == 'POST':
@@ -110,39 +93,24 @@ def profile(request):
 
     return render(request, 'activitytracker/profile.html', {'form': form})
 
+logger = logging.getLogger(__name__)
 
 @login_required
 def record_activity(request):
     if request.method == 'POST':
-        form = ActivityForm(request.POST, request.FILES)
+        form = ActivityForm(request.POST)
         if form.is_valid():
             activity = form.save(commit=False)
             activity.user = request.user
-
-            uploaded_file = request.FILES.get('file')
-            if uploaded_file:
-                print(f"Uploaded file: {uploaded_file.name}")
-                if uploaded_file.name.endswith('.gpx'):
-                    parsed_data = parse_gpx_file(uploaded_file)
-                elif uploaded_file.name.endswith('.fit'):
-                    parsed_data = parse_fit_file(uploaded_file)
-                else:
-                    parsed_data = {}
-
-                # Assign parsed data if available
-                if parsed_data:
-                    activity.duration = parsed_data.get('duration', activity.duration)
-                    activity.activity_type = parsed_data.get('activity_type', activity.activity_type)
-                    activity.date = parsed_data.get('date', activity.date)
-
             activity.save()
             return redirect('dashboard')
+        else:
+            print("Form Errors:", form.errors)  # Debugging form validation errors
 
     else:
         form = ActivityForm()
 
     return render(request, 'activitytracker/dashboard.html', {'form': form})
-
 
 @login_required
 def activity_list(request):
@@ -153,13 +121,11 @@ def activity_list(request):
     if request.method == 'POST':
         form = ActivityForm(request.POST)
         if form.is_valid():
-            # Save the new activity associated with the logged-in user
             activity = form.save(commit=False)
             activity.user = request.user  # Set the user to the logged-in user
             activity.save()
 
     return render(request, 'activitytracker/dashboard.html', {'activities': activities, 'form': form})
-
 
 @login_required
 def update_activity(request, pk):
@@ -190,8 +156,6 @@ def update_activity(request, pk):
 
     return render(request, 'activitytracker/update_activity.html', {'form': form})
 
-
-
 @login_required
 def delete_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
@@ -201,16 +165,13 @@ def delete_activity(request, pk):
 
     return render(request, 'activitytracker/delete_activity.html', {'activity': activity})
 
-
 def user_logout(request):
     logout(request)
     return redirect('home')
 
-
 class ActivityViewSet(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-
 
 class ActivityListCreateView(APIView):
     permission_classes = [IsAuthenticated]  # Ensure only authenticated users can access this API
@@ -227,7 +188,6 @@ class ActivityListCreateView(APIView):
             serializer.save(user=request.user)  # Assign to the logged-in user
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -250,11 +210,6 @@ class RegisterView(APIView):
             return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class ActivityRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
-
- 
-
-
