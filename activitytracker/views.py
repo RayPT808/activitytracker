@@ -10,6 +10,7 @@ from django.utils.timezone import now
 from datetime import timedelta
 
 from .models import Activity, ChangeHistory
+from .forms import parse_gpx_file, parse_fit_file 
 from .forms import ActivityForm
 from .forms import CustomUserCreationForm
 from .forms import UserProfileForm
@@ -113,23 +114,28 @@ def profile(request):
 @login_required
 def record_activity(request):
     if request.method == 'POST':
-        form = ActivityForm(request.POST, request.FILES)  # Ensure you pass request.FILES here
+        form = ActivityForm(request.POST, request.FILES)
         if form.is_valid():
             activity = form.save(commit=False)
-            activity.user = request.user  # Associate the activity with the current user
+            activity.user = request.user
 
-            # Process the file if it's uploaded
             uploaded_file = request.FILES.get('file')
             if uploaded_file:
-                # Handle the file (e.g., .gpx or .fit) here
+                print(f"Uploaded file: {uploaded_file.name}")
                 if uploaded_file.name.endswith('.gpx'):
-                    # Add GPX parsing logic here
-                    pass
+                    parsed_data = parse_gpx_file(uploaded_file)
                 elif uploaded_file.name.endswith('.fit'):
-                    # Add FIT file parsing logic here
-                    pass
+                    parsed_data = parse_fit_file(uploaded_file)
+                else:
+                    parsed_data = {}
 
-            activity.save()  # Save the activity after processing
+                # Assign parsed data if available
+                if parsed_data:
+                    activity.duration = parsed_data.get('duration', activity.duration)
+                    activity.activity_type = parsed_data.get('activity_type', activity.activity_type)
+                    activity.date = parsed_data.get('date', activity.date)
+
+            activity.save()
             return redirect('dashboard')
 
     else:

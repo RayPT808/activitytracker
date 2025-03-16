@@ -3,8 +3,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.timezone import now
 from .models import Activity
 import gpxpy
+import fitparse
 from datetime import datetime
 
 
@@ -131,5 +133,30 @@ def parse_gpx_file(uploaded_file):
         'duration': str(activity_duration),
         'start_time': start_time,
         'activity_type': 'walking',  # Example, can be improved with better logic
+        'date': start_time.date()
+    }
+
+def parse_fit_file(uploaded_file):
+    fitfile = fitparse.FitFile(uploaded_file)
+
+    activity_duration = 0
+    start_time = None
+    activity_type = 'unknown'  # Default type
+
+    for record in fitfile.get_messages('record'):
+        record_data = {d.name: d.value for d in record}
+        if 'timestamp' in record_data and start_time is None:
+            start_time = record_data['timestamp']
+        if 'total_timer_time' in record_data:
+            activity_duration = record_data['total_timer_time']
+    
+    # Set default values if data is missing
+    if not start_time:
+        start_time = now()
+
+    return {
+        'duration': str(timedelta(seconds=int(activity_duration))),
+        'start_time': start_time,
+        'activity_type': activity_type,  # You could improve this by analyzing more fields
         'date': start_time.date()
     }
