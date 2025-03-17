@@ -390,3 +390,68 @@ Unauthorized: /api/activitytracker/api/activities/
 Unauthorized: /api/activitytracker/api/activities/
 Unauthorized: /api/activitytracker/api/activities/
 Unauthorized: /api/activitytracker/api/activities/
+Watching for file changes with StatReloader
+Unauthorized: /api/activitytracker/api/activities/
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/activitytracker/api/activities/
+Unauthorized: /api/activitytracker/api/activities/
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/activitytracker/record/
+Unauthorized: /api/activitytracker/api/activities/
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /api/activitytracker/record/
+Traceback (most recent call last):
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/rest_framework/views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/rest_framework/views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/rest_framework/views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/rest_framework/views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/rest_framework/decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/activitytracker/activitytracker/views.py", line 105, in record_activity
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/forms/forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/forms/forms.py", line 192, in errors
+    self.full_clean()
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/forms/forms.py", line 327, in full_clean
+    self._clean_fields()
+  File "/usr/local/python/3.12.1/lib/python3.12/site-packages/django/forms/forms.py", line 342, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspaces/activitytracker/activitytracker/forms.py", line 79, in clean_duration
+    parts = duration.split(':')
+            ^^^^^^^^^^^^^^
+AttributeError: 'datetime.timedelta' object has no attribute 'split'
+Unauthorized: /api/activitytracker/api/activities/
+/workspaces/activitytracker/activitytracker/forms.py changed, reloading.
+Watching for file changes with StatReloader

@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 from django.middleware.csrf import get_token
 from django.utils.timezone import now
 from datetime import timedelta
@@ -18,7 +20,7 @@ from .serializers import ActivitySerializer
 from rest_framework import generics, viewsets, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework import serializers
@@ -95,22 +97,18 @@ def profile(request):
 
 logger = logging.getLogger(__name__)
 
-@login_required
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
 def record_activity(request):
-    if request.method == 'POST':
-        form = ActivityForm(request.POST)
-        if form.is_valid():
-            activity = form.save(commit=False)
-            activity.user = request.user
-            activity.save()
-            return redirect('dashboard')
-        else:
-            print("Form Errors:", form.errors)  # Debugging form validation errors
-
+    form = ActivityForm(request.data)
+    if form.is_valid():
+        activity = form.save(commit=False)
+        activity.user = request.user  # Assign the logged-in user
+        activity.save()
+        return Response({'message': 'Activity recorded successfully'}, status=status.HTTP_201_CREATED)
     else:
-        form = ActivityForm()
-
-    return render(request, 'activitytracker/dashboard.html', {'form': form})
+        return Response({'errors': form.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 @login_required
 def activity_list(request):

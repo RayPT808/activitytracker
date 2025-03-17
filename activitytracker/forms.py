@@ -75,14 +75,24 @@ class ActivityForm(forms.ModelForm):
 
     def clean_duration(self):
         duration = self.cleaned_data.get('duration')
-        # Ensure the duration follows the 'hh:mm:ss' format (e.g., '01:30:45')
+    
+    
+        if isinstance(duration, timedelta):
+        
+            total_seconds = int(duration.total_seconds())
+        hours, remainder = divmod(total_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        duration = f"{hours:02}:{minutes:02}:{seconds:02}"
+    
+    
         parts = duration.split(':')
         if len(parts) != 3:
-            raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
-        hours, minutes, seconds = parts
-        if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
-            raise forms.ValidationError("Duration must only contain numbers.")
-        return duration
+                raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
+    hours, minutes, seconds = parts
+    if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
+        raise forms.ValidationError("Duration must only contain numbers.")
+    
+    return duration
 
     def clean_date(self):
         date = self.cleaned_data['date']
@@ -90,7 +100,6 @@ class ActivityForm(forms.ModelForm):
         # Check if the date is in the future
         if date > timezone.now().date():
             raise ValidationError("The activity date cannot be in the future.")
-        
         return date
     
 
