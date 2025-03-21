@@ -75,34 +75,32 @@ class ActivityForm(forms.ModelForm):
 
     def clean_duration(self):
         duration = self.cleaned_data.get('duration')
-    
-    
+
+        # Convert timedelta to hh:mm:ss format
         if isinstance(duration, timedelta):
-        
             total_seconds = int(duration.total_seconds())
-        hours, remainder = divmod(total_seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-        duration = f"{hours:02}:{minutes:02}:{seconds:02}"
-    
-    
+            hours, remainder = divmod(total_seconds, 3600)
+            minutes, seconds = divmod(remainder, 60)
+            duration = f"{hours:02}:{minutes:02}:{seconds:02}"
+
+        # Ensure duration follows 'hh:mm:ss' format
         parts = duration.split(':')
         if len(parts) != 3:
-                raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
-    hours, minutes, seconds = parts
-    if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
-        raise forms.ValidationError("Duration must only contain numbers.")
-    
-    return duration
+            raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
+
+        hours, minutes, seconds = parts
+        if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
+            raise forms.ValidationError("Duration must only contain numbers.")
+
+        return duration
 
     def clean_date(self):
         date = self.cleaned_data['date']
-        
-        # Check if the date is in the future
-        if date > timezone.now().date():
-            raise ValidationError("The activity date cannot be in the future.")
-        return date
-    
 
+        # Ensure date is not in the future
+        if date > timezone.now().date():
+            raise forms.ValidationError("The activity date cannot be in the future.")
+        return date
 def clean_file(self):
     uploaded_file = self.cleaned_data.get('file')
     if uploaded_file:

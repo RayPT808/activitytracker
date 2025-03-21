@@ -455,3 +455,37 @@ AttributeError: 'datetime.timedelta' object has no attribute 'split'
 Unauthorized: /api/activitytracker/api/activities/
 /workspaces/activitytracker/activitytracker/forms.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/activitytracker/api/activities/
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+Watching for file changes with StatReloader
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"POST /api/token/ HTTP/1.1" 200 486
+Not Found: /your-protected-endpoint/
+"GET /your-protected-endpoint/ HTTP/1.1" 404 3387
+Unauthorized: /api/activitytracker/activity-log/
+Unauthorized: /api/activitytracker/api/activities/
+Unauthorized: /api/activitytracker/api/register/
+Bad Request: /api/activitytracker/api/activities/
+Unauthorized: /api/activitytracker/api/register/
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Bad Request: /api/activitytracker/api/activities/

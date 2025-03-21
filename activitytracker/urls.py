@@ -2,8 +2,9 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 from activitytracker import views
-from .views import home, login_view, get_csrf_token, RegisterView
+from .views import home, login_view, get_csrf_token, RegisterView, activity_log
 from .views import RegisterView
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 urlpatterns = [
@@ -24,6 +25,10 @@ urlpatterns = [
     path('update/<int:pk>/', views.update_activity, name='update_activity'),
     path('delete_activity/<int:pk>/', views.delete_activity, name='delete_activity'),
     path('api/activities/', views.ActivityListCreateView.as_view(), name='activity-create'),
+    path('activity-log/', activity_log, name='activity-log'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
+
 
 ]
 

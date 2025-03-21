@@ -51,31 +51,48 @@ class ActivityLogTest(TestCase):
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create_user(username='testuser', password='password123')
-        self.token = Token.objects.create(user=self.user)
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
+
+        # Generate JWT for the user
+        refresh = RefreshToken.for_user(self.user)
+        self.token = str(refresh.access_token)
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
+
+        # Create an activity log entry
+        self.activity_data = {
+            'activity_type': 'running',
+            'activity_name': 'Test Run',
+            'duration': '00:30:00',
+            'date': '2025-03-16',
+            'notes': 'Felt great!',
+        }
+        self.client.post(reverse('record_activity'), self.activity_data, format='json')
 
     def test_activity_log(self):
-        url = reverse('activity-log') 
+        url = reverse('activity-log')
         response = self.client.get(url, format='json')
 
         try:
-            response_data = response.json() 
+            response_data = response.json()
         except ValueError:
             self.fail(f"Expected JSON response, but got {response.content} instead")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertGreater(len(response_data), 0) 
+        self.assertGreater(len(response_data), 0)
+
 
 
 class InvalidActivityCreationTest(TestCase):
     def setUp(self):
-        
         self.client = APIClient()
         self.user = User.objects.create_user(username='testuser', password='password123')
-        self.client.login(username='testuser', password='password123')
+
+        # Generate JWT for the user
+        refresh = RefreshToken.for_user(self.user)
+        self.token = str(refresh.access_token)
+        self.client.credentials(HTTP_AUTHORIZATION='Bearer ' + self.token)
 
     def test_invalid_activity_creation(self):
-        url = reverse('activity-create')  
+        url = reverse('activity-create')  # Ensure the URL is correct
         data = {
             'activity_type': 'cycling',
             'activity_name': 'Morning Bike Ride',
@@ -85,4 +102,4 @@ class InvalidActivityCreationTest(TestCase):
         }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('duration', response.data) 
+        self.assertIn('duration', response.data)
