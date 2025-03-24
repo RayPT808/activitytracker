@@ -1,2 +1,2 @@
-web: gunicorn tracker.wsgi:application
+web: gunicorn tracker.wsgi:application --log-file -
 

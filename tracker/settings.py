@@ -34,7 +34,7 @@ if not SECRET_KEY:
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Set debug mode
-DEBUG = env.bool('DEBUG', default=True)
+DEBUG = env.bool('DEBUG', default=False)
 
 # Define allowed hosts (if DEBUG is False, this will be required)
 ALLOWED_HOSTS = [
