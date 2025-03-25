@@ -492,3 +492,11 @@ Bad Request: /api/activitytracker/api/activities/
 Watching for file changes with StatReloader
 /workspaces/activitytracker/tracker/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3207
+"GET /static/activitytracker/images/trackerlogo.5b7e1935d7c4.jpg HTTP/1.1" 200 196085
+"GET /static/activitytracker/images/backgroundimage.d57f018aabe7.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.5e01ee175994.ico HTTP/1.1" 200 3151
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14285
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4657
+"GET /static/css/register.83200db6a3c7.css HTTP/1.1" 200 278
