@@ -507,3 +507,13 @@ Watching for file changes with StatReloader
 "GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14285
 "GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4657
 "GET / HTTP/1.1" 200 3207
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader

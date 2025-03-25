@@ -123,9 +123,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tracker.wsgi.application'
 
+DATABASE_URL = os.environ.get("DATABASE_URL", "postgres://neondb_owner:YXaA8Ks6MuQy@ep-bitter-scene-a2sxt9p7.eu-central-1.aws.neon.tech/stall_grant_chess_882851")
+
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL", "postgresql://neondb_owner:YXaA8Ks6MuQy@ep-bitter-scene-a2sxt9p7.eu-central-1.aws.neon.tech/stall_grant_chess_882851"))
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
+
+# Ensure ENGINE is explicitly set
+if 'ENGINE' not in DATABASES['default']:
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
