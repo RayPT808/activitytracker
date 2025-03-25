@@ -1,0 +1,9 @@
+.git/
+.tox/
+.env/
+.venv/
+.cache/
+node_modules/
+tmp/
+*.log
+*.sqlite3

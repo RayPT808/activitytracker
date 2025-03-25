@@ -500,3 +500,9 @@ Watching for file changes with StatReloader
 "GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14285
 "GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4657
 "GET /static/css/register.83200db6a3c7.css HTTP/1.1" 200 278
+"GET / HTTP/1.1" 200 3207
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3207
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14285
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4657
