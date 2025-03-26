@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.utils.timezone import now
 from .models import Activity
-import gpxpy
-import fitparse
 from datetime import timedelta
 from datetime import datetime
 

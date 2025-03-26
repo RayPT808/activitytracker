@@ -1,41 +1,33 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+import environ
 from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import environ
 
 env = environ.Env()
-environ.Env.read_env()  
 
 env_path = Path(__file__).resolve().parent.parent / '.env'
 
+env.read_env(env_path)
 
 print(f"Loading .env from: {env_path}")
-
-
-load_dotenv(dotenv_path=env_path)
-
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
-print(f"SECRET_KEY Loaded: {SECRET_KEY}")
-
-if not SECRET_KEY:
-    raise ImproperlyConfigured("DJANGO_SECRET_KEY not found in environment variables.")
+print(f"DEBUG in .env: {os.getenv('DEBUG')}")  # Check DEBUG in .env
+print(f"SECRET_KEY Loaded: {os.getenv('DJANGO_SECRET_KEY')}")
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
     "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
     "8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
-    "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io", 
+    "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
     "8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
     "activitytracking-bf7924cd3676.herokuapp.com",
     "reactivity-789dd5d26427.herokuapp.com",
@@ -43,6 +35,16 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
 ]
+
+SECRET_KEY = 'FGvAWrQpr-HaE_aF0Oy6pMD0-G9aElmE9Qs2C61VOnUrLeHH4NnXqzv61i_Dmr9VVD4'
+
+if not SECRET_KEY:
+    raise ImproperlyConfigured("DJANGO_SECRET_KEY not found in environment variables.")
+
+# Database Configuration (set this based on your setup)
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://neondb_owner:YXaA8Ks6MuQy@ep-bitter-scene-a2sxt9p7.eu-central-1.aws.neon.tech/stall_grant_chess_882851')
+}
 
 INSTALLED_APPS = [
     'corsheaders',  
@@ -129,7 +131,7 @@ DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL)
 }
 
-# Ensure ENGINE is explicitly set
+
 if 'ENGINE' not in DATABASES['default']:
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
 
@@ -194,4 +196,5 @@ LOGGING = {
         },
     },
 }
+
 
