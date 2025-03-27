@@ -532,3 +532,14 @@ Watching for file changes with StatReloader
 "GET /static/activitytracker/images/favicon.ico HTTP/1.1" 304 0
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3876
+"GET / HTTP/1.1" 200 2997
+"GET /api/activitytracker/about/ HTTP/1.1" 200 3270
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 200 3834
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4605
+"GET /static/css/register.css HTTP/1.1" 304 0
