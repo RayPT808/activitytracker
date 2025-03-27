@@ -6,22 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('activitytracker', '0001_initial'),
+        ("activitytracker", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='activity',
-            name='duration_interval',
+            model_name="activity",
+            name="duration_interval",
         ),
         migrations.RemoveField(
-            model_name='activity',
-            name='duration_minutes',
+            model_name="activity",
+            name="duration_minutes",
         ),
         migrations.AddField(
-            model_name='activity',
-            name='duration',
-            field=models.CharField(default=0, help_text='Duration in hh:mm:ss format', max_length=8),
+            model_name="activity",
+            name="duration",
+            field=models.CharField(
+                default=0, help_text="Duration in hh:mm:ss format", max_length=8
+            ),
             preserve_default=False,
         ),
     ]

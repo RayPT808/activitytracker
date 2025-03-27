@@ -545,3 +545,14 @@ Not Found: /favicon.ico
 "GET /static/css/register.css HTTP/1.1" 304 0
 /workspaces/activitytracker/tracker/settings.py changed, reloading.
 Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+Bad Request: /api/activitytracker/api/activities/
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
