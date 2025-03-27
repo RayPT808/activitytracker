@@ -21,7 +21,7 @@ print(f"SECRET_KEY Loaded: {os.getenv('DJANGO_SECRET_KEY')}")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
