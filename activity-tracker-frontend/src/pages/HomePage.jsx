@@ -1,36 +1,18 @@
 import React, { useEffect } from 'react';
+import Layout from '../components/Layout'; // Adjust the path as needed
 
 const HomePage = () => {
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:3000/ws');
-
-    socket.onopen = () => {
-      console.log('WebSocket connection established.');
-    };
-
-    socket.onmessage = (event) => {
-      console.log('Received message:', event.data);
-    };
-
-    socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
-
-    socket.onclose = (event) => {
-      console.log('WebSocket connection closed:', event);
-    };
-
-    // Cleanup on unmount
-    return () => {
-      socket.close();
-    };
+    document.title = "Activity Tracker";
   }, []);
 
   return (
-    <div>
-      <h1>Home Page</h1>
-      {/* Your content goes here */}
-    </div>
+    <Layout>
+      <div className="container text-center mt-5">
+        <h1>Welcome to Activity Tracker</h1>
+        <p>Track your activities efficiently.</p>
+      </div>
+    </Layout>
   );
 };
 

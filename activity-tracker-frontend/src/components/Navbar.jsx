@@ -1,6 +1,5 @@
 import { useUser } from "../context/UserContext"; // Import the useUser hook
 import "../assets/css/navbar.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation in React Router v6
 
 function Navbar() {
@@ -12,7 +11,7 @@ function Navbar() {
     localStorage.removeItem("authToken");
     setUser(null); // Clear user context
 
-    // Redirect to login page using navigate instead of history.push()
+    // Redirect to login page using navigate
     navigate("/login");
   };
 
@@ -32,36 +31,39 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <a className="nav-link" href="/dashboard">
-                Dashboard
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/profile">
-                Profile
-              </a>
-            </li>
-
-            {/* Conditionally render Logout button if user is logged in */}
             {user ? (
-              <li className="nav-item">
-                <button
-                  className="btn btn-link nav-link logout-button"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
+              <>
+                <li className="nav-item">
+                  <a className="nav-link" href="/dashboard">
+                    Dashboard
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/profile">
+                    Profile
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <button
+                    className="btn btn-link nav-link logout-button"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
             ) : (
               <>
-                {/* Show Register link if the user is not logged in */}
+                <li className="nav-item">
+                  <a className="nav-link" href="/about">
+                    About
+                  </a>
+                </li>
                 <li className="nav-item">
                   <a className="nav-link" href="/register">
                     Register
                   </a>
                 </li>
-                {/* Show Login link if the user is not logged in */}
                 <li className="nav-item">
                   <a className="nav-link" href="/login">
                     Login
