@@ -21,7 +21,8 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
     setFilter(e.target.value);
   };
 
-  // When a user clicks on an activity (outside of the delete button), set it as the selected activity to edit.
+  // When a user clicks on an activity (outside of the delete button),
+  // set it as the selected activity to edit.
   const handleActivityClick = (activity) => {
     setSelectedActivity(activity);
   };
@@ -125,7 +126,7 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
               </div>
               <form onSubmit={handleEditSubmit}>
                 <div className="modal-body">
-                  {/* Example fields: title and notes. Adjust as necessary. */}
+                  {/* Example fields: title and notes */}
                   <div className="mb-3">
                     <label htmlFor="editTitle" className="form-label">Title</label>
                     <input

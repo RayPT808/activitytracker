@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { recordActivity } from '../utils/api';
+import '../assets/css/recordActivity.css';
+
 
 const RecordActivity = () => {
   const [activityType, setActivityType] = useState('Running'); // Default selection

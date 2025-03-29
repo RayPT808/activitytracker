@@ -1,17 +1,17 @@
+import React from 'react';
 import { useUser } from "../context/UserContext"; // Import the useUser hook
-import "../assets/css/navbar.css";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation in React Router v6
+import { useNavigate } from "react-router-dom";
+import "../assets/css/navbar.css";  // Import your custom navbar CSS
 
 function Navbar() {
   const { user, setUser } = useUser(); // Access user data and setUser function
   const navigate = useNavigate(); // Initialize useNavigate hook for redirecting
 
   const handleLogout = () => {
-    // Clear the auth token from localStorage
+    // Clear the auth token from localStorage and update the user context
     localStorage.removeItem("authToken");
-    setUser(null); // Clear user context
-
-    // Redirect to login page using navigate
+    setUser(null);
+    // Redirect to the login page
     navigate("/login");
   };
 
