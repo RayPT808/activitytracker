@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 const LoginPage = () => {
@@ -7,11 +9,14 @@ const LoginPage = () => {
     document.title = "Login";
   }, []);
 
-  // State for form inputs
+  // State for form inputs and errors
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+  const [errors, setErrors] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   // Handle changes for controlled inputs
   const handleChange = (e) => {
@@ -20,20 +25,51 @@ const LoginPage = () => {
       ...prevData,
       [name]: value,
     }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: '', // Clear errors for the current field
+    }));
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Place your API login logic here.
-    console.log("Logging in with:", formData);
-    // After a successful login, you might redirect or update global authentication state.
+    setIsLoading(true);
+
+    try {
+      // Make API call to login endpoint
+      const response = await axios.post(
+        'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/login/',
+        formData
+      );
+
+      console.log('Login successful:', response.data);
+
+      // Save tokens to localStorage (or cookies, depending on your preference)
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+
+      // Redirect to the dashboard after successful login
+      navigate('/dashboard');
+    } catch (error) {
+      console.error('Login error:', error.response?.data || error.message);
+
+      // Handle server-side errors
+      if (error.response?.data) {
+        setErrors({ general: error.response.data.error || 'Login failed. Please try again.' });
+      } else {
+        setErrors({ general: 'Login failed. Please try again.' });
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <Layout>
       <div className="container">
         <h2>Login</h2>
+        {errors.general && <p style={{ color: 'red' }}>{errors.general}</p>}
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label htmlFor="username">Username</label>
@@ -46,6 +82,7 @@ const LoginPage = () => {
               value={formData.username}
               onChange={handleChange}
             />
+            {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
           </div>
           <div className="form-group mb-3">
             <label htmlFor="password">Password</label>
@@ -58,9 +95,10 @@ const LoginPage = () => {
               value={formData.password}
               onChange={handleChange}
             />
+            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
           </div>
-          <button type="submit" className="btn btn-primary">
-            Login
+          <button type="submit" className="btn btn-primary" disabled={isLoading}>
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
       </div>
