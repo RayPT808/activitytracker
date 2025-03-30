@@ -9,3 +9,15 @@ body {
   background-color: #f4f4f4;
   color: #333;
 }
+
+body {
+  background-image: url('./assets/images/background.jpg'); /* Path to your background image */
+  background-size: cover; /* Ensures the image covers the entire screen */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Makes the background image static */
+  background-position: center; /* Centers the image */
+  font-family: 'Arial', sans-serif; /* Optional: Add your global font styles */
+  color: #333; /* Optional: Text color for consistency */
+  margin: 0; /* Removes default margins */
+  padding: 0; /* Removes default padding */
+}

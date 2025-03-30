@@ -4,15 +4,19 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import Register from "./components/Register";
 import LoginPage from "./pages/LoginPage";
+import Layout from './components/Layout';
 import NotFoundPage from "./pages/NotFoundPage"; // Optional 404 page
 
 const App = () => {
     return (
         <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<LoginPage />} />
+            {/* Wrap all main pages with Layout to include the Navbar */}
+            <Route path="/" element={<Layout><HomePage /></Layout>} />
+            <Route path="/about" element={<Layout><AboutPage /></Layout>} />
+            <Route path="/register" element={<Layout><Register /></Layout>} />
+            <Route path="/login" element={<Layout><LoginPage /></Layout>} />
+
+            {/* Optional isolated 404 route */}
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
