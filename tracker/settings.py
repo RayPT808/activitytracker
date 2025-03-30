@@ -22,7 +22,7 @@ print(f"SECRET_KEY Loaded: {os.getenv('DJANGO_SECRET_KEY')}")
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
@@ -89,6 +89,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
+    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
 ]
 
 CORS_ALLOW_CREDENTIALS = True

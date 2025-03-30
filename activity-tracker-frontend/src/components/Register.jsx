@@ -8,7 +8,7 @@ const Register = () => {
     username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   });
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,6 @@ const Register = () => {
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required.';
     } else {
-      // Basic email regex for validation
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email)) {
         newErrors.email = 'Invalid email address.';
@@ -50,13 +49,11 @@ const Register = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Update form data
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
 
-    // Optionally clear errors for this field
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: '',
@@ -66,36 +63,41 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateForm();
-
+  
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-
+  
     setIsLoading(true);
-
+  
     try {
-      // Make an API call to the registration endpoint
-      const response = await axios.post(
-        'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/register/',
-        {
-          username: formData.username,
-          email: formData.email,
-          password1: formData.password, // Django expects "password1" and "password2"
-          password2: formData.confirmPassword,
-        }
-      );
-
+      const BASE_URL =
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:8000'
+          : 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
+  
+      // Updated payload structure
+      const payload = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password, // Sending a single "password" field now
+      };
+  
+      console.log('Sending payload:', payload);
+  
+      const response = await axios.post(`${BASE_URL}/api/register/`, payload);
+  
       console.log('Registration successful:', response.data);
-
+  
       // Redirect to login page on success
+      alert('Registration successful! Redirecting to login...');
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error.response?.data || error.message);
-
-      // Handle server-side validation errors
+  
       if (error.response?.data) {
-        setErrors(error.response.data); // Django may return field-specific errors
+        setErrors(error.response.data.errors || { general: 'Registration failed.' });
       } else {
         setErrors({ general: 'Registration failed. Please try again.' });
       }
@@ -103,7 +105,7 @@ const Register = () => {
       setIsLoading(false);
     }
   };
-
+  
   return (
     <div className="register-container">
       <h2>Register</h2>

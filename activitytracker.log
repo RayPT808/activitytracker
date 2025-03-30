@@ -556,3 +556,500 @@ Watching for file changes with StatReloader
 "GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
 /workspaces/activitytracker/tracker/settings.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'home/' [name='home_redirect']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'users.urls' from '/workspaces/activitytracker/users/urls.py'> (None:None) 'api/users/'>], [<URLResolver <module 'activitytracker.urls' from '/workspaces/activitytracker/activitytracker/urls.py'> (None:None) 'api/activitytracker/'>], [<URLPattern 'api/login/' [name='api-login']>], [<URLResolver <module 'django.contrib.auth.urls' from '/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'api/token/' [name='token_obtain_pair']>], [<URLPattern 'api/token/refresh/' [name='token_refresh']>], [<URLPattern 'csrf/' [name='get_csrf_token']>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/utils/deprecation.py", line 129, in __call__
+    response = response or self.get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 156, in response_for_exception
+    response = response.render()
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 145
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 200 196085
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 200 3151
+"GET / HTTP/1.1" 200 3168
+"GET / HTTP/1.1" 200 3168
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4605
+"GET /static/css/register.css HTTP/1.1" 200 278
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    callback, callback_args, callback_kwargs = self.resolve_request(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 313, in resolve_request
+    resolver_match = resolver.resolve(request.path_info)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 705, in resolve
+    raise Resolver404({"tried": tried, "path": new_path})
+django.urls.exceptions.Resolver404: {'tried': [[<URLPattern '' [name='home']>], [<URLPattern 'home/' [name='home_redirect']>], [<URLResolver <URLPattern list> (admin:admin) 'admin/'>], [<URLResolver <module 'users.urls' from '/workspaces/activitytracker/users/urls.py'> (None:None) 'api/users/'>], [<URLResolver <module 'activitytracker.urls' from '/workspaces/activitytracker/activitytracker/urls.py'> (None:None) 'api/activitytracker/'>], [<URLPattern 'api/login/' [name='api-login']>], [<URLResolver <module 'django.contrib.auth.urls' from '/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/urls.py'> (None:None) 'accounts/'>], [<URLPattern 'api/token/' [name='token_obtain_pair']>], [<URLPattern 'api/token/refresh/' [name='token_refresh']>], [<URLPattern 'csrf/' [name='get_csrf_token']>]], 'path': 'favicon.ico'}
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/utils/deprecation.py", line 129, in __call__
+    response = response or self.get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 57, in inner
+    response = response_for_exception(request, exc)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 156, in response_for_exception
+    response = response.render()
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: index.html
+"GET /favicon.ico HTTP/1.1" 500 145
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 200 196085
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3876
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 200 3834
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7029
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4606
+"GET /static/css/register.css HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7029
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7029
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+"GET /api/activitytracker/register/ HTTP/1.1" 200 6704
+"GET /static/css/register.css HTTP/1.1" 304 0
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Not Found: /api/register/
+"POST /api/register/ HTTP/1.1" 404 3883
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /?vscodeBrowserReqId=1743355368786 HTTP/1.1" 200 2997
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /api/register HTTP/1.1" 301 0
+Method Not Allowed: /api/register/
+"GET /api/register/ HTTP/1.1" 405 10339
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/register/ HTTP/1.1" 200 6704
+"GET /static/css/register.css HTTP/1.1" 304 0
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 32, in home
+    return render(request, "activitytracker/base.html")
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 327, in render
+    return nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'register' not found. 'register' is not a valid view function or pattern name.
+"GET / HTTP/1.1" 500 153630
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/register/ HTTP/1.1" 200 6704
+"GET /static/css/register.css HTTP/1.1" 304 0
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 302 0
+Internal Server Error: /api/activitytracker/dashboard/
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 106, in dashboard
+    return render(
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'update_activity' not found. 'update_activity' is not a valid view function or pattern name.
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 500 203274
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+Internal Server Error: /api/activitytracker/dashboard/
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 106, in dashboard
+    return render(
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_activity' not found. 'delete_activity' is not a valid view function or pattern name.
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 500 203491
+"GET / HTTP/1.1" 200 3168
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4606
+"GET /static/css/register.css HTTP/1.1" 304 0
+Internal Server Error: /api/activitytracker/dashboard/
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 106, in dashboard
+    return render(
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 243, in render
+    nodelist.append(node.render_annotated(context))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'delete_activity' not found. 'delete_activity' is not a valid view function or pattern name.
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 500 203528
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+Internal Server Error: /api/activitytracker/dashboard/
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 106, in dashboard
+    return render(
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'record_activity' not found. 'record_activity' is not a valid view function or pattern name.
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 500 191096
