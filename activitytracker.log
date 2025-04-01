@@ -1231,3 +1231,5 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /workspaces/activitytracker/activitytracker/urls.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/sqlparse/keywords.py changed, reloading.
