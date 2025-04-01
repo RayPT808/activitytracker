@@ -72,14 +72,16 @@ CSRF_TRUSTED_ORIGINS = [
     "https://8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
     "http://localhost:3000",
+    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+    "https://reactivity-789dd5d26427.herokuapp.com/",
 ]
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -90,12 +92,17 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+    "https://reactivity-789dd5d26427.herokuapp.com",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False
+SESSION_COOKIE_SAMESITE = 'Lax'
 
 ROOT_URLCONF = "tracker.urls"
 
@@ -151,6 +158,11 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  
+]
+
 
 LOGIN_REDIRECT_URL = "dashboard"
 

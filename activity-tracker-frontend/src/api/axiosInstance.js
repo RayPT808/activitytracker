@@ -2,23 +2,32 @@ import axios from 'axios';
 
 
 
-const axiosInstance = axios.create({
-    baseURL: 'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io',
+const BASE_URL = process.env.NODE_ENV === 'development'
+  ? 'http://127.0.0.1:8000'  // Use localhost in dev
+  : 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/'; 
 
+const axiosInstance = axios.create({
+    baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     },
-    withCredentials: true, // Allow cookies for authentication
+    withCredentials: true, 
 });
 
 
-// Function to get the CSRF token from cookies
-const getCsrfToken = () => {
-    const csrfCookie = document.cookie
-        .split('; ')
-        .find((row) => row.startsWith('csrftoken='));
-    return csrfCookie ? csrfCookie.split('=')[1] : null;
-};
+
+const getCSRFToken = async () => {
+    try {
+      const response = await axiosInstance.get("/api/csrf/");
+      axiosInstance.defaults.headers.common["X-CSRFToken"] = response.data.csrfToken;
+      console.log("CSRF Token Set:", response.data.csrfToken);
+    } catch (error) {
+      console.error("Error fetching CSRF Token", error);
+    }
+  };
+  
+  getCSRFToken();
+  
 
 // Request interceptor to add tokens (Auth and CSRF)
 axiosInstance.interceptors.request.use(
@@ -27,7 +36,7 @@ axiosInstance.interceptors.request.use(
         const csrfToken = getCsrfToken(); // Get the CSRF token
 
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`; // Attach Bearer token for authentication
+            config.headers.Authorization = `JWT ${token}`; // Attach Bearer token for authentication
         }
 
         if (csrfToken) {
@@ -50,7 +59,7 @@ axiosInstance.interceptors.response.use(
             try {
                 const refreshToken = localStorage.getItem('refreshToken');
                 if (refreshToken) {
-                    const refreshResponse = await axios.post('/auth/refresh/', {
+                    const refreshResponse = await axios.post('/api/token/refresh/', {
                         refresh: refreshToken,
                     });
 

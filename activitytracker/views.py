@@ -217,3 +217,10 @@ class ActivityListCreateView(APIView):
 class ActivityRetrieveUpdateDestroyView(viewsets.ModelViewSet):
     queryset = Activity.objects.all()
     serializer_class = ActivitySerializer
+
+
+@api_view(["POST"])
+def logout_view(request):
+    response = Response({"message": "Logged out successfully"}, status=200)
+    response.delete_cookie("jwt")  # Delete JWT cookie if using cookies
+    return response

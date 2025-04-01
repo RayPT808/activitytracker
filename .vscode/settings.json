@@ -15,4 +15,13 @@
    "files.autoSave": "off",
    "workbench.colorTheme": "Default Light Modern",
    "terminal.integrated.gpuAcceleration": "canvas",
+   "python.testing.unittestArgs": [
+      "-v",
+      "-s",
+      "./activitytracker",
+      "-p",
+      "test_*.py"
+   ],
+   "python.testing.pytestEnabled": false,
+   "python.testing.unittestEnabled": true,
 }

@@ -1053,3 +1053,181 @@ Traceback (most recent call last):
     raise NoReverseMatch(msg)
 django.urls.exceptions.NoReverseMatch: Reverse for 'record_activity' not found. 'record_activity' is not a valid view function or pattern name.
 "GET /api/activitytracker/dashboard/ HTTP/1.1" 500 191096
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4606
+"GET /static/css/register.css HTTP/1.1" 304 0
+Internal Server Error: /api/activitytracker/dashboard/
+Traceback (most recent call last):
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/workspaces/activitytracker/activitytracker/views.py", line 106, in dashboard
+    return render(
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/backends/django.py", line 107, in render
+    return self.template.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 171, in render
+    return self._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 159, in render
+    return compiled_parent._render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 163, in _render
+    return self.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 1008, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/base.py", line 969, in render_annotated
+    return self.render(context)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/template/defaulttags.py", line 480, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/django/urls/resolvers.py", line 831, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'record_activity' not found. 'record_activity' is not a valid view function or pattern name.
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 500 191133
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4058
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7029
+Unauthorized: /api/activitytracker/record/
+"POST /api/activitytracker/record/ HTTP/1.1" 401 8574
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7029
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 6550
+Unauthorized: /api/activitytracker/record/
+"POST /api/activitytracker/record/ HTTP/1.1" 401 8574
+Watching for file changes with StatReloader
+"POST /api/token/ HTTP/1.1" 200 483
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4579
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/css/register.css HTTP/1.1" 304 0
+"POST /api/activitytracker/accounts/profile/ HTTP/1.1" 302 0
+"GET /api/activitytracker/accounts/profile/ HTTP/1.1" 200 4592
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 6550
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+Unauthorized: /api/activitytracker/record/
+"POST /api/activitytracker/record/ HTTP/1.1" 401 8574
+Unauthorized: /api/activitytracker/record/
+"GET /api/activitytracker/record/ HTTP/1.1" 401 8573
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4058
+Not Found: /api/
+"GET /api/ HTTP/1.1" 404 4037
+Method Not Allowed: /api/register/
+"GET /api/register/ HTTP/1.1" 405 10339
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/js/default.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/default.css HTTP/1.1" 304 0
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 304 0
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 304 0
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
+"GET /static/rest_framework/css/bootstrap.min.css.map HTTP/1.1" 200 540434
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 58
+"POST /api/register/ HTTP/1.1" 201 43
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 4058
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader

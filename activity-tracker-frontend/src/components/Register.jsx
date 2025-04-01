@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/register.css';
 
+console.log('NODE_ENV:', process.env.NODE_ENV);
+
+
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
