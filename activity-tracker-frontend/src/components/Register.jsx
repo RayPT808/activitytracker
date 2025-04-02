@@ -75,10 +75,7 @@ const Register = () => {
     setIsLoading(true);
   
     try {
-      const BASE_URL =
-        process.env.NODE_ENV === 'development'
-          ? 'http://localhost:8000'
-          : 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
+      const BASE_URL = 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
   
       // Updated payload structure
       const payload = {

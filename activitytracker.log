@@ -1233,3 +1233,24 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /home/codespace/.pyenv/versions/3.10.16/lib/python3.10/site-packages/sqlparse/keywords.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3168
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+"GET /accounts/login/ HTTP/1.1" 200 3675
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 14246
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 2997
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /?vscodeBrowserReqId=1743536961005 HTTP/1.1" 200 2997
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"POST /api/register/ HTTP/1.1" 201 43
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+"POST /api/register/ HTTP/1.1" 201 43
+Watching for file changes with StatReloader

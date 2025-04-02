@@ -4,14 +4,14 @@ import axios from 'axios';
 
 const BASE_URL = process.env.NODE_ENV === 'development'
   ? 'http://127.0.0.1:8000'  // Use localhost in dev
-  : 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/'; 
+  : 'https://activitytracking-bf7924cd3676.herokuapp.com/ ';
 
 const axiosInstance = axios.create({
     baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     },
-    withCredentials: true, 
+     
 });
 
 

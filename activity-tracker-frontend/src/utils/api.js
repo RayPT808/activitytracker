@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000/api/';  
+const API_URL =  "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/api/register/"; 
 
 const api = axios.create({
   baseURL: API_URL,
