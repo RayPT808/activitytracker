@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
+import axiosInstance from '../api/axiosInstance';
+import { login } from '../api/authApi';
 
 const LoginPage = () => {
   // Set document title as in Django's {% block title %}
@@ -38,10 +40,8 @@ const LoginPage = () => {
 
     try {
       // Make API call to login endpoint
-      const response = await axios.post(
-        'https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io/api/login/',
-        formData
-      );
+      const response = await login(formData);
+      
 
       console.log('Login successful:', response.data);
 
@@ -105,5 +105,8 @@ const LoginPage = () => {
     </Layout>
   );
 };
+
+
+
 
 export default LoginPage;

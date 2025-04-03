@@ -74,6 +74,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
     "https://reactivity-789dd5d26427.herokuapp.com/",
+    "http://127.0.0.1:3000",
 ]
 
 MIDDLEWARE = [
@@ -90,8 +91,10 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://127.0.0.1:3000",
     "https://8000-raypt808-activitytracke-f1ujeofz1qb.ws-eu117.gitpod.io",
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev",
     "https://reactivity-789dd5d26427.herokuapp.com",
 ]
 

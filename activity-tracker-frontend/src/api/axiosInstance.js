@@ -1,84 +1,83 @@
+// src/api/axiosInstance.js
 import axios from 'axios';
 
+// Determine base URL based on environment
+const BASE_URL =
+  process.env.NODE_ENV === 'development'
+    ? 'http://127.0.0.1:8000'  // Local Django backend
+    : 'https://reactivity-789dd5d26427.herokuapp.com';  // Replace with your prod backend
 
-
-const BASE_URL = process.env.NODE_ENV === 'development'
-  ? 'http://127.0.0.1:8000'  // Use localhost in dev
-  : 'https://activitytracking-bf7924cd3676.herokuapp.com/ ';
-
+// Create axios instance
 const axiosInstance = axios.create({
-    baseURL: BASE_URL,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-     
+  baseURL: BASE_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // Important if using cookies or CSRF
 });
 
-
-
+// Optional: Fetch CSRF token on app start (if needed for logout or cookie-auth views)
 const getCSRFToken = async () => {
-    try {
-      const response = await axiosInstance.get("/api/csrf/");
-      axiosInstance.defaults.headers.common["X-CSRFToken"] = response.data.csrfToken;
-      console.log("CSRF Token Set:", response.data.csrfToken);
-    } catch (error) {
-      console.error("Error fetching CSRF Token", error);
+  try {
+    const response = await axiosInstance.get('/accounts/csrf/'); // Adjust if needed
+    const csrfToken = response.data.csrfToken;
+
+    axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfToken;
+    console.log('CSRF Token Set:', csrfToken);
+  } catch (error) {
+    console.error('Error fetching CSRF Token:', error.message);
+    if (error.response) {
+      console.error('Response Data:', error.response.data);
+      console.error('Response Status:', error.response.status);
     }
-  };
-  
-  getCSRFToken();
-  
+  }
+};
 
-// Request interceptor to add tokens (Auth and CSRF)
+// Call CSRF token loader (optional)
+getCSRFToken();
+
+// Request interceptor: Add Authorization header
 axiosInstance.interceptors.request.use(
-    (config) => {
-        const token = localStorage.getItem('authToken'); // Get the auth token
-        const csrfToken = getCsrfToken(); // Get the CSRF token
-
-        if (token) {
-            config.headers.Authorization = `JWT ${token}`; // Attach Bearer token for authentication
-        }
-
-        if (csrfToken) {
-            config.headers['X-CSRFToken'] = csrfToken; // Attach CSRF token for protection
-        }
-
-        return config;
-    },
-    (error) => Promise.reject(error)
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor to handle token expiration (401 errors)
+// Response interceptor: Handle 401 and refresh token
 axiosInstance.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-        if (error.response && error.response.status === 401) {
-            console.error('Token expired or invalid. Attempting to refresh...');
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
 
-            // Optional: If you have a refresh token mechanism implemented, this section will handle refreshing the JWT token
-            try {
-                const refreshToken = localStorage.getItem('refreshToken');
-                if (refreshToken) {
-                    const refreshResponse = await axios.post('/api/token/refresh/', {
-                        refresh: refreshToken,
-                    });
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        if (!refreshToken) throw new Error('No refresh token found');
 
-                    // Store the new access token and retry the original request
-                    localStorage.setItem('authToken', refreshResponse.data.access);
-                    error.config.headers.Authorization = `Bearer ${refreshResponse.data.access}`;
-                    return axiosInstance(error.config);
-                } else {
-                    throw new Error('Refresh token not available');
-                }
-            } catch (refreshError) {
-                console.error('Refresh token failed. Logging out...');
-                localStorage.removeItem('authToken');
-                localStorage.removeItem('refreshToken');
-                window.location.href = '/login'; // Redirect to login page
-            }
-        }
-        return Promise.reject(error);
+        const refreshResponse = await axios.post(`${BASE_URL}/api/token/refresh/`, {
+          refresh: refreshToken,
+        });
+
+        const newAccessToken = refreshResponse.data.access;
+        localStorage.setItem('authToken', newAccessToken);
+        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        return axiosInstance(originalRequest); // Retry original request
+      } catch (refreshError) {
+        console.error('Token refresh failed:', refreshError);
+        localStorage.removeItem('authToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/login';
+      }
     }
+
+    return Promise.reject(error);
+  }
 );
 
 export default axiosInstance;
