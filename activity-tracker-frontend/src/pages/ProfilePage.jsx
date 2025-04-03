@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
+import axiosInstance from '../api/axiosInstance';
 
 const ProfilePage = () => {
-  // Set the document title similar to Django's block title
   useEffect(() => {
     document.title = "User Profile - Activity Tracker";
   }, []);
 
-  // Replace this with your actual user data, for example from a context or API
   const initialUser = {
     username: "john_doe",
     email: "john@example.com",
@@ -17,7 +16,6 @@ const ProfilePage = () => {
 
   const [user, setUser] = useState(initialUser);
 
-  // Handle input changes in the form
   const handleChange = (event) => {
     const { name, value } = event.target;
     setUser(prevData => ({
@@ -26,19 +24,24 @@ const ProfilePage = () => {
     }));
   };
 
-  // Submit handler for updating the profile
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement your update logic here (e.g., call an API to update the user profile)
-    console.log("Profile updated:", user);
-    // Optionally show a success message or redirect
+  const handleUpdateProfile = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axiosInstance.put('/api/profile/', user); 
+      console.log("Profile updated successfully:", response.data);
+      alert("Profile updated successfully!");
+    } catch (error) {
+      console.error("Failed to update profile:", error.response?.data || error.message);
+      alert("Update failed. Check console for details.");
+    }
   };
 
   return (
     <Layout>
       <div className="container mt-4">
         <h2 className="mb-4 text-center">User Profile</h2>
-        <form onSubmit={handleSubmit} className="profile-form">
+        <form onSubmit={handleUpdateProfile} className="profile-form">
           <div className="form-group mb-3">
             <label htmlFor="id_username" className="form-label">Username</label>
             <input

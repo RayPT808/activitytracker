@@ -17,6 +17,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from .forms import ActivityForm, UserProfileForm
 from .models import Activity, ChangeHistory
 from .serializers import ActivitySerializer
+from .serializers import UserSerializer
 
 
 logger = logging.getLogger(__name__)
@@ -122,6 +123,20 @@ def profile(request):
         form = UserProfileForm(instance=request.user)
 
     return render(request, "activitytracker/profile.html", {"form": form})
+
+
+@api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated])
+def user_profile(request):
+    if request.method == 'GET':
+        serializer = UserSerializer(request.user)
+        return Response(serializer.data)
+    elif request.method == 'PUT':
+        serializer = UserSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=400)
 
 
 # Activity Record API Endpoint

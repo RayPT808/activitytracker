@@ -10,13 +10,14 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
 from activitytracker import views as activitytracker_views
 
 
-from activitytracker.views import get_csrf_token, login_view, RegisterView
+from activitytracker.views import get_csrf_token, login_view, RegisterView, user_profile
 
 urlpatterns = [
     path("", activitytracker_views.home, name="home"),
     path("home/", activitytracker_views.home, name="home_redirect"),
     path("admin/", admin.site.urls),
     path("api/register/", RegisterView.as_view(), name="user_registration"),
+    path('api/profile/', user_profile, name='user-profile'),
     path("api/users/", include("users.urls")),
     path("api/activitytracker/", include("activitytracker.urls")),
     path("api/login/", login_view, name="api-login"),

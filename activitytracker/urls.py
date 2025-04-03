@@ -10,6 +10,7 @@ from activitytracker.views import (
     delete_activity, update_activity, profile,
     logout_view,
 )
+from activitytracker import views
 
 # Set up DRF router
 router = DefaultRouter()
@@ -20,6 +21,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path("api/register/", RegisterView.as_view(), name="user_registration"),
     path("api/login/", login_view, name="login"),
+    path('api/profile/', views.user_profile, name='user-profile'),
     path('admin/', admin.site.urls), 
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),  
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
