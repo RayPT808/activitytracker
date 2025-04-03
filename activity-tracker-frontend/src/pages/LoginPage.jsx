@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useUser } from "../context/UserContext"; 
 import Layout from '../components/Layout';
 import { login } from '../api/authApi';
 
+
+
 const LoginPage = () => {
+  const { setUser } = useUser();
   // Set document title as in Django's {% block title %}
   useEffect(() => {
     document.title = "Login";
@@ -27,26 +31,23 @@ const LoginPage = () => {
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: '', // Clear errors for the current field
+      [name]: '', 
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-
     try {
-        const userData = await login(formData);
-        console.log('Login successful:', userData); // 
-
-        navigate('/dashboard');
-    } catch (error) {
-        console.error('Login error:', error.message);
-        setErrors({ general: 'Login failed. Please try again.' });
-    } finally {
-        setIsLoading(false);
+      const userData = await login(formData); 
+      localStorage.setItem("authToken", userData.access);
+      localStorage.setItem("refreshToken", userData.refresh);
+  
+      setUser({ isAuthenticated: true }); 
+      navigate("/dashboard");
+    } catch (err) {
+      console.error("Login failed:", err);
     }
-};
+  };
 
 
   return (

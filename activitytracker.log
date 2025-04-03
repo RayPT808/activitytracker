@@ -1487,3 +1487,174 @@ Not Found: /token/refresh/
 "GET /accounts/csrf/ HTTP/1.1" 200 81
 "OPTIONS /api/profile/ HTTP/1.1" 200 0
 "PUT /api/profile/ HTTP/1.1" 200 92
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/profile/
+"GET /api/profile/ HTTP/1.1" 401 183
+Unauthorized: /api/profile/
+"GET /api/profile/ HTTP/1.1" 401 183
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4428
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4428
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /api/profile/ HTTP/1.1" 200 84
+"GET /api/profile/ HTTP/1.1" 200 84
+"PUT /api/profile/ HTTP/1.1" 200 95
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/profile/
+"GET /api/profile/ HTTP/1.1" 401 183
+Unauthorized: /api/profile/
+"GET /api/profile/ HTTP/1.1" 401 183
+"OPTIONS /token/refresh/ HTTP/1.1" 200 0
+"OPTIONS /token/refresh/ HTTP/1.1" 200 0
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4428
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4428
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/token/ HTTP/1.1" 200 0
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"GET /api/profile/ HTTP/1.1" 200 95
+"PUT /api/profile/ HTTP/1.1" 200 97
+"GET /api/profile/ HTTP/1.1" 200 97
+"GET /api/profile/ HTTP/1.1" 200 97
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /activities/ HTTP/1.1" 200 0
+Not Found: /activities/
+"POST /activities/ HTTP/1.1" 404 4419
+"OPTIONS /activities/ HTTP/1.1" 200 0
+Not Found: /activities/
+"POST /activities/ HTTP/1.1" 404 4419
+"OPTIONS /activities/ HTTP/1.1" 200 0
+Not Found: /activities/
+"POST /activities/ HTTP/1.1" 404 4419
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+Not Found: /api/activities/
+"POST /api/activities/ HTTP/1.1" 404 4431
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+Not Found: /api/activities/
+"POST /api/activities/ HTTP/1.1" 404 4431
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+Not Found: /api/activities/
+"POST /api/activities/ HTTP/1.1" 404 4431
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/activities/
+"POST /api/activities/ HTTP/1.1" 401 183
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4615
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+Bad Request: /api/activities/
+"POST /api/activities/ HTTP/1.1" 400 36
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+Bad Request: /api/activities/
+"POST /api/activities/ HTTP/1.1" 400 36
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Bad Request: /api/activities/
+"POST /api/activities/ HTTP/1.1" 400 36
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/activities/
+"POST /api/activities/ HTTP/1.1" 401 183
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4615
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486

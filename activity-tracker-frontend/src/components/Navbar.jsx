@@ -1,26 +1,25 @@
 import React from 'react';
-import { useUser } from "../context/UserContext"; // Import the useUser hook
-import { useNavigate } from "react-router-dom";
-import "../assets/css/navbar.css";  // Import your custom navbar CSS
+import { useUser } from "../context/UserContext";
+import { useNavigate, Link } from "react-router-dom";
+import "../assets/css/navbar.css";
 
 function Navbar() {
-  const { user, setUser } = useUser(); // Access user data and setUser function
-  const navigate = useNavigate(); // Initialize useNavigate hook for redirecting
+  const { user, setUser } = useUser();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    // Clear the auth token from localStorage and update the user context
     localStorage.removeItem("authToken");
+    localStorage.removeItem("refreshToken");
     setUser(null);
-    // Redirect to the login page
     navigate("/login");
   };
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark fixed-top">
       <div className="container">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img src="/assets/images/trackerlogo.jpg" alt="Logo" />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -31,22 +30,47 @@ function Navbar() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {user ? (
+            {/* Always show About */}
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                to="/about"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+              >
+                About
+              </Link>
+            </li>
+
+            {/* Show based on auth state */}
+            {user?.isAuthenticated ? (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="/dashboard">
+                  <Link
+                    className="nav-link"
+                    to="/dashboard"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                  >
                     Dashboard
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/profile">
+                  <Link
+                    className="nav-link"
+                    to="/profile"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                  >
                     Profile
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
                   <button
                     className="btn btn-link nav-link logout-button"
                     onClick={handleLogout}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
                   >
                     Logout
                   </button>
@@ -55,19 +79,24 @@ function Navbar() {
             ) : (
               <>
                 <li className="nav-item">
-                  <a className="nav-link" href="/about">
-                    About
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/register">
+                  <Link
+                    className="nav-link"
+                    to="/register"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                  >
                     Register
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/login">
+                  <Link
+                    className="nav-link"
+                    to="/login"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                  >
                     Login
-                  </a>
+                  </Link>
                 </li>
               </>
             )}

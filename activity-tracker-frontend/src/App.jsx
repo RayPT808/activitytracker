@@ -4,10 +4,10 @@ import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import Register from "./components/Register";
 import LoginPage from "./pages/LoginPage";
-import ProfilePage from "./pages/ProfilePage"; // ✅ Add this at the top
-import DashboardPage from "./pages/DashboardPage"; // Import the DashboardPage component
+import ProfilePage from "./pages/ProfilePage"; 
+import DashboardPage from "./pages/DashboardPage"; 
 import Layout from './components/Layout';
-import NotFoundPage from "./pages/NotFoundPage"; // Optional 404 page
+import NotFoundPage from "./pages/NotFoundPage"; 
 
 const App = () => {
     return (

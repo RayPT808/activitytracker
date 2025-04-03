@@ -22,6 +22,7 @@ urlpatterns = [
     path("api/activitytracker/", include("activitytracker.urls")),
     path("api/login/", login_view, name="api-login"),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("api/activities/", activitytracker_views.ActivityListCreateView.as_view(), name="activity-list-create"),
     path('accounts/csrf/', get_csrf_token, name='get-csrf-token'),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

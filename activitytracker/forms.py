@@ -1,11 +1,9 @@
-from datetime import datetime, timedelta
-
+from datetime import timedelta
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-from django.utils.timezone import now
 
 from .models import Activity
 
@@ -64,7 +62,7 @@ class DurationInput(forms.TextInput):
 class ActivityForm(forms.ModelForm):
     class Meta:
         model = Activity
-        fields = ["activity_type", "activity_name", "duration", "date", "notes", "file"]
+        fields = ["activity_type", "activity_name", "duration", "date", "notes"]
         widgets = {
             "activity_type": forms.Select(attrs={"class": "form-control"}),
             "activity_name": forms.TextInput(
@@ -77,7 +75,6 @@ class ActivityForm(forms.ModelForm):
             "notes": forms.Textarea(
                 attrs={"class": "form-control", "placeholder": "Optional notes"}
             ),
-            "file": forms.FileInput(attrs={"class": "form-control"}),
         }
 
     def clean_duration(self):
@@ -101,29 +98,6 @@ class ActivityForm(forms.ModelForm):
 
     def clean_date(self):
         date = self.cleaned_data["date"]
-
         if date > timezone.now().date():
             raise forms.ValidationError("The activity date cannot be in the future.")
         return date
-
-
-def clean_file(self):
-    uploaded_file = self.cleaned_data.get("file")
-    if uploaded_file:
-
-        valid_extensions = [".gpx", ".fit"]
-        if not any(uploaded_file.name.endswith(ext) for ext in valid_extensions):
-            raise ValidationError(
-                "Unsupported file format. Please upload a .gpx or .fit file."
-            )
-
-        if uploaded_file.name.endswith(".gpx"):
-            parsed_data = parse_gpx_file(uploaded_file)
-        elif uploaded_file.name.endswith(".fit"):
-            parsed_data = parse_fit_file(uploaded_file)
-
-        self.cleaned_data["duration"] = parsed_data["duration"]
-        self.cleaned_data["activity_type"] = parsed_data["activity_type"]
-        self.cleaned_data["date"] = parsed_data["date"]
-
-    return uploaded_file
