@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    
     "8000-raypt808-activitytracke-ah5qjhh5q2d.ws-eu117.gitpod.io",
     "8000-raypt808-activitytracke-9wucwoxo1t9.ws-eu117.gitpod.io",
     "8000-raypt808-activitytracke-svioy05v8cj.ws-eu117.gitpod.io",
@@ -75,6 +76,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
     "https://reactivity-789dd5d26427.herokuapp.com/",
     "http://127.0.0.1:3000",
+    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev",
 ]
 
 MIDDLEWARE = [
