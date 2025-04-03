@@ -12,4 +12,5 @@ class UserSerializer(serializers.ModelSerializer):
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Activity
-        exclude = ['file']
+        fields = "__all__"
+        read_only_fields = ["user"]

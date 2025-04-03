@@ -1658,3 +1658,40 @@ Not Found: /token/refresh/
 "POST /token/refresh/ HTTP/1.1" 404 4615
 "GET /accounts/csrf/ HTTP/1.1" 200 81
 "POST /api/token/ HTTP/1.1" 200 486
+/workspaces/activitytracker/activitytracker/serializers.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/token/ HTTP/1.1" 200 0
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /api/activities/ HTTP/1.1" 200 2
+"GET /api/activities/ HTTP/1.1" 200 2
+"POST /api/activities/ HTTP/1.1" 201 224

@@ -5,7 +5,8 @@ import AboutPage from "./pages/AboutPage";
 import Register from "./components/Register";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage"; 
-import DashboardPage from "./pages/DashboardPage"; 
+import DashboardPage from "./pages/DashboardPage";
+import ActivityForm from "./components/ActivityForm";
 import Layout from './components/Layout';
 import NotFoundPage from "./pages/NotFoundPage"; 
 
@@ -19,6 +20,8 @@ const App = () => {
             <Route path="/login" element={<Layout><LoginPage /></Layout>} />
             <Route path="/profile" element={<Layout><ProfilePage /></Layout>} />
             <Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
+            <Route path="/add-activity" element={<ActivityForm isEdit={false} />} />
+            <Route path="/edit-activity/:id" element={<ActivityForm isEdit={true} />} />
 
             {/* Optional isolated 404 route */}
             <Route path="*" element={<NotFoundPage />} />
