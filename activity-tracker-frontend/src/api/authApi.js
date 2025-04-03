@@ -3,20 +3,21 @@ import axiosInstance from './axiosInstance';
 
 export const login = async (credentials) => {
     try {
-        const response = await axiosInstance.post('/api/token/', credentials); // Use JWT endpoint
+        const response = await axiosInstance.post('/api/token/', credentials);
+        const { access, refresh } = response.data;
 
-        // Store tokens in localStorage
-        localStorage.setItem('authToken', response.data.access);  // Access Token
-        localStorage.setItem('refreshToken', response.data.refresh); // Refresh Token
+        // ✅ Store tokens
+        localStorage.setItem('authToken', access);
+        localStorage.setItem('refreshToken', refresh);
 
         console.log('Login successful, tokens stored!');
-
-        return response.data; // Return user data or token
+        return response.data;
     } catch (error) {
-        console.error('Login failed:', error.response ? error.response.data : error);
+        console.error('Login failed:', error.response?.data || error);
         throw error;
     }
 };
+
 
 export const register = (userData) => axiosInstance.post('/api/register/', userData);
 

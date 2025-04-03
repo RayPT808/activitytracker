@@ -31,37 +31,23 @@ const LoginPage = () => {
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      // Make API call to login endpoint
-      const response = await login(formData);
-      
+        const userData = await login(formData);
+        console.log('Login successful:', userData); // 
 
-      console.log('Login successful:', response.data);
-
-      // Save tokens to localStorage (or cookies, depending on your preference)
-      localStorage.setItem('access_token', response.data.access);
-      localStorage.setItem('refresh_token', response.data.refresh);
-
-      // Redirect to the dashboard after successful login
-      navigate('/dashboard');
+        navigate('/dashboard');
     } catch (error) {
-      console.error('Login error:', error.response?.data || error.message);
-
-      // Handle server-side errors
-      if (error.response?.data) {
-        setErrors({ general: error.response.data.error || 'Login failed. Please try again.' });
-      } else {
+        console.error('Login error:', error.message);
         setErrors({ general: 'Login failed. Please try again.' });
-      }
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
-  };
+};
+
 
   return (
     <Layout>

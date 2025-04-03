@@ -1353,3 +1353,81 @@ Not Found: /api/api/token/
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/token/ HTTP/1.1" 200 0
+"POST /api/token/ HTTP/1.1" 200 486
+"POST /api/token/ HTTP/1.1" 200 486
+"POST /api/token/ HTTP/1.1" 200 483
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"OPTIONS /token/refresh/ HTTP/1.1" 200 0
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4252
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Unauthorized: /api/token/
+"POST /api/token/ HTTP/1.1" 401 63
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+"POST /api/register/ HTTP/1.1" 201 43
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 58
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 58
+"POST /api/register/ HTTP/1.1" 201 43
+"POST /api/token/ HTTP/1.1" 200 486
+"OPTIONS /api/token/ HTTP/1.1" 200 0
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"GET /accounts/csrf/ HTTP/1.1" 200 81

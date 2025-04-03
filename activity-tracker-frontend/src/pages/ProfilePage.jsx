@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
-// Optionally import your CSS file if using CSS modules or bundler setup
-import '../css/register.css'; 
 
 const ProfilePage = () => {
   // Set the document title similar to Django's block title
