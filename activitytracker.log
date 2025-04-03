@@ -1338,3 +1338,18 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Not Found: /api/accounts/csrf/
+"GET /api/accounts/csrf/ HTTP/1.1" 404 4263
+Not Found: /api/accounts/csrf/
+"GET /api/accounts/csrf/ HTTP/1.1" 404 4263
+"OPTIONS /api/api/token/ HTTP/1.1" 200 0
+Not Found: /api/api/token/
+"POST /api/api/token/ HTTP/1.1" 404 4252
+Not Found: /api/api/token/
+"POST /api/api/token/ HTTP/1.1" 404 4252
+"OPTIONS /api/api/token/ HTTP/1.1" 200 0
+Not Found: /api/api/token/
+"POST /api/api/token/ HTTP/1.1" 404 4252
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader

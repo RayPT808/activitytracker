@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import axiosInstance from '../api/axiosInstance';
 import { login } from '../api/authApi';
 
 const LoginPage = () => {

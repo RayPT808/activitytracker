@@ -34,13 +34,3 @@ export const logout = async () => {
 };
 
 
-const handleLogin = async (event) => {
-    event.preventDefault();
-    try {
-        const userData = await login({ username, password });
-        console.log("User logged in:", userData);
-        window.location.href = "/dashboard"; // Redirect to dashboard
-    } catch (error) {
-        console.error("Login error:", error);
-    }
-};
