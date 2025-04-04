@@ -10,11 +10,10 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
 from activitytracker import views as activitytracker_views
 
 
-from activitytracker.views import get_csrf_token, login_view, RegisterView, user_profile
+from activitytracker.views import get_csrf_token, login_view, RegisterView, user_profile,  FrontendAppView
 
 urlpatterns = [
-    path("", activitytracker_views.home, name="home"),
-    path("home/", activitytracker_views.home, name="home_redirect"),
+    path("", activitytracker_views.about, name="about_redirect"),
     path("admin/", admin.site.urls),
     path("api/register/", RegisterView.as_view(), name="user_registration"),
     path('api/profile/', user_profile, name='user-profile'),
@@ -28,6 +27,10 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/csrf/", get_csrf_token, name="get_csrf_token"),
+    path('', FrontendAppView.as_view(), name='frontend'),
+    
+ 
+
     
 ]
 
@@ -36,4 +39,3 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-handler404 = TemplateView.as_view(template_name="index.html")

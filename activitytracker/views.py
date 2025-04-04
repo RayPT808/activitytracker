@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import now
+from django.views.generic import TemplateView
 from rest_framework import generics, permissions, serializers, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -27,8 +28,6 @@ def get_csrf_token(request):
 
 
 # ------------------- Pages -------------------
-def home(request):
-    return render(request, "activitytracker/base.html")
 
 def about(request):
     return render(request, "activitytracker/about.html")
@@ -36,6 +35,13 @@ def about(request):
 
 def register_page(request):
     return render(request, "activitytracker/register.html")
+
+
+def redirect_to_frontend(request):
+    return redirect('/about/')
+
+class FrontendAppView(TemplateView):
+    template_name = "index.html"
 
 
 def register_user(request):
