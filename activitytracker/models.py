@@ -14,6 +14,8 @@ class Activity(models.Model):
         ("strength_training", "Strength Training"),
         ("yoga", "Yoga"),
         ("crossfit", "CrossFit"),
+        ('dancing', 'Dancing'),
+        ('gym', 'Gym'), 
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")

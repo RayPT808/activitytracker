@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from "../context/UserContext"; 
+import { useUser } from "../context/UserContext";
 import Layout from '../components/Layout';
 import { login } from '../api/authApi';
 
-
-
 const LoginPage = () => {
   const { setUser } = useUser();
-  // Set document title as in Django's {% block title %}
+
   useEffect(() => {
     document.title = "Login";
   }, []);
 
-  // State for form inputs and errors
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // Handle changes for controlled inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -31,24 +29,22 @@ const LoginPage = () => {
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: '', 
+      [name]: '',
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const userData = await login(formData); 
+      const userData = await login(formData);
       localStorage.setItem("authToken", userData.access);
       localStorage.setItem("refreshToken", userData.refresh);
-  
-      setUser({ isAuthenticated: true }); 
+      setUser({ isAuthenticated: true });
       navigate("/dashboard");
     } catch (err) {
       console.error("Login failed:", err);
     }
   };
-
 
   return (
     <Layout>
@@ -56,6 +52,7 @@ const LoginPage = () => {
         <h2>Login</h2>
         {errors.general && <p style={{ color: 'red' }}>{errors.general}</p>}
         <form onSubmit={handleSubmit}>
+          {/* Username */}
           <div className="form-group mb-3">
             <label htmlFor="username">Username</label>
             <input
@@ -69,19 +66,34 @@ const LoginPage = () => {
             />
             {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
           </div>
-          <div className="form-group mb-3">
+
+          <div className="form-group mb-3 position-relative">
             <label htmlFor="password">Password</label>
             <input
-              type="password"
-              className="form-control"
+              type={showPassword ? 'text' : 'password'}
+              className="form-control pe-5"
               id="password"
               name="password"
-              required
               value={formData.password}
               onChange={handleChange}
+              required
             />
-            {errors.password && <p style={{ color: 'red' }}>{errors.password}</p>}
+            <i
+              className={`bi ${showPassword ? 'bi-eye-slash' : 'bi-eye'}`}
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                top: '50%',
+                right: '12px',
+                transform: 'translateY(-50%)',
+                cursor: 'pointer',
+                color: '#6c757d',
+              }}
+            ></i>
           </div>
+
+
+          {/* Submit */}
           <button type="submit" className="btn btn-primary" disabled={isLoading}>
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
@@ -90,8 +102,5 @@ const LoginPage = () => {
     </Layout>
   );
 };
-
-
-
 
 export default LoginPage;

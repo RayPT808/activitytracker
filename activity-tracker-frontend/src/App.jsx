@@ -20,9 +20,8 @@ const App = () => {
             <Route path="/login" element={<Layout><LoginPage /></Layout>} />
             <Route path="/profile" element={<Layout><ProfilePage /></Layout>} />
             <Route path="/dashboard" element={<Layout><DashboardPage /></Layout>} />
-            <Route path="/add-activity" element={<ActivityForm isEdit={false} />} />
-            <Route path="/edit-activity/:id" element={<ActivityForm isEdit={true} />} />
-
+            <Route path="/add-activity" element={<Layout><ActivityForm isEdit={false} /></Layout>}/>
+            <Route path="/edit-activity/:id" element={<Layout><ActivityForm isEdit={true} /></Layout>}/>
             {/* Optional isolated 404 route */}
             <Route path="*" element={<NotFoundPage />} />
         </Routes>

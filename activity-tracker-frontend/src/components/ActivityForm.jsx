@@ -15,6 +15,7 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -27,6 +28,7 @@ const ActivityForm = ({ onActivityAdded }) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccessMessage("");
 
     const { hours, minutes, seconds, ...rest } = formData;
     const duration =
@@ -52,6 +54,8 @@ const ActivityForm = ({ onActivityAdded }) => {
         onActivityAdded(response.data);
       }
 
+      setSuccessMessage("✅ Activity saved successfully!");
+
       setFormData({
         activity_type: '',
         activity_name: '',
@@ -73,6 +77,8 @@ const ActivityForm = ({ onActivityAdded }) => {
     <form className="activity-form" onSubmit={handleSubmit}>
       <h2>Add Activity</h2>
       {error && <div className="error-message text-danger mb-3">{error}</div>}
+      {successMessage && <div className="alert alert-success mb-3">{successMessage}</div>}
+
 
       <div className="form-group mb-3">
         <label htmlFor="activity_type">Activity Type</label>
