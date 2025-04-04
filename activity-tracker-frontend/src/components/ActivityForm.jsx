@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ActivityForm.css';
 import axiosInstance from '../api/axiosInstance';
+import { useParams } from 'react-router-dom';
 
 const ActivityForm = ({ onActivityAdded }) => {
+  const { id } = useParams();
+  const isEdit = Boolean(id);
+
   const [formData, setFormData] = useState({
     activity_type: '',
     activity_name: '',
@@ -15,9 +19,46 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState('');
 
   const today = new Date().toISOString().split('T')[0];
+
+  // 📌 Set dynamic page title
+  useEffect(() => {
+    if (isEdit) {
+      document.title = `Editing: ${formData.activity_name || 'Activity'} | Activity Tracker`;
+    } else {
+      document.title = 'Add Activity | Activity Tracker';
+    }
+  }, [formData.activity_name, isEdit]);
+
+  // 📌 Load existing activity data if editing
+  useEffect(() => {
+    if (isEdit && id) {
+      axiosInstance.get(`/api/activities/${id}/`)
+        .then(response => {
+          const data = response.data;
+          const totalSeconds = parseInt(data.duration, 10);
+          const hours = Math.floor(totalSeconds / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+
+          setFormData({
+            activity_type: data.activity_type,
+            activity_name: data.activity_name,
+            hours: hours.toString(),
+            minutes: minutes.toString(),
+            seconds: seconds.toString(),
+            date: data.date,
+            notes: data.notes || '',
+          });
+        })
+        .catch(err => {
+          console.error("Failed to fetch activity:", err);
+          setError("Could not load activity data.");
+        });
+    }
+  }, [isEdit, id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,13 +69,12 @@ const ActivityForm = ({ onActivityAdded }) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
-    setSuccessMessage("");
+    setSuccessMessage('');
 
     const { hours, minutes, seconds, ...rest } = formData;
     const duration =
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
 
-    // Disallow future dates
     if (formData.date > today) {
       setError("You can't add activities in the future.");
       setLoading(false);
@@ -47,24 +87,33 @@ const ActivityForm = ({ onActivityAdded }) => {
     };
 
     try {
-      const response = await axiosInstance.post('/api/activities/', payload);
-      console.log('Activity saved:', response.data);
-
-      if (onActivityAdded) {
-        onActivityAdded(response.data);
+      let response;
+      if (isEdit) {
+        response = await axiosInstance.put(`/api/activities/${id}/`, payload);
+      } else {
+        response = await axiosInstance.post('/api/activities/', payload);
+        if (onActivityAdded) {
+          onActivityAdded(response.data);
+        }
       }
 
-      setSuccessMessage("✅ Activity saved successfully!");
+      console.log('Activity saved:', response.data);
 
-      setFormData({
-        activity_type: '',
-        activity_name: '',
-        hours: '0',
-        minutes: '0',
-        seconds: '0',
-        date: '',
-        notes: '',
-      });
+      setSuccessMessage("✅ Activity saved successfully!");
+      setTimeout(() => setSuccessMessage(""), 3000); // 🎉 Auto-hide after 3s
+
+      // Reset form if not editing
+      if (!isEdit) {
+        setFormData({
+          activity_type: '',
+          activity_name: '',
+          hours: '0',
+          minutes: '0',
+          seconds: '0',
+          date: '',
+          notes: '',
+        });
+      }
     } catch (err) {
       console.error('Error saving activity:', err);
       setError('There was an error saving the activity. Please try again.');
@@ -75,11 +124,14 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   return (
     <form className="activity-form" onSubmit={handleSubmit}>
-      <h2>Add Activity</h2>
+      <h2>{isEdit ? "Edit Activity" : "Add Activity"}</h2>
+
       {error && <div className="error-message text-danger mb-3">{error}</div>}
-      {successMessage && <div className="alert alert-success mb-3">{successMessage}</div>}
+      {successMessage && (
+        <div className="alert alert-success mb-3 fade show">{successMessage}</div>
+      )}
 
-
+      {/* Activity Type */}
       <div className="form-group mb-3">
         <label htmlFor="activity_type">Activity Type</label>
         <select
@@ -103,6 +155,7 @@ const ActivityForm = ({ onActivityAdded }) => {
         </select>
       </div>
 
+      {/* Activity Name */}
       <div className="form-group mb-3">
         <label htmlFor="activity_name">Activity Name</label>
         <input
@@ -116,39 +169,25 @@ const ActivityForm = ({ onActivityAdded }) => {
         />
       </div>
 
+      {/* Duration */}
       <label>Duration</label>
       <div className="row mb-3">
         <div className="col">
-          <select
-            className="form-select"
-            name="hours"
-            value={formData.hours}
-            onChange={handleChange}
-          >
+          <select className="form-select" name="hours" value={formData.hours} onChange={handleChange}>
             {Array.from({ length: 24 }, (_, i) => (
               <option key={i} value={i}>{i} hr</option>
             ))}
           </select>
         </div>
         <div className="col">
-          <select
-            className="form-select"
-            name="minutes"
-            value={formData.minutes}
-            onChange={handleChange}
-          >
+          <select className="form-select" name="minutes" value={formData.minutes} onChange={handleChange}>
             {Array.from({ length: 60 }, (_, i) => (
               <option key={i} value={i}>{i} min</option>
             ))}
           </select>
         </div>
         <div className="col">
-          <select
-            className="form-select"
-            name="seconds"
-            value={formData.seconds}
-            onChange={handleChange}
-          >
+          <select className="form-select" name="seconds" value={formData.seconds} onChange={handleChange}>
             {Array.from({ length: 60 }, (_, i) => (
               <option key={i} value={i}>{i} sec</option>
             ))}
@@ -156,6 +195,7 @@ const ActivityForm = ({ onActivityAdded }) => {
         </div>
       </div>
 
+      {/* Date */}
       <div className="form-group mb-3">
         <label htmlFor="date">Date</label>
         <input
@@ -170,6 +210,7 @@ const ActivityForm = ({ onActivityAdded }) => {
         />
       </div>
 
+      {/* Notes */}
       <div className="form-group mb-3">
         <label htmlFor="notes">Notes</label>
         <textarea
@@ -182,7 +223,7 @@ const ActivityForm = ({ onActivityAdded }) => {
       </div>
 
       <button type="submit" className="btn btn-primary" disabled={loading}>
-        {loading ? 'Saving...' : 'Save Activity'}
+        {loading ? 'Saving...' : isEdit ? 'Update Activity' : 'Save Activity'}
       </button>
     </form>
   );

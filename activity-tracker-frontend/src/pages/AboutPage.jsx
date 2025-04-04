@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
-import Layout from '../components/Layout'; // Adjust the import path as needed
+import Layout from '../components/Layout';
 
 const AboutPage = () => {
   useEffect(() => {
-    // Updates the document title dynamically
     document.title = "About Us - Activity Tracker";
   }, []);
 
   return (
     <Layout>
-      <div className="container">
+      <div className="container text-center">
         <h1>About Us</h1>
         <p>
           Welcome to our activity tracker application. Here, you can record and track your daily activities.
@@ -23,3 +22,4 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+

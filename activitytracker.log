@@ -1828,3 +1828,28 @@ Not Found: /token/refresh/
 "DELETE /api/activities/44/ HTTP/1.1" 204 0
 "GET /api/activities/ HTTP/1.1" 200 1830
 "GET /api/activities/ HTTP/1.1" 200 1830
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+Unauthorized: /api/activities/
+"GET /api/activities/ HTTP/1.1" 401 183
+Unauthorized: /api/activities/
+"GET /api/activities/ HTTP/1.1" 401 183
+"OPTIONS /token/refresh/ HTTP/1.1" 200 0
+Not Found: /token/refresh/
+"POST /token/refresh/ HTTP/1.1" 404 4812
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"GET /api/activities/ HTTP/1.1" 200 1830
+"GET /api/activities/ HTTP/1.1" 200 1830
+"POST /api/activities/ HTTP/1.1" 201 228
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /api/activities/ HTTP/1.1" 200 2059
+"OPTIONS /api/activities/48/ HTTP/1.1" 200 0
+"OPTIONS /api/activities/48/ HTTP/1.1" 200 0
+"GET /api/activities/48/ HTTP/1.1" 200 228
+"GET /api/activities/48/ HTTP/1.1" 200 228
+"PUT /api/activities/48/ HTTP/1.1" 200 228
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /accounts/csrf/ HTTP/1.1" 200 81
