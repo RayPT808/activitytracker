@@ -88,6 +88,15 @@ CORS_ALLOW_HEADERS = list(default_headers) + [
     'access-control-allow-origin',
 ]
 
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",  
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'

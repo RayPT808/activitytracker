@@ -2,9 +2,12 @@ from django.contrib.auth import authenticate, login
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.http import JsonResponse  # Import JsonResponse
-from django.middleware.csrf import get_token  # Import get_token
+from django.http import JsonResponse  
+from django.middleware.csrf import get_token 
 from django.views.decorators.csrf import ensure_csrf_cookie
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+
 
 
 
@@ -25,7 +28,11 @@ def get_csrf_token(request):
 
 
 @api_view(["POST", "OPTIONS"])
+@permission_classes([AllowAny])
 def login_view(request):
+    if request.method == "OPTIONS":
+        return Response(status=200)
+
     username = request.data.get("username")
     password = request.data.get("password")
 
@@ -45,22 +52,20 @@ def login_view(request):
 
 
 
-
-@api_view(["POST","OPTIONS"])
+@api_view(["POST", "OPTIONS"])
+@permission_classes([AllowAny])
 def logout_view(request):
-    """
-    Logout API to blacklist the refresh token
-    """
+    if request.method == "OPTIONS":
+        return Response(status=200)
+
     try:
-        refresh_token = request.data.get("refresh_token")  # Get refresh token from request
+        refresh_token = request.data.get("refresh_token")
         if not refresh_token:
             return Response({"error": "Refresh token is required"}, status=400)
-        
-        token = RefreshToken(refresh_token)  # Create a RefreshToken instance
-        token.blacklist()  # Blacklist the token
+
+        token = RefreshToken(refresh_token)
+        token.blacklist()
 
         return Response({"message": "Logged out successfully"}, status=200)
     except Exception as e:
         return Response({"error": str(e)}, status=400)
-
-
