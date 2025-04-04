@@ -2623,3 +2623,4 @@ Watching for file changes with StatReloader
 "GET /api/profile/ HTTP/1.1" 200 97
 "GET /api/activities/ HTTP/1.1" 200 2059
 "GET /api/activities/ HTTP/1.1" 200 2059
+"GET /accounts/csrf/ HTTP/1.1" 200 81

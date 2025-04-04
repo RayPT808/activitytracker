@@ -71,12 +71,15 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+    "https://reactivity-789dd5d26427.herokuapp.com",
+
 ]
 
 CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = [
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+    "https://reactivity-789dd5d26427.herokuapp.com",
 ]
 
 CSRF_COOKIE_SECURE = True
