@@ -2599,3 +2599,27 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is n
 "GET /api/activitytracker/about/ HTTP/1.1" 200 3120
 "GET /accounts/login/ HTTP/1.1" 200 3525
 "GET /api/activitytracker/register/ HTTP/1.1" 200 6554
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3120
+"GET /accounts/login/ HTTP/1.1" 200 3525
+"GET /api/activitytracker/register/ HTTP/1.1" 200 6554
+"GET /accounts/csrf/ HTTP/1.1" 200 81
+"POST /api/token/ HTTP/1.1" 200 486
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+"OPTIONS /api/activities/ HTTP/1.1" 200 0
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /api/activities/ HTTP/1.1" 200 2059
+"OPTIONS /api/activities/46/ HTTP/1.1" 200 0
+"OPTIONS /api/activities/46/ HTTP/1.1" 200 0
+"GET /api/activities/46/ HTTP/1.1" 200 229
+"GET /api/activities/46/ HTTP/1.1" 200 229
+"PUT /api/activities/46/ HTTP/1.1" 200 229
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /api/activities/ HTTP/1.1" 200 2059
+"OPTIONS /api/profile/ HTTP/1.1" 200 0
+"OPTIONS /api/profile/ HTTP/1.1" 200 0
+"GET /api/profile/ HTTP/1.1" 200 97
+"GET /api/profile/ HTTP/1.1" 200 97
+"GET /api/activities/ HTTP/1.1" 200 2059
+"GET /api/activities/ HTTP/1.1" 200 2059

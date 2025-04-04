@@ -17,7 +17,7 @@ print(f"DEBUG in .env: {os.getenv('DEBUG')}")
 print(f"SECRET_KEY Loaded: {os.getenv('DJANGO_SECRET_KEY')}")
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "localhost",
