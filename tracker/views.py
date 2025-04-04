@@ -24,7 +24,7 @@ def get_csrf_token(request):
     return JsonResponse({'csrfToken': request.META.get("CSRF_COOKIE", "")})
 
 
-@api_view(["POST"])
+@api_view(["POST", "OPTIONS"])
 def login_view(request):
     username = request.data.get("username")
     password = request.data.get("password")
@@ -46,7 +46,7 @@ def login_view(request):
 
 
 
-@api_view(["POST"])
+@api_view(["POST","OPTIONS"])
 def logout_view(request):
     """
     Logout API to blacklist the refresh token

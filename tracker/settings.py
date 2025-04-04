@@ -7,6 +7,8 @@ import cloudinary.uploader
 import dj_database_url
 import environ
 from django.core.exceptions import ImproperlyConfigured
+from corsheaders.defaults import default_headers
+
 
 env = environ.Env()
 env_path = Path(__file__).resolve().parent.parent / ".env"
@@ -67,7 +69,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# ✅ CORS & CSRF SETTINGS (updated for GitHub Codespaces)
+
 
 CORS_ALLOWED_ORIGINS = [
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
@@ -81,6 +83,11 @@ CSRF_TRUSTED_ORIGINS = [
     "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
     "https://reactivity-789dd5d26427.herokuapp.com",
 ]
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    'access-control-allow-origin',
+]
+
 
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
