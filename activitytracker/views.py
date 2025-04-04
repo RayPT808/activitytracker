@@ -1,6 +1,7 @@
 import logging
 from datetime import timedelta
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login 
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse, HttpResponse
@@ -16,7 +17,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from .forms import ActivityForm, UserProfileForm
 from .models import Activity
-from .serializers import ActivitySerializer, UserSerializer
+from .serializers import ActivitySerializer, UserSerializer, UserRegisterSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +32,23 @@ def home(request):
 
 def about(request):
     return render(request, "activitytracker/about.html")
+
+
+def register_page(request):
+    return render(request, "activitytracker/register.html")
+
+
+def register_user(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")  # or wherever you want
+    else:
+        form = UserCreationForm()
+
+    return render(request, "activitytracker/register.html", {"form": form})
+
 
 @login_required
 def profile(request):
@@ -65,14 +83,6 @@ def logout_view(request):
     return response
 
 
-# ------------------- Registration -------------------
-class UserRegisterSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ["username", "email", "password"]
-
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -135,3 +145,41 @@ def dashboard(request):
 
     activities = request.user.activities.all().order_by("-date")
     return render(request, "activitytracker/dashboard.html", {"form": form, "activities": activities})
+
+
+@login_required
+def update_activity(request, pk):
+    activity = get_object_or_404(Activity, pk=pk, user=request.user)
+
+    if request.method == "POST":
+        form = ActivityForm(request.POST, instance=activity)
+        if form.is_valid():
+            form.save()
+            return redirect("dashboard")  # or your intended page
+    else:
+        form = ActivityForm(instance=activity)
+
+    return render(request, "activitytracker/update_activity.html", {"form": form})
+
+
+@login_required
+def delete_activity(request, pk):
+    activity = get_object_or_404(Activity, pk=pk, user=request.user)
+    if request.method == "POST":
+        activity.delete()
+        return redirect("dashboard")  # Or wherever you want
+    return render(request, "activitytracker/delete_activity.html", {"activity": activity})
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def record_activity(request):
+    form = ActivityForm(request.data)
+    if form.is_valid():
+        activity = form.save(commit=False)
+        activity.user = request.user
+        activity.save()
+        return Response({"message": "Activity recorded successfully"}, status=201)
+    return Response({"errors": form.errors}, status=400)
+
+
