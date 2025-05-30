@@ -161,7 +161,7 @@ def update_activity(request, pk):
         form = ActivityForm(request.POST, instance=activity)
         if form.is_valid():
             form.save()
-            return redirect("dashboard")  # or your intended page
+            return redirect("dashboard") 
     else:
         form = ActivityForm(instance=activity)
 
@@ -173,7 +173,7 @@ def delete_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
     if request.method == "POST":
         activity.delete()
-        return redirect("dashboard")  # Or wherever you want
+        return redirect("dashboard") 
     return render(request, "activitytracker/delete_activity.html", {"activity": activity})
 
 

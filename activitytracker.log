@@ -2624,3 +2624,41 @@ Watching for file changes with StatReloader
 "GET /api/activities/ HTTP/1.1" 200 2059
 "GET /api/activities/ HTTP/1.1" 200 2059
 "GET /accounts/csrf/ HTTP/1.1" 200 81
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 179
+"GET / HTTP/1.1" 200 3120
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 200 196085
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 200 3151
+"GET /api/activitytracker/register/ HTTP/1.1" 200 6554
+"GET /static/css/register.css HTTP/1.1" 200 278
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"POST /api/activitytracker/register/ HTTP/1.1" 200 6749
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /static/css/register.css HTTP/1.1" 304 0
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"POST /api/activitytracker/register/ HTTP/1.1" 302 0
+"GET /accounts/login/ HTTP/1.1" 200 3525
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 6457
+Unauthorized: /api/activitytracker/record/
+"POST /api/activitytracker/record/ HTTP/1.1" 401 8574
+"GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 19586
+"GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 390
+"GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 1270
+"GET /static/rest_framework/css/default.css HTTP/1.1" 200 612
+"GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 6025
+"GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 10896
+"GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 827
+"GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 1645
+"GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 30336
+"GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+"GET /static/rest_framework/js/default.js HTTP/1.1" 200 571
+"GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+/workspaces/activitytracker/activitytracker/views.py changed, reloading.
+Watching for file changes with StatReloader
