@@ -2701,3 +2701,4 @@ Unauthorized: /api/activities/
 "GET /static/rest_framework/img/grid.png HTTP/1.1" 304 0
 Not Found: /favicon.ico
 "GET /favicon.ico HTTP/1.1" 404 179
+Watching for file changes with StatReloader

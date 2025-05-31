@@ -2,7 +2,22 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
-import parseISO8601Duration from '../utils/parseISO8601Duration';
+
+// Parses "HH:MM:SS" into total seconds
+const parseDuration = (duration) => {
+  if (typeof duration !== "string") return 0;
+  const parts = duration.split(":");
+  if (parts.length !== 3) return 0;
+  const [hours, minutes, seconds] = parts.map(Number);
+  return hours * 3600 + minutes * 60 + seconds;
+};
+
+// Formats total seconds into "Xh Ym"
+const formatTime = (totalSeconds) => {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
+};
 
 const DashboardPage = () => {
   const [activities, setActivities] = useState([]);
@@ -12,11 +27,13 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchActivities = () => {
+    setLoading(true);
     axiosInstance.get("/api/activities/")
       .then(res => {
+        console.log("Fetched activities:", res.data);
         setActivities(res.data);
-        setFilteredActivities(res.data);
+        applyFilterAndSort(res.data, activityTypeFilter, sortBy);
         setLoading(false);
       })
       .catch(err => {
@@ -24,6 +41,12 @@ const DashboardPage = () => {
         setError("Failed to load activities.");
         setLoading(false);
       });
+  };
+
+  useEffect(() => {
+    fetchActivities();
+    window.addEventListener("focus", fetchActivities);
+    return () => window.removeEventListener("focus", fetchActivities);
   }, []);
 
   const handleDelete = (id) => {
@@ -56,7 +79,7 @@ const DashboardPage = () => {
       : activityList.filter(act => act.activity_type === filterType);
 
     if (sortField === "duration") {
-      filtered.sort((a, b) => a.duration - b.duration);
+      filtered.sort((a, b) => parseDuration(a.duration) - parseDuration(b.duration));
     } else if (sortField === "date") {
       filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
@@ -65,21 +88,18 @@ const DashboardPage = () => {
   };
 
   const getTotalDuration = () => {
-  const totalSeconds = filteredActivities.reduce((acc, act) => {
-    const seconds = parseISO8601Duration(act.duration);
-    return acc + (isNaN(seconds) ? 0 : seconds);
-  }, 0);
-
-  const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  return `${hours} hrs ${minutes} min`;
-};
+    const totalSeconds = filteredActivities.reduce(
+      (acc, act) => acc + parseDuration(act.duration),
+      0
+    );
+    return formatTime(totalSeconds);
+  };
 
   return (
     <Layout>
       <div className="container mt-4">
         <div className="row">
-          {/* Left Panel: Filters + Buttons */}
+          {/* Left Panel */}
           <div className="col-md-4">
             <h3>Your Activities</h3>
 
@@ -119,27 +139,25 @@ const DashboardPage = () => {
               </select>
             </div>
 
-            {/* Add Activity */}
             <Link to="/add-activity" className="btn btn-primary mb-3 w-100">
               + Add New Activity
             </Link>
 
-            {/* Total Time */}
+            {/* Totals */}
             <div className="alert alert-info">
               <strong>Total Time Tracked:</strong><br />
               {getTotalDuration()}
+              <hr className="my-2" />
+              <strong>Total Activities:</strong> {filteredActivities.length}
             </div>
           </div>
 
-          {/* Right Panel: Scrollable Activity List */}
+          {/* Right Panel */}
           <div className="col-md-8">
             {loading && <p>Loading activities...</p>}
             {error && <p className="text-danger">{error}</p>}
 
-            <div
-              className="border rounded p-3"
-              style={{ maxHeight: '500px', overflowY: 'auto' }}
-            >
+            <div className="border rounded p-3" style={{ maxHeight: '500px', overflowY: 'auto' }}>
               {filteredActivities.length === 0 ? (
                 <p>No activities found.</p>
               ) : (
@@ -174,4 +192,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
