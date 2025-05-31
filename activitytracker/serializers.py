@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Activity
+from datetime import timedelta
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,7 +26,23 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     
 
 class ActivitySerializer(serializers.ModelSerializer):
+    # Completely override the default DurationField behavior
+    duration = serializers.IntegerField()
+
     class Meta:
         model = Activity
         fields = "__all__"
         read_only_fields = ["user"]
+
+    def to_representation(self, instance):
+        """Convert model instance to JSON"""
+        ret = super().to_representation(instance)
+        ret['duration'] = int(instance.duration.total_seconds())  # force numeric output
+        return ret
+
+    def to_internal_value(self, data):
+        """Convert input JSON to model instance"""
+        data = super().to_internal_value(data)
+        seconds = data.get("duration", 0)
+        data["duration"] = timedelta(seconds=int(seconds))
+        return data

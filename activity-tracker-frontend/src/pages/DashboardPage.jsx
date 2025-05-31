@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
@@ -7,6 +8,8 @@ const DashboardPage = () => {
   const [activities, setActivities] = useState([]);
   const [filteredActivities, setFilteredActivities] = useState([]);
   const [activityTypeFilter, setActivityTypeFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("date");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -14,7 +17,7 @@ const DashboardPage = () => {
     axiosInstance.get("/api/activities/")
       .then(res => {
         setActivities(res.data);
-        setFilteredActivities(res.data);
+        applyFilter(res.data, activityTypeFilter);
         setLoading(false);
       })
       .catch(err => {
@@ -23,6 +26,39 @@ const DashboardPage = () => {
         setLoading(false);
       });
   }, []);
+
+  const convertDurationToSeconds = (durationStr) => {
+    const [h, m, s] = durationStr.split(":").map(Number);
+    return h * 3600 + m * 60 + s;
+  };
+
+  const formatTotalTime = (totalSeconds) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    return `${hours}h ${minutes}m`;
+  };
+
+  const applySorting = (activitiesToSort) => {
+    const sorted = [...activitiesToSort].sort((a, b) => {
+      if (sortBy === "duration") {
+        const aSec = convertDurationToSeconds(a.duration || "00:00:00");
+        const bSec = convertDurationToSeconds(b.duration || "00:00:00");
+        return sortOrder === "asc" ? aSec - bSec : bSec - aSec;
+      } else {
+        const aDate = new Date(a.date);
+        const bDate = new Date(b.date);
+        return sortOrder === "asc" ? aDate - bDate : bDate - aDate;
+      }
+    });
+    setFilteredActivities(sorted);
+  };
+
+  const applyFilter = (activityList, type) => {
+    const filtered = type === "all"
+      ? activityList
+      : activityList.filter(act => act.activity_type === type);
+    applySorting(filtered);
+  };
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
@@ -40,15 +76,6 @@ const DashboardPage = () => {
     const selectedType = e.target.value;
     setActivityTypeFilter(selectedType);
     applyFilter(activities, selectedType);
-  };
-
-  const applyFilter = (activityList, type) => {
-    if (type === "all") {
-      setFilteredActivities(activityList);
-    } else {
-      const filtered = activityList.filter(act => act.activity_type === type);
-      setFilteredActivities(filtered);
-    }
   };
 
   return (
@@ -78,8 +105,49 @@ const DashboardPage = () => {
           </select>
         </div>
 
+        {/* Sort Controls */}
+        <div className="mb-3 d-flex gap-3">
+          <div>
+            <label className="form-label">Sort by:</label>
+            <select
+              className="form-select"
+              value={sortBy}
+              onChange={(e) => {
+                setSortBy(e.target.value);
+                applySorting(filteredActivities);
+              }}
+            >
+              <option value="date">Date</option>
+              <option value="duration">Duration</option>
+            </select>
+          </div>
+          <div>
+            <label className="form-label">Order:</label>
+            <select
+              className="form-select"
+              value={sortOrder}
+              onChange={(e) => {
+                setSortOrder(e.target.value);
+                applySorting(filteredActivities);
+              }}
+            >
+              <option value="desc">Descending</option>
+              <option value="asc">Ascending</option>
+            </select>
+          </div>
+        </div>
+
         {/* Add Button */}
         <Link to="/add-activity" className="btn btn-primary mb-3">+ Add New Activity</Link>
+
+        {/* Total Time Tracked */}
+        <div className="mb-3">
+          <strong>Total Time Tracked:</strong> {
+            formatTotalTime(
+              filteredActivities.reduce((sum, act) => sum + convertDurationToSeconds(act.duration || "00:00:00"), 0)
+            )
+          }
+        </div>
 
         {/* Feedback States */}
         {loading && <p>Loading activities...</p>}
@@ -95,7 +163,7 @@ const DashboardPage = () => {
               <p className="text-center m-3">No activities found.</p>
             ) : (
               <ul className="list-group">
-                {[...filteredActivities].reverse().map(activity => (
+                {filteredActivities.map(activity => (
                   <li key={activity.id} className="list-group-item">
                     <strong>{activity.date}</strong> - {activity.activity_type} ({activity.duration})
                     <div className="mt-2">
