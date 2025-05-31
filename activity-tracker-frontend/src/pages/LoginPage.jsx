@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../context/UserContext";
@@ -30,12 +31,22 @@ const LoginPage = () => {
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: '',
+      general: ''
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const newErrors = {};
+    if (!formData.username.trim()) newErrors.username = "Username is required.";
+    if (!formData.password.trim()) newErrors.password = "Password is required.";
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
+      setIsLoading(true);
       const userData = await login(formData);
       localStorage.setItem("authToken", userData.access);
       localStorage.setItem("refreshToken", userData.refresh);
@@ -43,6 +54,13 @@ const LoginPage = () => {
       navigate("/dashboard");
     } catch (err) {
       console.error("Login failed:", err);
+      if (err.response && err.response.status === 401) {
+        setErrors({ general: "❌ Invalid username or password." });
+      } else {
+        setErrors({ general: "Something went wrong. Please try again." });
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -67,6 +85,7 @@ const LoginPage = () => {
             {errors.username && <p style={{ color: 'red' }}>{errors.username}</p>}
           </div>
 
+          {/* Password */}
           <div className="form-group mb-3 position-relative">
             <label htmlFor="password">Password</label>
             <input
@@ -91,7 +110,6 @@ const LoginPage = () => {
               }}
             ></i>
           </div>
-
 
           {/* Submit */}
           <button type="submit" className="btn btn-primary" disabled={isLoading}>

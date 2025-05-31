@@ -137,6 +137,7 @@ const Register = () => {
               color: '#6c757d',
             }}
           ></i>
+          {errors.password && <small className="text-danger">{errors.password}</small>}
         </div>
 
         <div className="form-group position-relative mb-3">
@@ -162,8 +163,8 @@ const Register = () => {
               color: '#6c757d',
             }}
           ></i>
+          {errors.confirmPassword && <small className="text-danger">{errors.confirmPassword}</small>}
         </div>
-
 
         <button type="submit" className="btn btn-primary" disabled={isLoading}>
           {isLoading ? 'Registering...' : 'Register'}
