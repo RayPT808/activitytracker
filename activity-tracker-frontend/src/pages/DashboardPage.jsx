@@ -1,10 +1,8 @@
-
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
-// Parses "HH:MM:SS" into total seconds
 const parseDuration = (duration) => {
   if (typeof duration !== "string") return 0;
   const parts = duration.split(":");
@@ -13,7 +11,6 @@ const parseDuration = (duration) => {
   return hours * 3600 + minutes * 60 + seconds;
 };
 
-// Formats total seconds into "Xh Ym"
 const formatTime = (totalSeconds) => {
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
@@ -27,6 +24,27 @@ const DashboardPage = () => {
   const [sortBy, setSortBy] = useState("date");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const fetchActivities = () => {
+    setLoading(true);
+    axiosInstance.get("/api/activities/")
+      .then(res => {
+        setActivities(res.data);
+        applyFilterAndSort(res.data, activityTypeFilter, sortBy);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load activities", err);
+        setError("Failed to load activities.");
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    fetchActivities();
+    window.addEventListener("focus", fetchActivities);
+    return () => window.removeEventListener("focus", fetchActivities);
+  }, [activityTypeFilter, sortBy]); // ✅ dependency array is OK here
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
@@ -74,28 +92,6 @@ const DashboardPage = () => {
     return formatTime(totalSeconds);
   };
 
-  useEffect(() => {
-    const fetchActivities = () => {
-      setLoading(true);
-      axiosInstance.get("/api/activities/")
-        .then(res => {
-          console.log("Fetched activities:", res.data);
-          setActivities(res.data);
-          applyFilterAndSort(res.data, activityTypeFilter, sortBy);
-          setLoading(false);
-        })
-        .catch(err => {
-          console.error("Failed to load activities", err);
-          setError("Failed to load activities.");
-          setLoading(false);
-        });
-    };
-
-    fetchActivities();
-    window.addEventListener("focus", fetchActivities);
-    return () => window.removeEventListener("focus", fetchActivities);
-  }, [activityTypeFilter, sortBy]);
-
   return (
     <Layout>
       <div className="container mt-4">
@@ -104,7 +100,6 @@ const DashboardPage = () => {
           <div className="col-md-4">
             <h3>Your Activities</h3>
 
-            {/* Filter */}
             <div className="mb-3">
               <label htmlFor="filter" className="form-label">Filter by Type:</label>
               <select
@@ -126,7 +121,6 @@ const DashboardPage = () => {
               </select>
             </div>
 
-            {/* Sort */}
             <div className="mb-3">
               <label htmlFor="sort" className="form-label">Sort by:</label>
               <select
@@ -144,7 +138,6 @@ const DashboardPage = () => {
               + Add New Activity
             </Link>
 
-            {/* Totals */}
             <div className="alert alert-info">
               <strong>Total Time Tracked:</strong><br />
               {getTotalDuration()}
@@ -193,3 +186,4 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+
