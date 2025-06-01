@@ -21,3 +21,17 @@ body {
   margin: 0; /* Removes default margins */
   padding: 0; /* Removes default padding */
 }
+
+body {
+  overflow-x: hidden;
+}
+
+body {
+  padding-top: 100px; /* Adjust to match the height of your navbar */
+}
+
+@media (max-width: 991px) {
+  body {
+    padding-top: 100px; /* Taller padding for expanded mobile navbar */
+  }
+}

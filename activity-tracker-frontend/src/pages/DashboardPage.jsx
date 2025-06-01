@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
@@ -26,28 +27,6 @@ const DashboardPage = () => {
   const [sortBy, setSortBy] = useState("date");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  const fetchActivities = () => {
-    setLoading(true);
-    axiosInstance.get("/api/activities/")
-      .then(res => {
-        console.log("Fetched activities:", res.data);
-        setActivities(res.data);
-        applyFilterAndSort(res.data, activityTypeFilter, sortBy);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to load activities", err);
-        setError("Failed to load activities.");
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    fetchActivities();
-    window.addEventListener("focus", fetchActivities);
-    return () => window.removeEventListener("focus", fetchActivities);
-  }, []);
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
@@ -94,6 +73,28 @@ const DashboardPage = () => {
     );
     return formatTime(totalSeconds);
   };
+
+  useEffect(() => {
+    const fetchActivities = () => {
+      setLoading(true);
+      axiosInstance.get("/api/activities/")
+        .then(res => {
+          console.log("Fetched activities:", res.data);
+          setActivities(res.data);
+          applyFilterAndSort(res.data, activityTypeFilter, sortBy);
+          setLoading(false);
+        })
+        .catch(err => {
+          console.error("Failed to load activities", err);
+          setError("Failed to load activities.");
+          setLoading(false);
+        });
+    };
+
+    fetchActivities();
+    window.addEventListener("focus", fetchActivities);
+    return () => window.removeEventListener("focus", fetchActivities);
+  }, [activityTypeFilter, sortBy]);
 
   return (
     <Layout>

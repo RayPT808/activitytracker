@@ -20,48 +20,38 @@ function Navbar() {
         <Link className="navbar-brand" to="/">
           <img src="/assets/images/trackerlogo.jpg" alt="Logo" />
         </Link>
+
+        {/* Toggler button */}
         <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+
+        {/* Collapsible content */}
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto">
-            {/* Always show About */}
             <li className="nav-item">
-              <Link
-                className="nav-link"
-                to="/about"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-              >
+              <Link className="nav-link" to="/about">
                 About
               </Link>
             </li>
 
-            {/* Show based on auth state */}
             {user?.isAuthenticated ? (
               <>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/dashboard"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                  >
+                  <Link className="nav-link" to="/dashboard">
                     Dashboard
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/profile"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                  >
+                  <Link className="nav-link" to="/profile">
                     Profile
                   </Link>
                 </li>
@@ -69,8 +59,6 @@ function Navbar() {
                   <button
                     className="btn btn-link nav-link logout-button"
                     onClick={handleLogout}
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
                   >
                     Logout
                   </button>
@@ -79,22 +67,12 @@ function Navbar() {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/register"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                  >
+                  <Link className="nav-link" to="/register">
                     Register
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/login"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                  >
+                  <Link className="nav-link" to="/login">
                     Login
                   </Link>
                 </li>
