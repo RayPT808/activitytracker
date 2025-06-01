@@ -2702,3 +2702,5 @@ Unauthorized: /api/activities/
 Not Found: /favicon.ico
 "GET /favicon.ico HTTP/1.1" 404 179
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/settings.py changed, reloading.
