@@ -11,6 +11,11 @@ env = environ.Env()
 env_path = BASE_DIR / ".env"
 if env_path.exists():
     env.read_env(env_path)
+    print(f"✅ .env file loaded successfully from: {env_path}")
+    print("✅ DATABASE_URL loaded from .env:", env("DATABASE_URL", default=None))
+else:
+    print("❌ .env file not found at:", env_path)
+
 
 # Safety check for secret key
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=None)
@@ -100,8 +105,13 @@ WSGI_APPLICATION = "tracker.wsgi.application"
 
 # Database config
 DATABASE_URL = env("DATABASE_URL", default=None)
+print("✅ DATABASE_URL loaded from .env:", DATABASE_URL)
+
 if not DATABASE_URL:
     raise ImproperlyConfigured("DATABASE_URL must be set in .env")
+
+
+
 
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL)
