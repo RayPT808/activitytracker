@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.urls import re_path
 from django.views.generic import TemplateView
 from .views import get_csrf_token
 from rest_framework_simplejwt.views import (TokenObtainPairView,
@@ -27,7 +28,7 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/csrf/", get_csrf_token, name="get_csrf_token"),
-    path('', FrontendAppView.as_view(), name='frontend'),
+    re_path(r'^(?!api/|admin/|accounts/).*', FrontendAppView.as_view(), name='frontend'),
     
  
 
