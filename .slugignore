@@ -9,7 +9,6 @@ tmp/
 *.sqlite3
 staticfiles/
 __pycache__/
-frontend/build/
 frontend/node_modules/
 frontend/.git/
 backend/.git/
