@@ -24,18 +24,14 @@ urlpatterns = [
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),  
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 
-    # Frontend Pages
-    path("about/", about, name="about"),
-    path("register/", register_user, name="register"),  
-    path("dashboard/", dashboard, name="dashboard"),
+    
 
     # Activity Actions
     path("update/<int:pk>/", update_activity, name="update_activity"),
     path("delete_activity/<int:pk>/", delete_activity, name="delete_activity"),
     path("record/", record_activity, name="record_activity"),
 
-    # Auth
-    path("accounts/profile/", profile, name="profile"),
+    
 ]
 
 

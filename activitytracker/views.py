@@ -15,6 +15,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
+
 
 from .forms import ActivityForm, UserProfileForm
 from .models import Activity
@@ -40,8 +43,10 @@ def register_page(request):
 def redirect_to_frontend(request):
     return redirect('/about/')
 
+@method_decorator(never_cache, name='dispatch')
 class FrontendAppView(TemplateView):
     template_name = "index.html"
+
 
 
 def register_user(request):
