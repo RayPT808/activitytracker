@@ -1,8 +1,6 @@
 {
-  "devDependencies": {
-    "eslint": "^9.19.0"
-  },
-  "dependencies": {
-    "cors": "^2.8.5"
-  }
+  "name": "heroku-build-root",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": ["activity-tracker-frontend"]
 }
