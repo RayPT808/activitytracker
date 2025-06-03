@@ -91,6 +91,7 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
+            BASE_DIR / 'react-build-temp',
             BASE_DIR / "activity-tracker-frontend" / "build",
             BASE_DIR / "activitytracker" / "templates",
             ],
@@ -144,7 +145,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
-    BASE_DIR / "activity-tracker-frontend" / "build" / "static",
+    BASE_DIR / 'react-build-temp' / 'static',
     BASE_DIR / "static", 
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
