@@ -3,49 +3,61 @@ from django.contrib.auth.models import User
 from .models import Activity
 from datetime import timedelta
 
+# ----------------------------------------
+# User Serializer
+# ----------------------------------------
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
 
+# ----------------------------------------
+# Registration Serializer
+# ----------------------------------------
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
-    
+
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
 
     def create(self, validated_data):
-        user = User.objects.create_user(
+        return User.objects.create_user(
             username=validated_data['username'],
             email=validated_data['email'],
             password=validated_data['password']
         )
-        return user
-    
+
+# ----------------------------------------
+# Activity Serializer
+# ----------------------------------------
 
 class ActivitySerializer(serializers.ModelSerializer):
-    # Completely override the default DurationField behavior
+    # Send/receive duration as total seconds (int)
     duration = serializers.IntegerField()
 
     class Meta:
         model = Activity
-        fields = "__all__"
-        read_only_fields = ["user"]
+        fields = '__all__'
+        read_only_fields = ['user']
 
     def create(self, validated_data):
-        seconds = validated_data.pop("duration")
+        """Convert duration from seconds to timedelta when creating."""
+        seconds = validated_data.pop("duration", 0)
         validated_data["duration"] = timedelta(seconds=seconds)
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
+        """Convert duration from seconds to timedelta when updating."""
         if "duration" in validated_data:
             seconds = validated_data.pop("duration")
             validated_data["duration"] = timedelta(seconds=seconds)
         return super().update(instance, validated_data)
 
     def to_representation(self, instance):
+        """Convert duration from timedelta to seconds for output."""
         ret = super().to_representation(instance)
-        ret['duration'] = int(instance.duration.total_seconds())
+        ret["duration"] = int(instance.duration.total_seconds()) if instance.duration else 0
         return ret

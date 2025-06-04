@@ -2798,3 +2798,5 @@ Bad Request: /favicon.ico
 "GET /favicon.ico HTTP/1.1" 400 143
 /workspaces/activitytracker/tracker/settings.py changed, reloading.
 Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/serializers.py changed, reloading.
+Watching for file changes with StatReloader
