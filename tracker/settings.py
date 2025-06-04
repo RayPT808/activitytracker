@@ -145,9 +145,9 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
-    BASE_DIR / 'react-build-temp' / 'static',
-    BASE_DIR / "static", 
+    BASE_DIR / "activity-tracker-frontend" / "build" / "static"
 ]
+
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
