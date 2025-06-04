@@ -130,7 +130,13 @@ class ActivityListCreateView(generics.ListCreateAPIView):
         return Activity.objects.filter(user=self.request.user).order_by("-date")
 
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        logger.info("Payload received for activity creation: %s", self.request.data)
+        try:
+            serializer.save(user=self.request.user)
+            logger.info("Activity successfully saved for user %s", self.request.user)
+        except Exception as e:
+            logger.error("Error saving activity: %s", str(e))
+            raise
 
 
 class ActivityDetailView(generics.RetrieveUpdateDestroyAPIView):
