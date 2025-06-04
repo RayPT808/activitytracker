@@ -34,15 +34,18 @@ class ActivitySerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ["user"]
 
-    def to_representation(self, instance):
-        """Convert model instance to JSON"""
-        ret = super().to_representation(instance)
-        ret['duration'] = int(instance.duration.total_seconds())  # force numeric output
-        return ret
+    def create(self, validated_data):
+        seconds = validated_data.pop("duration")
+        validated_data["duration"] = timedelta(seconds=seconds)
+        return super().create(validated_data)
 
-    def to_internal_value(self, data):
-        """Convert input JSON to model instance"""
-        data = super().to_internal_value(data)
-        seconds = data.get("duration", 0)
-        data["duration"] = timedelta(seconds=int(seconds))
-        return data
+    def update(self, instance, validated_data):
+        if "duration" in validated_data:
+            seconds = validated_data.pop("duration")
+            validated_data["duration"] = timedelta(seconds=seconds)
+        return super().update(instance, validated_data)
+
+    def to_representation(self, instance):
+        ret = super().to_representation(instance)
+        ret['duration'] = int(instance.duration.total_seconds())
+        return ret
