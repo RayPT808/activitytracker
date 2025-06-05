@@ -134,9 +134,13 @@ class ActivityListCreateView(generics.ListCreateAPIView):
         try:
             serializer.save(user=self.request.user)
             logger.info("Activity successfully saved for user %s", self.request.user)
+        except serializers.ValidationError as e:
+            logger.warning("Validation error: %s", e.detail)
+            raise serializers.ValidationError({"detail": "Invalid data", "errors": e.detail})
         except Exception as e:
-            logger.error("Error saving activity: %s", str(e))
-            raise
+            logger.exception("Unexpected error while saving activity")
+            raise serializers.ValidationError({"detail": "Internal server error. Please contact support."})
+
 
 
 class ActivityDetailView(generics.RetrieveUpdateDestroyAPIView):

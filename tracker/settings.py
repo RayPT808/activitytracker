@@ -65,6 +65,7 @@ MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 
 CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[
     "http://localhost:3000",
+    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
 ])
 
 CORS_ALLOW_CREDENTIALS = True
