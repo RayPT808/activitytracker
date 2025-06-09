@@ -70,10 +70,12 @@
                 <ul class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        {% if dashboard_url %}
-                        <a class="nav-link" href="{{ dashboard_url }}">Dashboard</a>
-                        {% endif %}
-
+                        {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}">Profile</a>
@@ -84,6 +86,7 @@
                             <button type="submit" class="btn btn-link nav-link logout-button">Logout</button>
                         </form>
                     </li>
+
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
