@@ -11,7 +11,7 @@ from rest_framework_simplejwt.views import (TokenObtainPairView,
 from activitytracker import views as activitytracker_views
 
 
-from activitytracker.views import get_csrf_token, login_view, RegisterView, user_profile,  FrontendAppView
+from activitytracker.views import login_view, RegisterView, user_profile,  FrontendAppView
 
 urlpatterns = [
     path("", activitytracker_views.about, name="about_redirect"),

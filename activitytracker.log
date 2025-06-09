@@ -3254,3 +3254,10 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /workspaces/activitytracker/activitytracker/urls.py changed, reloading.
 Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3483
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 200 196085
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 304 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 7303

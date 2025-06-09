@@ -37,6 +37,22 @@ Instead, I designed a **simplified user interface** to support key use cases:
 
 ---
 
+## Environment Setup
+
+Essential variables: 
+
+- DJANGO_SECRET_KEY
+
+- DATABASE_URL
+
+- CLOUD_NAME, API_KEY, API_SECRET
+
+- CORS_ALLOWED_ORIGINS
+
+- CSRF_TRUSTED_ORIGINS
+
+
+
 ##  ERD (Entity Relationship Diagram)
 
 [Diagram](assets/images/diagram.png)
