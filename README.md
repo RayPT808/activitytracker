@@ -98,7 +98,7 @@ Tested with Chrome DevTools and real devices.
 
 ##  Testing
 
-![Activitytest](assests/images/activitytest.png)
+![Activitytest](assets/images/activitytest.png)
 
 
 ###  Manual Testing Table
@@ -217,7 +217,7 @@ Unfotunately based on the Lighthouse report, the website has poor performance wi
 ### Acknowledgement
 
 Grateful for the help and the input from my mentor **Iuliia Konovalova**.
-Shee always gave a different perspective on the issues and with her experience
+She always gave a different perspective on the issues and with her experience
 and eyes for details I was guided in the right direction to make this project happen.
 
 

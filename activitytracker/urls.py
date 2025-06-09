@@ -31,6 +31,10 @@ urlpatterns = [
     path("delete_activity/<int:pk>/", delete_activity, name="delete_activity"),
     path("record/", record_activity, name="record_activity"),
 
+
+    path("dashboard/", dashboard, name="dashboard"),
+
+
     
 ]
 
