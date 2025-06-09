@@ -1,5 +1,4 @@
 from django.contrib.auth import authenticate, login
-from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.http import JsonResponse  
@@ -10,11 +9,14 @@ from rest_framework.permissions import AllowAny
 
 
 
-
-
 @ensure_csrf_cookie
+@api_view(["GET"])
+@permission_classes([AllowAny])
 def get_csrf_token(request):
-    return JsonResponse({'csrfToken': request.META.get("CSRF_COOKIE", "")})
+    # This ensures the CSRF cookie is set in the response headers
+    get_token(request)
+    return JsonResponse({"message": "CSRF cookie set"})
+
 
 
 @api_view(["POST", "OPTIONS"])

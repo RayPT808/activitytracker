@@ -3385,3 +3385,24 @@ django.template.exceptions.TemplateSyntaxError: Unclosed tag on line 71: 'if'. L
 "GET /favicon.ico HTTP/1.1" 200 1243
 /workspaces/activitytracker/activitytracker/views.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/activitytracker/urls.py changed, reloading.
+Watching for file changes with StatReloader
+"GET / HTTP/1.1" 200 3665
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 304 0
+"GET /api/activitytracker/profile/ HTTP/1.1" 200 4827
+"GET /static/css/register.css HTTP/1.1" 304 0
+"GET /api/activitytracker/about/ HTTP/1.1" 200 3665
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 23719
+"POST /api/activitytracker/dashboard/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 24179
+/workspaces/activitytracker/tracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/views.py changed, reloading.
+Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/urls.py changed, reloading.
+Watching for file changes with StatReloader

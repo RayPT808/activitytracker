@@ -3,7 +3,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from rest_framework.routers import DefaultRouter
 
 from activitytracker.views import (
-    RegisterView, login_view, logout_view, get_csrf_token,
+    RegisterView, login_view, logout_view, 
      about, dashboard, register_page, profile,
     ActivityListCreateView, update_activity, delete_activity, record_activity,
     user_profile,
