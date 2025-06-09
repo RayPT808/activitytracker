@@ -3140,3 +3140,5 @@ django.urls.exceptions.NoReverseMatch: Reverse for 'profile' not found. 'profile
 Watching for file changes with StatReloader
 /workspaces/activitytracker/activitytracker/urls.py changed, reloading.
 Watching for file changes with StatReloader
+/workspaces/activitytracker/tracker/views.py changed, reloading.
+Watching for file changes with StatReloader

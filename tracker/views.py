@@ -12,16 +12,6 @@ from rest_framework.permissions import AllowAny
 
 
 
-
-
-def get_csrf_token(request):
-    """
-    View to get the CSRF token for AJAX requests
-    """
-    csrf_token = get_token(request)
-    return JsonResponse({"csrf_token": csrf_token})
-
-
 @ensure_csrf_cookie
 def get_csrf_token(request):
     return JsonResponse({'csrfToken': request.META.get("CSRF_COOKIE", "")})
