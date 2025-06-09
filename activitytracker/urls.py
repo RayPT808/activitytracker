@@ -33,9 +33,11 @@ urlpatterns = [
 
 
     path("dashboard/", dashboard, name="dashboard"),
+    path("register/", register_page, name="register"),
+    path("profile/", profile, name="profile"),
 
 
-    
+
 ]
 
 
