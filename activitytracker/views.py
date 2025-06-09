@@ -26,9 +26,6 @@ from .serializers import ActivitySerializer, UserSerializer, UserRegisterSeriali
 
 logger = logging.getLogger(__name__)
 
-# ------------------- Utility -------------------
-def get_csrf_token(request):
-    return JsonResponse({"csrfToken": get_token(request)})
 
 
 # ------------------- Pages -------------------
