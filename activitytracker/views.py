@@ -8,6 +8,7 @@ from django.http import JsonResponse, HttpResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.timezone import now
+from django.urls import reverse, NoReverseMatch
 from django.views.generic import TemplateView
 from rest_framework import generics, permissions, serializers, status
 from rest_framework.decorators import api_view, permission_classes
@@ -33,7 +34,15 @@ def get_csrf_token(request):
 # ------------------- Pages -------------------
 
 def about(request):
-    return render(request, "activitytracker/about.html")
+    # Try to safely reverse 'dashboard' to avoid template crash
+    try:
+        dashboard_url = reverse("dashboard")
+    except NoReverseMatch:
+        dashboard_url = None
+
+    return render(request, "activitytracker/about.html", {
+        "dashboard_url": dashboard_url
+    })
 
 
 def register_page(request):
