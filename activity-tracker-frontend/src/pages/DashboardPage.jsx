@@ -3,13 +3,21 @@ import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
+
 const parseDuration = (duration) => {
-  if (typeof duration !== "string") return 0;
-  const parts = duration.split(":");
-  if (parts.length !== 3) return 0;
-  const [hours, minutes, seconds] = parts.map(Number);
-  return hours * 3600 + minutes * 60 + seconds;
+  if (typeof duration === "number") return duration;
+  if (typeof duration === "string") {
+    const parts = duration.split(":");
+    if (parts.length === 3) {
+      const [hours, minutes, seconds] = parts.map(Number);
+      return hours * 3600 + minutes * 60 + seconds;
+    }
+    const parsed = parseInt(duration, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
 };
+
 
 const formatTime = (totalSeconds) => {
   const hours = Math.floor(totalSeconds / 3600);
