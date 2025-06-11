@@ -3406,3 +3406,29 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 /workspaces/activitytracker/tracker/urls.py changed, reloading.
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+"GET /favicon.ico HTTP/1.1" 200 1243
+"GET / HTTP/1.1" 200 3665
+"GET /static/activitytracker/images/trackerlogo.jpg HTTP/1.1" 304 0
+"GET /static/activitytracker/images/backgroundimage.jpg HTTP/1.1" 200 6235780
+"GET /static/activitytracker/images/favicon.ico HTTP/1.1" 304 0
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 3134
+"GET /accounts/login/ HTTP/1.1" 200 3539
+"POST /accounts/login/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 24179
+"GET /api/activitytracker/profile/ HTTP/1.1" 200 4827
+"GET /static/css/register.css HTTP/1.1" 304 0
+"GET /api/activitytracker/about/ HTTP/1.1" 200 3665
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 24179
+"POST /api/activitytracker/dashboard/ HTTP/1.1" 302 0
+"GET /api/activitytracker/dashboard/ HTTP/1.1" 200 24637
+"POST /accounts/logout/ HTTP/1.1" 302 0
+"GET / HTTP/1.1" 200 3134
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 58
+Watching for file changes with StatReloader
+"OPTIONS /api/register/ HTTP/1.1" 200 0
+Bad Request: /api/register/
+"POST /api/register/ HTTP/1.1" 400 58

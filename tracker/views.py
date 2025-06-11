@@ -13,9 +13,8 @@ from rest_framework.permissions import AllowAny
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_csrf_token(request):
-    # This ensures the CSRF cookie is set in the response headers
-    get_token(request)
-    return JsonResponse({"message": "CSRF cookie set"})
+    token = get_token(request)  
+    return JsonResponse({"csrfToken": token})
 
 
 
