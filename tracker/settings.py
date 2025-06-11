@@ -4,6 +4,7 @@ import environ
 import dj_database_url
 from corsheaders.defaults import default_headers
 from django.core.exceptions import ImproperlyConfigured
+import sys
 
 # Load environment variables
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -170,16 +171,19 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "handlers": {
-        "file": {
-            "level": "INFO",
-            "class": "logging.FileHandler",
-            "filename": "activitytracker.log",
+        "console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
         },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "DEBUG" if DEBUG else "INFO",
     },
     "loggers": {
         "django": {
-            "handlers": ["file"],
-            "level": "INFO",
+            "handlers": ["console"],
+            "level": "DEBUG" if DEBUG else "INFO",
             "propagate": True,
         },
     },
