@@ -21,9 +21,7 @@ const ActivityForm = ({ onActivityAdded }) => {
   });
 
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [durationError, setDurationError] = useState("");
-
+  const [errors, setErrors] = useState({});
   const today = new Date().toISOString().split('T')[0];
 
   useEffect(() => {
@@ -54,57 +52,71 @@ const ActivityForm = ({ onActivityAdded }) => {
         })
         .catch(err => {
           console.error("Failed to fetch activity:", err);
-          setError("Could not load activity data.");
+          setErrors(prev => ({ ...prev, global: "Could not load activity data." }));
         });
     }
   }, [isEdit, id]);
 
+  const validateField = (name, value) => {
+    let message = "";
+
+    if (name === "activity_type" && !value) message = "Please select an activity type.";
+    if (name === "activity_name" && !value.trim()) message = "Activity name is required.";
+    if (name === "date" && !value) message = "Date is required.";
+    if (name === "date" && value > today) message = "You can't add activities in the future.";
+
+    return message;
+  };
+
+  const validateDuration = (hours, minutes, seconds) => {
+    const total = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+    return total <= 0 ? "Please select a non-zero duration." : "";
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const updatedFormData = { ...formData, [name]: value };
 
-    setFormData(prev => {
-      const newForm = { ...prev, [name]: value };
+    const fieldError = validateField(name, value);
+    const durationError = validateDuration(
+      updatedFormData.hours,
+      updatedFormData.minutes,
+      updatedFormData.seconds
+    );
 
-      if (["hours", "minutes", "seconds"].includes(name)) {
-        const h = parseInt(newForm.hours, 10);
-        const m = parseInt(newForm.minutes, 10);
-        const s = parseInt(newForm.seconds, 10);
-        if (h + m + s > 0) {
-          setDurationError("");
-        }
-      }
+    setErrors(prev => ({
+      ...prev,
+      [name]: fieldError,
+      duration: durationError,
+    }));
 
-      return newForm;
-    });
+    setFormData(updatedFormData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
+
+    // Full validation before submit
+    const fieldErrors = {
+      activity_type: validateField("activity_type", formData.activity_type),
+      activity_name: validateField("activity_name", formData.activity_name),
+      date: validateField("date", formData.date),
+      duration: validateDuration(formData.hours, formData.minutes, formData.seconds),
+    };
+
+    const hasErrors = Object.values(fieldErrors).some(msg => msg);
+    if (hasErrors) {
+      setErrors(fieldErrors);
+      setLoading(false);
+      return;
+    }
 
     const { hours, minutes, seconds, ...rest } = formData;
     const duration =
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
 
-    if (duration <= 0) {
-      setDurationError("Please select a non-zero duration.");
-      setLoading(false);
-      return;
-    } else {
-      setDurationError("");
-    }
-
-    if (formData.date > today) {
-      setError("You can't add activities in the future.");
-      setLoading(false);
-      return;
-    }
-
-    const payload = {
-      ...rest,
-      duration,
-    };
+    const payload = { ...rest, duration };
 
     try {
       let response;
@@ -114,15 +126,12 @@ const ActivityForm = ({ onActivityAdded }) => {
       } else {
         response = await axiosInstance.post('/api/activities/', payload);
         toast.success("✅ New activity saved successfully!");
-        if (onActivityAdded) {
-          onActivityAdded(response.data);
-        }
+        if (onActivityAdded) onActivityAdded(response.data);
       }
 
       setTimeout(() => {
         navigate("/dashboard");
       }, 1500);
-
     } catch (err) {
       console.error('Error saving activity:', err);
       toast.error("❌ Failed to save activity. Please try again.");
@@ -141,7 +150,7 @@ const ActivityForm = ({ onActivityAdded }) => {
       <form className="activity-form" onSubmit={handleSubmit}>
         <h2>{isEdit ? "Edit Activity" : "Add Activity"}</h2>
 
-        {error && <div className="error-message text-danger mb-3">{error}</div>}
+        {errors.global && <div className="error-message text-danger mb-3">{errors.global}</div>}
 
         <div className="form-group mb-3">
           <label htmlFor="activity_type">Activity Type</label>
@@ -164,6 +173,7 @@ const ActivityForm = ({ onActivityAdded }) => {
             <option value="yoga">Yoga</option>
             <option value="dancing">Dancing</option>
           </select>
+          {errors.activity_type && <div className="text-danger small">{errors.activity_type}</div>}
         </div>
 
         <div className="form-group mb-3">
@@ -177,10 +187,11 @@ const ActivityForm = ({ onActivityAdded }) => {
             onChange={handleChange}
             required
           />
+          {errors.activity_name && <div className="text-danger small">{errors.activity_name}</div>}
         </div>
 
         <label>Duration</label>
-        <div className="row mb-2">
+        <div className="row mb-1">
           <div className="col">
             <select className="form-select" name="hours" value={formData.hours} onChange={handleChange}>
               {Array.from({ length: 24 }, (_, i) => (
@@ -203,10 +214,7 @@ const ActivityForm = ({ onActivityAdded }) => {
             </select>
           </div>
         </div>
-
-        {durationError && (
-          <div className="text-danger small mb-3">{durationError}</div>
-        )}
+        {errors.duration && <div className="text-danger small mb-3">{errors.duration}</div>}
 
         <div className="form-group mb-3">
           <label htmlFor="date">Date</label>
@@ -220,6 +228,7 @@ const ActivityForm = ({ onActivityAdded }) => {
             onChange={handleChange}
             required
           />
+          {errors.date && <div className="text-danger small">{errors.date}</div>}
         </div>
 
         <div className="form-group mb-3">
