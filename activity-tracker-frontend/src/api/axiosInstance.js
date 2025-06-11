@@ -14,7 +14,8 @@ const axiosInstance = axios.create({
 const getCSRFToken = async () => {
   try {
     const response = await axiosInstance.get('/accounts/csrf/');
-    const csrfToken = response.data.csrfToken;
+    const csrfToken = response.data.csrfToken || response.data.csrf_token || response.data['csrfToken'];
+
     axiosInstance.defaults.headers.common['X-CSRFToken'] = csrfToken;
     console.log('CSRF Token Set:', csrfToken);
   } catch (error) {

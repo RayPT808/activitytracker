@@ -130,10 +130,13 @@ def user_profile(request):
 # ------------------- Activity APIs -------------------
 class ActivityListCreateView(generics.ListCreateAPIView):
     serializer_class = ActivitySerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]  # Ensures only logged-in users access this
 
     def get_queryset(self):
-        return Activity.objects.filter(user=self.request.user).order_by("-date")
+        user = self.request.user
+        if user and user.is_authenticated:
+            return Activity.objects.filter(user=user).order_by("-date")
+        return Activity.objects.none()  # Prevent crashes if somehow called anonymously
 
     def perform_create(self, serializer):
         logger.info("Payload received for activity creation: %s", self.request.data)
@@ -142,10 +145,15 @@ class ActivityListCreateView(generics.ListCreateAPIView):
             logger.info("Activity successfully saved for user %s", self.request.user)
         except serializers.ValidationError as e:
             logger.warning("Validation error: %s", e.detail)
-            raise serializers.ValidationError({"detail": "Invalid data", "errors": e.detail})
+            raise serializers.ValidationError({
+                "detail": "Invalid data",
+                "errors": e.detail
+            })
         except Exception as e:
             logger.exception("Unexpected error while saving activity")
-            raise serializers.ValidationError({"detail": "Internal server error. Please contact support."})
+            raise serializers.ValidationError({
+                "detail": "Internal server error. Please contact support."
+            })
 
 
 
