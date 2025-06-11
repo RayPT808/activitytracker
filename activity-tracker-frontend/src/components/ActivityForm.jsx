@@ -22,6 +22,7 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [durationError, setDurationError] = useState("");
 
   const today = new Date().toISOString().split('T')[0];
 
@@ -60,7 +61,21 @@ const ActivityForm = ({ onActivityAdded }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+    setFormData(prev => {
+      const newForm = { ...prev, [name]: value };
+
+      if (["hours", "minutes", "seconds"].includes(name)) {
+        const h = parseInt(newForm.hours, 10);
+        const m = parseInt(newForm.minutes, 10);
+        const s = parseInt(newForm.seconds, 10);
+        if (h + m + s > 0) {
+          setDurationError("");
+        }
+      }
+
+      return newForm;
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -71,6 +86,14 @@ const ActivityForm = ({ onActivityAdded }) => {
     const { hours, minutes, seconds, ...rest } = formData;
     const duration =
       parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
+
+    if (duration <= 0) {
+      setDurationError("Please select a non-zero duration.");
+      setLoading(false);
+      return;
+    } else {
+      setDurationError("");
+    }
 
     if (formData.date > today) {
       setError("You can't add activities in the future.");
@@ -157,7 +180,7 @@ const ActivityForm = ({ onActivityAdded }) => {
         </div>
 
         <label>Duration</label>
-        <div className="row mb-3">
+        <div className="row mb-2">
           <div className="col">
             <select className="form-select" name="hours" value={formData.hours} onChange={handleChange}>
               {Array.from({ length: 24 }, (_, i) => (
@@ -180,6 +203,10 @@ const ActivityForm = ({ onActivityAdded }) => {
             </select>
           </div>
         </div>
+
+        {durationError && (
+          <div className="text-danger small mb-3">{durationError}</div>
+        )}
 
         <div className="form-group mb-3">
           <label htmlFor="date">Date</label>
