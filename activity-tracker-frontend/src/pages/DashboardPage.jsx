@@ -3,7 +3,7 @@ import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
-
+// Duration helpers
 const parseDuration = (duration) => {
   if (typeof duration === "number") return duration;
   if (typeof duration === "string") {
@@ -17,7 +17,6 @@ const parseDuration = (duration) => {
   }
   return 0;
 };
-
 
 const formatTime = (totalSeconds) => {
   const hours = Math.floor(totalSeconds / 3600);
@@ -33,36 +32,47 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchActivities = () => {
+  const fetchActivities = async () => {
     setLoading(true);
-    axiosInstance.get("/api/activities/")
-      .then(res => {
-        setActivities(res.data);
-        applyFilterAndSort(res.data, activityTypeFilter, sortBy);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Failed to load activities", err);
-        setError("Failed to load activities.");
-        setLoading(false);
+    try {
+      const accessToken = localStorage.getItem("access");
+      const res = await axiosInstance.get("/api/activitytracker/activities/", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
+
+      setActivities(res.data);
+      applyFilterAndSort(res.data, activityTypeFilter, sortBy);
+    } catch (err) {
+      console.error("Failed to load activities", err);
+      setError("Failed to load activities.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchActivities();
     window.addEventListener("focus", fetchActivities);
     return () => window.removeEventListener("focus", fetchActivities);
-  }, [activityTypeFilter, sortBy]); // ✅ dependency array is OK here
+  }, [activityTypeFilter, sortBy]);
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
-      axiosInstance.delete(`/api/activities/${id}/`)
-        .then(() => {
-          const updated = activities.filter(act => act.id !== id);
-          setActivities(updated);
-          applyFilterAndSort(updated, activityTypeFilter, sortBy);
-        })
-        .catch(err => console.error("Delete failed", err));
+      try {
+        const accessToken = localStorage.getItem("access");
+        await axiosInstance.delete(`/api/activitytracker/activities/${id}/`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+        const updated = activities.filter(act => act.id !== id);
+        setActivities(updated);
+        applyFilterAndSort(updated, activityTypeFilter, sortBy);
+      } catch (err) {
+        console.error("Delete failed", err);
+      }
     }
   };
 
@@ -107,7 +117,6 @@ const DashboardPage = () => {
           {/* Left Panel */}
           <div className="col-md-4">
             <h3>Your Activities</h3>
-
             <div className="mb-3">
               <label htmlFor="filter" className="form-label">Filter by Type:</label>
               <select
@@ -158,7 +167,6 @@ const DashboardPage = () => {
           <div className="col-md-8">
             {loading && <p>Loading activities...</p>}
             {error && <p className="text-danger">{error}</p>}
-
             <div className="border rounded p-3" style={{ maxHeight: '500px', overflowY: 'auto' }}>
               {filteredActivities.length === 0 ? (
                 <p>No activities found.</p>
@@ -194,4 +202,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-

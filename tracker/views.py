@@ -6,6 +6,7 @@ from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
+from activitytracker.serializers import UserSerializer
 
 
 
@@ -18,29 +19,24 @@ def get_csrf_token(request):
 
 
 
-@api_view(["POST", "OPTIONS"])
+@api_view(["POST"])
 @permission_classes([AllowAny])
 def login_view(request):
-    if request.method == "OPTIONS":
-        return Response(status=200)
-
     username = request.data.get("username")
     password = request.data.get("password")
-
     user = authenticate(request, username=username, password=password)
+
     if user is not None:
         login(request, user)
-
         refresh = RefreshToken.for_user(user)
-        return Response(
-            {
-                "refresh": str(refresh),
-                "access": str(refresh.access_token),
-            }
-        )
-    else:
-        return Response({"error": "Invalid credentials"}, status=401)
+        user_data = UserSerializer(user).data  # 🧠 serialize user
 
+        return Response({
+            "refresh": str(refresh),
+            "access": str(refresh.access_token),
+            "user": user_data  # ✅ include user info
+        })
+    return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(["POST", "OPTIONS"])
