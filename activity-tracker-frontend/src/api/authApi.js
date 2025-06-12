@@ -1,22 +1,30 @@
 import axiosInstance from './axiosInstance';
+import jwt_decode from 'jwt-decode';
+
 
 
 export const login = async (credentials) => {
-    try {
-        const response = await axiosInstance.post('/api/token/', credentials);
-        const { access, refresh } = response.data;
+  try {
+    const response = await axiosInstance.post('/api/token/', credentials);
+    const { access, refresh } = response.data;
 
-        // ✅ Store tokens
-        localStorage.setItem('authToken', access);
-        localStorage.setItem('refreshToken', refresh);
+    localStorage.setItem('authToken', access);
+    localStorage.setItem('refreshToken', refresh);
 
-        console.log('Login successful, tokens stored!');
-        return response.data;
-    } catch (error) {
-        console.error('Login failed:', error.response?.data || error);
-        throw error;
-    }
+    const decoded = jwt_decode(access);
+    const user = {
+      username: decoded.username,
+      user_id: decoded.user_id,
+    };
+
+    console.log('Login successful, tokens stored!');
+    return { access, refresh, user };
+  } catch (error) {
+    console.error('Login failed:', error.response?.data || error);
+    throw error;
+  }
 };
+
 
 
 export const register = (userData) => axiosInstance.post('/api/register/', userData);

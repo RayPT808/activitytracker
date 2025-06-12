@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from "../context/UserContext";
@@ -48,9 +47,18 @@ const LoginPage = () => {
     try {
       setIsLoading(true);
       const userData = await login(formData);
+
+      // Save tokens
       localStorage.setItem("authToken", userData.access);
       localStorage.setItem("refreshToken", userData.refresh);
-      setUser({ isAuthenticated: true });
+
+      // ✅ Store user identity in context
+      setUser({
+        isAuthenticated: true,
+        username: userData.user.username,
+        user_id: userData.user.user_id,
+      });
+
       navigate("/dashboard");
     } catch (err) {
       console.error("Login failed:", err);
@@ -122,3 +130,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
