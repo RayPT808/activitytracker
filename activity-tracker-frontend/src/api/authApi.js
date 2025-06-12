@@ -1,5 +1,6 @@
 import axiosInstance from './axiosInstance';
-import jwt_decode from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
+
 
 
 
@@ -11,7 +12,7 @@ export const login = async (credentials) => {
     localStorage.setItem('authToken', access);
     localStorage.setItem('refreshToken', refresh);
 
-    const decoded = jwt_decode(access);
+    const decoded = jwtDecode(access);
     const user = {
       username: decoded.username,
       user_id: decoded.user_id,
