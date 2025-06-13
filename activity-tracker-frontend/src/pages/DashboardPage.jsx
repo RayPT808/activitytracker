@@ -36,7 +36,7 @@ const DashboardPage = () => {
     setLoading(true);
     try {
       const accessToken = localStorage.getItem("access");
-      const res = await axiosInstance.get("/api/activitytracker/activities/", {
+      const res = await axiosInstance.get("/api/activities/", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -174,7 +174,7 @@ const DashboardPage = () => {
                 <ul className="list-group">
                   {filteredActivities.map(activity => (
                     <li key={activity.id} className="list-group-item mb-2">
-                      <strong>{activity.date}</strong> — {activity.activity_type} ({activity.duration})
+                      <strong>{activity.date}</strong> — {activity.activity_type} ({activity.activity_name || "Unnamed"}) 
                       <div className="mt-2">
                         <Link to={`/edit-activity/${activity.id}`} className="btn btn-sm btn-outline-primary me-2">
                           ✏️ Edit

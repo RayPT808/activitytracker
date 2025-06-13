@@ -97,7 +97,6 @@ const ActivityForm = ({ onActivityAdded }) => {
     e.preventDefault();
     setLoading(true);
 
-    // Full validation before submit
     const fieldErrors = {
       activity_type: validateField("activity_type", formData.activity_type),
       activity_name: validateField("activity_name", formData.activity_name),
@@ -113,18 +112,34 @@ const ActivityForm = ({ onActivityAdded }) => {
     }
 
     const { hours, minutes, seconds, ...rest } = formData;
-    const duration =
-      parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
-
+    const duration = parseInt(hours) * 3600 + parseInt(minutes) * 60 + parseInt(seconds);
     const payload = { ...rest, duration };
+
+    const token = localStorage.getItem("authToken");
 
     try {
       let response;
       if (isEdit) {
-        response = await axiosInstance.put(`/api/activities/${id}/`, payload);
+        response = await axiosInstance.put(
+          `/api/activities/${id}/`,
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
         toast.success("✅ Activity updated successfully!");
       } else {
-        response = await axiosInstance.post('/api/activities/', payload);
+        response = await axiosInstance.post(
+          '/api/activities/',
+          payload,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
+        );
         toast.success("✅ New activity saved successfully!");
         if (onActivityAdded) onActivityAdded(response.data);
       }
