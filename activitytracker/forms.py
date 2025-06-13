@@ -4,7 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils import timezone
-
 from .models import Activity
 
 
@@ -65,37 +64,35 @@ class ActivityForm(forms.ModelForm):
         fields = ["activity_type", "activity_name", "duration", "date", "notes"]
         widgets = {
             "activity_type": forms.Select(attrs={"class": "form-control"}),
-            "activity_name": forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter activity name"}
-            ),
-            "duration": DurationInput(
-                attrs={"class": "form-control", "placeholder": "hh:mm:ss"}
-            ),
+            "activity_name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Enter activity name"}),
+            "duration": DurationInput(attrs={"class": "form-control", "placeholder": "hh:mm:ss"}),
             "date": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
-            "notes": forms.Textarea(
-                attrs={"class": "form-control", "placeholder": "Optional notes"}
-            ),
+            "notes": forms.Textarea(attrs={"class": "form-control", "placeholder": "Optional notes"}),
         }
 
     def clean_duration(self):
         duration = self.cleaned_data.get("duration")
 
+        # If it's already a timedelta (e.g. during edit), return as-is
         if isinstance(duration, timedelta):
-            total_seconds = int(duration.total_seconds())
-            hours, remainder = divmod(total_seconds, 3600)
-            minutes, seconds = divmod(remainder, 60)
-            duration = f"{hours:02}:{minutes:02}:{seconds:02}"
+            return duration
 
-        parts = duration.split(":")
-        if len(parts) != 3:
-            raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
+        if isinstance(duration, str):
+            parts = duration.split(":")
+            if len(parts) != 3:
+                raise forms.ValidationError("Duration must be in the format hh:mm:ss.")
 
-        hours, minutes, seconds = parts
-        if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
-            raise forms.ValidationError("Duration must only contain numbers.")
+            hours, minutes, seconds = parts
+            if not (hours.isdigit() and minutes.isdigit() and seconds.isdigit()):
+                raise forms.ValidationError("Duration must only contain numbers.")
 
-        return duration
+            return timedelta(
+                hours=int(hours),
+                minutes=int(minutes),
+                seconds=int(seconds)
+            )
 
+        raise forms.ValidationError("Invalid duration format.")
     def clean_date(self):
         date = self.cleaned_data["date"]
         if date > timezone.now().date():
