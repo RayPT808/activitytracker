@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import timedelta, date
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -59,6 +59,11 @@ class DurationInput(forms.TextInput):
 
 
 class ActivityForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set max attribute for date field to today's date
+        self.fields['date'].widget.attrs['max'] = date.today().isoformat()
+
     class Meta:
         model = Activity
         fields = ["activity_type", "activity_name", "duration", "date", "notes"]
