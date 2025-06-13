@@ -34,7 +34,7 @@ const RecordActivity = () => {
     const activityData = {
       type: activityType,
       name: activityName,
-      duration,
+      duration: parseInt(duration) * 60,
       date: activityDate,
       comments,
     };

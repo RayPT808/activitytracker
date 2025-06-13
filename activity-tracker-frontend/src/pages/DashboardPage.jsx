@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
-// ✅ Robust duration parser
+// Duration helpers
 const parseDuration = (duration) => {
-  if (typeof duration === "number") {
-    return duration; // assume seconds
-  }
-
+  if (typeof duration === "number") return duration;
   if (typeof duration === "string") {
     const parts = duration.split(":");
     if (parts.length === 3) {
-      const [hours, minutes, seconds] = parts.map(part => parseInt(part, 10));
-      if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
-        return hours * 3600 + minutes * 60 + seconds;
-      }
+      const [hours, minutes, seconds] = parts.map(Number);
+      return hours * 3600 + minutes * 60 + seconds;
     }
-
     const parsed = parseInt(duration, 10);
-    if (!isNaN(parsed)) {
-      return parsed;
-    }
+    return isNaN(parsed) ? 0 : parsed;
   }
-
   return 0;
 };
 
@@ -41,7 +32,21 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchActivities = async () => {
+  const applyFilterAndSort = useCallback((activityList, filterType, sortField) => {
+    let filtered = filterType === "all"
+      ? [...activityList]
+      : activityList.filter(act => act.activity_type === filterType);
+
+    if (sortField === "duration") {
+      filtered.sort((a, b) => parseDuration(a.duration) - parseDuration(b.duration));
+    } else if (sortField === "date") {
+      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+    }
+
+    setFilteredActivities(filtered);
+  }, []);
+
+  const fetchActivities = useCallback(async () => {
     setLoading(true);
     try {
       const accessToken = localStorage.getItem("access");
@@ -59,13 +64,13 @@ const DashboardPage = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [activityTypeFilter, sortBy, applyFilterAndSort]);
 
   useEffect(() => {
     fetchActivities();
     window.addEventListener("focus", fetchActivities);
     return () => window.removeEventListener("focus", fetchActivities);
-  }, [activityTypeFilter, sortBy]);
+  }, [fetchActivities]);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
@@ -95,20 +100,6 @@ const DashboardPage = () => {
     const sort = e.target.value;
     setSortBy(sort);
     applyFilterAndSort(activities, activityTypeFilter, sort);
-  };
-
-  const applyFilterAndSort = (activityList, filterType, sortField) => {
-    let filtered = filterType === "all"
-      ? [...activityList]
-      : activityList.filter(act => act.activity_type === filterType);
-
-    if (sortField === "duration") {
-      filtered.sort((a, b) => parseDuration(a.duration) - parseDuration(b.duration));
-    } else if (sortField === "date") {
-      filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-    }
-
-    setFilteredActivities(filtered);
   };
 
   const getTotalDuration = () => {
@@ -188,6 +179,7 @@ const DashboardPage = () => {
                         <> — <strong>{activity.activity_name}</strong></>
                       )}
                       ({formatTime(parseDuration(activity.duration))})
+
                       <div className="mt-2">
                         <Link to={`/edit-activity/${activity.id}`} className="btn btn-sm btn-outline-primary me-2">
                           ✏️ Edit
