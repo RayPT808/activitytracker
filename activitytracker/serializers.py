@@ -34,23 +34,43 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 # Activity Serializer
 
 class ActivitySerializer(serializers.ModelSerializer):
-    duration = serializers.SerializerMethodField()
-
     class Meta:
         model = Activity
         fields = '__all__'
         read_only_fields = ['user']
 
-    def get_duration(self, obj):
-        return int(obj.duration.total_seconds()) if obj.duration else 0
+    def to_representation(self, instance):
+        rep = super().to_representation(instance)
+        if instance.duration:
+            total_seconds = int(instance.duration.total_seconds())
+            hours = total_seconds // 3600
+            minutes = (total_seconds % 3600) // 60
+            seconds = total_seconds % 60
+            rep['duration'] = f"{hours:02}:{minutes:02}:{seconds:02}"
+        else:
+            rep['duration'] = "00:00:00"
+        return rep
+
+    def validate_duration(self, value):
+        # This can be expanded to validate format
+        return value
 
     def create(self, validated_data):
-        seconds = validated_data.pop('duration', 0)
-        validated_data['duration'] = timedelta(seconds=seconds)
+        duration_str = self.initial_data.get('duration', '00:00:00')
+        validated_data['duration'] = self.parse_duration_string(duration_str)
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        if 'duration' in validated_data:
-            seconds = validated_data.pop('duration')
-            validated_data['duration'] = timedelta(seconds=seconds)
+        duration_str = self.initial_data.get('duration', '00:00:00')
+        validated_data['duration'] = self.parse_duration_string(duration_str)
         return super().update(instance, validated_data)
+
+    def parse_duration_string(self, duration_str):
+        try:
+            parts = [int(p) for p in duration_str.split(":")]
+            if len(parts) == 3:
+                hours, minutes, seconds = parts
+                return timedelta(hours=hours, minutes=minutes, seconds=seconds)
+        except Exception:
+            pass
+        return timedelta(seconds=0)

@@ -56,33 +56,40 @@ const Register = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
-  }
-
-  setIsLoading(true);
-  try {
-    const BASE_URL = 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
-    const payload = {
-      username: formData.username,
-      email: formData.email,
-      password: formData.password,
-    };
-
-    const res = await axios.post(`${BASE_URL}/api/register/`, payload);
-    const username = res.data?.username || formData.username;
-    alert(`✅ Registration successful for ${username}! Redirecting to login...`);
-    navigate('/login');
-  } catch (error) {
-    console.error('Registration error:', error.response?.data || error.message);
-    if (error.response?.data) {
-      setErrors(error.response.data.errors || { general: 'Registration failed.' });
-    } else {
-      setErrors({ general: 'Registration failed. Please try again.' });
     }
-  } finally {
-    setIsLoading(false);
-  }
-  };
 
+    setIsLoading(true);
+    try {
+      const BASE_URL = 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
+      const payload = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+      };
+
+      const res = await axios.post(`${BASE_URL}/api/register/`, payload);
+      const username = res.data?.username || formData.username;
+      alert(`✅ Registration successful for ${username}! Redirecting to login...`);
+      navigate('/login');
+    } catch (error) {
+      console.error('Registration error:', error.response?.data || error.message);
+
+      if (error.response?.data) {
+        const serverErrors = error.response.data;
+        const formattedErrors = {};
+        for (const key in serverErrors) {
+          if (Array.isArray(serverErrors[key])) {
+            formattedErrors[key] = serverErrors[key][0];
+          }
+        }
+        setErrors(formattedErrors);
+      } else {
+        setErrors({ general: 'Registration failed. Please try again.' });
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="register-container">

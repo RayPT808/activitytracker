@@ -3,18 +3,27 @@ import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
 
-// Duration helpers
+// ✅ Robust duration parser
 const parseDuration = (duration) => {
-  if (typeof duration === "number") return duration;
+  if (typeof duration === "number") {
+    return duration; // assume seconds
+  }
+
   if (typeof duration === "string") {
     const parts = duration.split(":");
     if (parts.length === 3) {
-      const [hours, minutes, seconds] = parts.map(Number);
-      return hours * 3600 + minutes * 60 + seconds;
+      const [hours, minutes, seconds] = parts.map(part => parseInt(part, 10));
+      if (!isNaN(hours) && !isNaN(minutes) && !isNaN(seconds)) {
+        return hours * 3600 + minutes * 60 + seconds;
+      }
     }
+
     const parsed = parseInt(duration, 10);
-    return isNaN(parsed) ? 0 : parsed;
+    if (!isNaN(parsed)) {
+      return parsed;
+    }
   }
+
   return 0;
 };
 
@@ -62,7 +71,7 @@ const DashboardPage = () => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
       try {
         const accessToken = localStorage.getItem("access");
-        await axiosInstance.delete(`/api/activitytracker/activities/${id}/`, {
+        await axiosInstance.delete(`/api/activities/${id}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -174,7 +183,11 @@ const DashboardPage = () => {
                 <ul className="list-group">
                   {filteredActivities.map(activity => (
                     <li key={activity.id} className="list-group-item mb-2">
-                      <strong>{activity.date}</strong> — {activity.activity_type} ({activity.activity_name || "Unnamed"}) 
+                      <strong>{activity.date}</strong> — {activity.activity_type}
+                      {activity.activity_name && (
+                        <> — <strong>{activity.activity_name}</strong></>
+                      )}
+                      ({formatTime(parseDuration(activity.duration))})
                       <div className="mt-2">
                         <Link to={`/edit-activity/${activity.id}`} className="btn btn-sm btn-outline-primary me-2">
                           ✏️ Edit
