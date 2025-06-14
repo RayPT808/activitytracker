@@ -119,6 +119,7 @@ const ActivityForm = ({ onActivityAdded }) => {
     const token = localStorage.getItem("authToken");
 
     try {
+      console.log("📤 Payload to be sent to backend:", payload);
       let response;
       if (isEdit) {
         response = await axiosInstance.put(

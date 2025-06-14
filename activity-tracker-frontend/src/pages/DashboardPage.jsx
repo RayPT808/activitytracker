@@ -49,7 +49,7 @@ const DashboardPage = () => {
   const fetchActivities = useCallback(async () => {
     setLoading(true);
     try {
-      const accessToken = localStorage.getItem("access");
+      const accessToken = localStorage.getItem("authToken");
       const res = await axiosInstance.get("/api/activities/", {
         headers: {
           Authorization: `Bearer ${accessToken}`,

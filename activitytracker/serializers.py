@@ -51,26 +51,22 @@ class ActivitySerializer(serializers.ModelSerializer):
             rep['duration'] = "00:00:00"
         return rep
 
-    def validate_duration(self, value):
-        # This can be expanded to validate format
-        return value
-
     def create(self, validated_data):
-        duration_str = self.initial_data.get('duration', '00:00:00')
+        request = self.context.get("request")
+        duration_str = request.data.get('duration') if request else '00:00:00'
         validated_data['duration'] = self.parse_duration_string(duration_str)
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        duration_str = self.initial_data.get('duration', '00:00:00')
+        request = self.context.get("request")
+        duration_str = request.data.get('duration') if request else '00:00:00'
         validated_data['duration'] = self.parse_duration_string(duration_str)
         return super().update(instance, validated_data)
 
     def parse_duration_string(self, duration_str):
         try:
-            parts = [int(p) for p in duration_str.split(":")]
-            if len(parts) == 3:
-                hours, minutes, seconds = parts
-                return timedelta(hours=hours, minutes=minutes, seconds=seconds)
-        except Exception:
-            pass
-        return timedelta(seconds=0)
+            hours, minutes, seconds = map(int, duration_str.split(":"))
+            return timedelta(hours=hours, minutes=minutes, seconds=seconds)
+        except Exception as e:
+            print("❌ Failed to parse duration:", e)
+            return timedelta(seconds=0)

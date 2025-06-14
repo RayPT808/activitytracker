@@ -139,6 +139,8 @@ class ActivityListCreateView(generics.ListCreateAPIView):
         return Activity.objects.none()  # Prevent crashes if somehow called anonymously
 
     def perform_create(self, serializer):
+        print("📨 Raw data received from frontend:", self.request.data)
+        
         logger.info("Payload received for activity creation: %s", self.request.data)
         try:
             serializer.save(user=self.request.user)

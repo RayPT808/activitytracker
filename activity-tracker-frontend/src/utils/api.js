@@ -33,13 +33,22 @@ export const getActivities = () => {
   });
 };
 
-export const recordActivity = (activityData) => {
+export const recordActivity = async (activityData) => {
   const token = localStorage.getItem('authToken');
-  return api.post('activities/', activityData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  console.log("📤 Payload to be sent to backend:", activityData);  // log payload
+
+  try {
+    const response = await api.post('activities/', activityData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log("✅ Response from backend:", response.data);  // log success
+    return response;
+  } catch (error) {
+    console.error("❌ Error posting activity:", error.response?.data || error.message);  // log error
+    throw error;
+  }
 };
 
 export const updateActivity = (activityId, updatedData) => {

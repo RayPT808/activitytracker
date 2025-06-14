@@ -24,7 +24,8 @@ if not SECRET_KEY:
     raise ImproperlyConfigured("DJANGO_SECRET_KEY not found in environment variables.")
 
 # Debug mode
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+# DEBUG = env.bool("DJANGO_DEBUG", default=False)
+DEBUG = True
 
 # Allowed hosts
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[
