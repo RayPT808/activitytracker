@@ -1,47 +1,45 @@
 import React, { useState } from 'react';
 import './ActivityList.css'; // Import any CSS specific to the ActivityList component
 
+// Helper functions to handle duration formatting
+const parseDuration = (duration) => {
+  if (typeof duration === "number") return duration;
+  if (typeof duration === "string") {
+    const parts = duration.split(":");
+    if (parts.length === 3) {
+      const [hours, minutes, seconds] = parts.map(Number);
+      return hours * 3600 + minutes * 60 + seconds;
+    }
+    const parsed = parseInt(duration, 10);
+    return isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
+};
+
+const formatTime = (totalSeconds) => {
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  return `${hours}h ${minutes}m`;
+};
+
 function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
-  // State for the current filter option; default is "All"
   const [filter, setFilter] = useState('All');
-  // State to hold the currently selected activity for editing
   const [selectedActivity, setSelectedActivity] = useState(null);
-  // State for deletion confirmation modal (holds the activity selected for deletion)
   const [activityToDelete, setActivityToDelete] = useState(null);
 
-  // Filter and then sort the activities with newest at the top.
   const filteredActivities = (activities || [])
-    .filter(activity =>
-      filter === 'All' ? true : activity.activity_type === filter
-    )
+    .filter(activity => filter === 'All' ? true : activity.activity_type === filter)
     .sort((a, b) => new Date(b.date) - new Date(a.date));
 
-  // Handle change in the filter selection.
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
+  const handleFilterChange = (e) => setFilter(e.target.value);
+  const handleActivityClick = (activity) => setSelectedActivity(activity);
+  const handleCloseEditModal = () => setSelectedActivity(null);
 
-  // When a user clicks on an activity (outside of the delete button),
-  // set it as the selected activity to edit.
-  const handleActivityClick = (activity) => {
-    setSelectedActivity(activity);
-  };
-
-  // Close the edit modal.
-  const handleCloseEditModal = () => {
-    setSelectedActivity(null);
-  };
-
-  // Handle changes in the edit form fields.
   const handleEditChange = (e) => {
     const { name, value } = e.target;
-    setSelectedActivity((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setSelectedActivity((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle submission of the edit form.
   const handleEditSubmit = (e) => {
     e.preventDefault();
     if (onUpdateActivity && typeof onUpdateActivity === 'function') {
@@ -50,28 +48,19 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
     handleCloseEditModal();
   };
 
-  // Delete logic:
-  // When user clicks delete on an activity, store it in state so the confirmation modal pops up.
   const handleDeleteClick = (e, activity) => {
-    // Prevent the click from also triggering the edit modal
     e.stopPropagation();
     setActivityToDelete(activity);
   };
 
-  // Confirm deletion: call the passed-in onDeleteActivity callback.
   const handleConfirmDelete = () => {
     if (onDeleteActivity && typeof onDeleteActivity === 'function') {
       onDeleteActivity(activityToDelete.id);
-    } else {
-      console.log('Delete activity:', activityToDelete);
     }
     setActivityToDelete(null);
   };
 
-  // Cancel deletion by closing the modal.
-  const handleCancelDelete = () => {
-    setActivityToDelete(null);
-  };
+  const handleCancelDelete = () => setActivityToDelete(null);
 
   return (
     <div className="activity-list-container">
@@ -101,7 +90,7 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
               style={{ cursor: 'pointer' }}
             >
               <div>
-                <strong>{activity.date}</strong> - {activity.activity_type} for {activity.duration} minutes
+                <strong>{activity.date}</strong> - {activity.activity_type} for {formatTime(parseDuration(activity.duration))}
                 <p>{activity.notes}</p>
               </div>
               <button
@@ -126,7 +115,6 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
               </div>
               <form onSubmit={handleEditSubmit}>
                 <div className="modal-body">
-                  {/* Example fields: title and notes */}
                   <div className="mb-3">
                     <label htmlFor="editTitle" className="form-label">Title</label>
                     <input
@@ -149,7 +137,6 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
                       onChange={handleEditChange}
                     ></textarea>
                   </div>
-                  {/* Additional fields can be added here as needed */}
                 </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-secondary" onClick={handleCloseEditModal}>
@@ -187,7 +174,6 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
               </div>
             </div>
           </div>
-          {/* Inline modal styling for demonstration */}
           <style jsx>{`
             .modal-overlay {
               position: fixed;
@@ -215,3 +201,4 @@ function ActivityList({ activities, onUpdateActivity, onDeleteActivity }) {
 }
 
 export default ActivityList;
+

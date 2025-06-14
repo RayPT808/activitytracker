@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { recordActivity } from '../utils/api';
 import '../assets/css/recordActivity.css';
 
-
 const RecordActivity = () => {
-  const [activityType, setActivityType] = useState('Running'); // Default selection
+  const [activityType, setActivityType] = useState('Running');
   const [activityName, setActivityName] = useState('');
   const [duration, setDuration] = useState('');
   const [activityDate, setActivityDate] = useState('');
@@ -14,48 +13,48 @@ const RecordActivity = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Validate that the selected date is not in the future.
+
     const today = new Date();
     const selectedDate = new Date(activityDate);
-    
-    // Remove the time component for a fair date-only comparison.
     today.setHours(0, 0, 0, 0);
     selectedDate.setHours(0, 0, 0, 0);
-    
+
     if (selectedDate > today) {
       setError('Activity date must be in the past.');
       return;
     }
-    
+
     setError('');
-    
-    // Prepare the data for the API request.
+
+    const totalMinutes = parseInt(duration, 10);
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    const formattedDuration = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:00`;
+
     const activityData = {
-      type: activityType,
-      name: activityName,
-      duration: parseInt(duration) * 60,
+      activity_type: activityType,
+      activity_name: activityName,
+      duration: formattedDuration,
       date: activityDate,
-      comments,
+      notes: comments,
     };
 
     try {
       const response = await recordActivity(activityData);
       console.log('Activity recorded:', response.data);
-      setSuccessMessage('Activity recorded successfully.');
-      // Reset the form fields after a successful submission.
+      setSuccessMessage('✅ Activity recorded successfully.');
       setActivityName('');
       setDuration('');
       setActivityDate('');
       setComments('');
     } catch (err) {
       console.error('Error recording activity:', err);
-      setError('Failed to record activity.');
+      setError('❌ Failed to record activity.');
     }
   };
 
   return (
-    <div>
+    <div className="record-activity-form">
       <h2>Record Activity</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
@@ -71,9 +70,14 @@ const RecordActivity = () => {
             <option value="Walking">Walking</option>
             <option value="Cycling">Cycling</option>
             <option value="Swimming">Swimming</option>
-            {/* Add more options if needed */}
+            <option value="Hiking">Hiking</option>
+            <option value="Gym">Gym</option>
+            <option value="Yoga">Yoga</option>
+            <option value="CrossFit">CrossFit</option>
+            <option value="Dancing">Dancing</option>
           </select>
         </div>
+
         <div>
           <label htmlFor="activityName">Activity Name:</label>
           <input
@@ -85,8 +89,9 @@ const RecordActivity = () => {
             required
           />
         </div>
+
         <div>
-          <label htmlFor="duration">Duration (minutes):</label>
+          <label htmlFor="duration">Duration (in minutes):</label>
           <input
             id="duration"
             type="number"
@@ -96,6 +101,7 @@ const RecordActivity = () => {
             required
           />
         </div>
+
         <div>
           <label htmlFor="activityDate">Date:</label>
           <input
@@ -106,15 +112,17 @@ const RecordActivity = () => {
             required
           />
         </div>
+
         <div>
-          <label htmlFor="comments">Comments (optional):</label>
+          <label htmlFor="comments">Notes (optional):</label>
           <textarea
             id="comments"
-            placeholder="Additional comments"
+            placeholder="Additional notes"
             value={comments}
             onChange={(e) => setComments(e.target.value)}
           ></textarea>
         </div>
+
         <button type="submit">Record</button>
       </form>
     </div>
