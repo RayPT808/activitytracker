@@ -68,8 +68,6 @@ const DashboardPage = () => {
 
   useEffect(() => {
     fetchActivities();
-    window.addEventListener("focus", fetchActivities);
-    return () => window.removeEventListener("focus", fetchActivities);
   }, [fetchActivities]);
 
   const handleDelete = async (id) => {
@@ -207,3 +205,4 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
+
