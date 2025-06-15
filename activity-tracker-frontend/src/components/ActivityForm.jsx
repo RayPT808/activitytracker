@@ -121,11 +121,10 @@ const ActivityForm = ({ onActivityAdded }) => {
     const token = localStorage.getItem("authToken");
 
     try {
-      console.log("📤 Payload to be sent to backend:", payload);
       let response;
       if (isEdit) {
         response = await axiosInstance.put(
-          `/api/activities/${id}/`,
+          `/api/activitytracker/activities/${id}/`,
           payload,
           {
             headers: {
@@ -136,7 +135,7 @@ const ActivityForm = ({ onActivityAdded }) => {
         toast.success("✅ Activity updated successfully!");
       } else {
         response = await axiosInstance.post(
-          '/api/activities/',
+          '/api/activitytracker/activities/',
           payload,
           {
             headers: {
