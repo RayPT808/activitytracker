@@ -29,11 +29,9 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
 
-# ----------------------------------------
-# Activity Serializer (Final, correct version for integer duration)
 
 class ActivitySerializer(serializers.ModelSerializer):
-    # Optional: include a read-only formatted duration for display purposes
+    # Read-only formatted duration for display
     duration_formatted = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
@@ -42,10 +40,25 @@ class ActivitySerializer(serializers.ModelSerializer):
         read_only_fields = ['user']
 
     def get_duration_formatted(self, obj):
-        total_seconds = int(obj.duration or 0)
+        if hasattr(obj.duration, 'total_seconds'):
+            total_seconds = int(obj.duration.total_seconds())
+        else:
+            total_seconds = int(obj.duration or 0)
+
         hours = total_seconds // 3600
         minutes = (total_seconds % 3600) // 60
         seconds = total_seconds % 60
         return f"{hours:02}:{minutes:02}:{seconds:02}"
 
-    # No custom create(), update(), or to_representation() needed!
+    
+
+    def validate_duration(self, value):
+        print("🛠 Validating duration:", value)
+        if not isinstance(value, int):
+            print("❌ Validation failed: duration is not an integer:", value)
+            raise serializers.ValidationError("Duration must be provided as an integer in seconds.")
+        if value <= 0:
+            print("❌ Validation failed: duration must be greater than 0:", value)
+            raise serializers.ValidationError("Duration must be greater than zero.")
+        print("✅ Duration validated:", value)
+        return value

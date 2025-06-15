@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 // Base URL of your API
-const API_URL = "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/api/";
+ //const API_URL = "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/api/";
+ const API_URL = "https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev/api/";
+
 
 // Create axios instance with base config
 const api = axios.create({

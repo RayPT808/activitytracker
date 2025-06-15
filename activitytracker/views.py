@@ -1,24 +1,21 @@
 import logging
-from datetime import timedelta
-from django.contrib.auth import authenticate, login 
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.shortcuts import get_object_or_404, redirect, render
-from django.utils.timezone import now
 from django.urls import reverse, NoReverseMatch
 from django.views.generic import TemplateView
-from rest_framework import generics, permissions, serializers, status
+from django.views.decorators.cache import never_cache
+from django.utils.decorators import method_decorator
+from rest_framework import generics, status, permissions
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.views.decorators.cache import never_cache
-from django.utils.decorators import method_decorator
-
 
 from .forms import ActivityForm, UserProfileForm
 from .models import Activity
@@ -26,12 +23,9 @@ from .serializers import ActivitySerializer, UserSerializer, UserRegisterSeriali
 
 logger = logging.getLogger(__name__)
 
-
-
 # ------------------- Pages -------------------
 
 def about(request):
-    # Try to safely reverse 'dashboard' to avoid template crash
     try:
         dashboard_url = reverse("dashboard")
     except NoReverseMatch:
@@ -41,10 +35,8 @@ def about(request):
         "dashboard_url": dashboard_url
     })
 
-
 def register_page(request):
     return render(request, "activitytracker/register.html")
-
 
 def redirect_to_frontend(request):
     return redirect('/about/')
@@ -53,19 +45,15 @@ def redirect_to_frontend(request):
 class FrontendAppView(TemplateView):
     template_name = "index.html"
 
-
-
 def register_user(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")  # or wherever you want
+            return redirect("login")
     else:
         form = UserCreationForm()
-
     return render(request, "activitytracker/register.html", {"form": form})
-
 
 @login_required
 def profile(request):
@@ -76,9 +64,7 @@ def profile(request):
             return redirect("profile")
     else:
         form = UserProfileForm(instance=request.user)
-
     return render(request, "activitytracker/profile.html", {"form": form})
-
 
 # ------------------- Authentication -------------------
 @api_view(["POST"])
@@ -99,8 +85,6 @@ def logout_view(request):
     response.delete_cookie("jwt")
     return response
 
-
-
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
@@ -110,7 +94,6 @@ class RegisterView(APIView):
             user = serializer.save()
             return Response({"message": "User registered successfully!"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # ------------------- User Profile API -------------------
 @api_view(['GET', 'PUT'])
@@ -127,36 +110,41 @@ def user_profile(request):
         return Response(serializer.errors, status=400)
 
 
-# ------------------- Activity APIs -------------------
+
 class ActivityListCreateView(generics.ListCreateAPIView):
     serializer_class = ActivitySerializer
-    permission_classes = [IsAuthenticated]  # Ensures only logged-in users access this
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         if user and user.is_authenticated:
             return Activity.objects.filter(user=user).order_by("-date")
-        return Activity.objects.none()  # Prevent crashes if somehow called anonymously
+        return Activity.objects.none()
 
     def perform_create(self, serializer):
-        print("📨 Raw data received from frontend:", self.request.data)
-        
-        logger.info("Payload received for activity creation: %s", self.request.data)
-        try:
-            serializer.save(user=self.request.user)
-            logger.info("Activity successfully saved for user %s", self.request.user)
-        except serializers.ValidationError as e:
-            logger.warning("Validation error: %s", e.detail)
-            raise serializers.ValidationError({
-                "detail": "Invalid data",
-                "errors": e.detail
-            })
-        except Exception as e:
-            logger.exception("Unexpected error while saving activity")
-            raise serializers.ValidationError({
-                "detail": "Internal server error. Please contact support."
+        data = self.request.data
+        logger.debug("📤 Attempting to create activity with data: %s", data)
+
+        duration = data.get("duration")
+
+        if duration is None:
+            logger.error("❌ Duration field missing in request")
+            raise ValidationError({
+                "duration": "Duration field is required and must be a positive number of seconds."
             })
 
+        if isinstance(duration, str):
+            logger.error("❌ Duration provided as string: %s", duration)
+            raise ValidationError({
+                "duration": "Duration must be an integer (seconds), not a formatted string like '01:30:00'."
+            })
+
+        try:
+            serializer.save(user=self.request.user)
+            logger.info("✅ Activity saved successfully")
+        except Exception as e:
+            logger.exception("💥 Error saving activity: %s", str(e))
+            raise ValidationError({"detail": "Something went wrong saving the activity."})
 
 
 class ActivityDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -166,8 +154,7 @@ class ActivityDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Activity.objects.filter(user=self.request.user)
 
-
-# ------------------- Legacy Django views (optional) -------------------
+# ------------------- Legacy Django Views -------------------
 @login_required
 def dashboard(request):
     if request.method == "POST":
@@ -183,11 +170,9 @@ def dashboard(request):
     activities = request.user.activities.all().order_by("-date")
     return render(request, "activitytracker/dashboard.html", {"form": form, "activities": activities})
 
-
 @login_required
 def update_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
-
     if request.method == "POST":
         form = ActivityForm(request.POST, instance=activity)
         if form.is_valid():
@@ -198,7 +183,6 @@ def update_activity(request, pk):
 
     return render(request, "activitytracker/update_activity.html", {"form": form})
 
-
 @login_required
 def delete_activity(request, pk):
     activity = get_object_or_404(Activity, pk=pk, user=request.user)
@@ -206,7 +190,6 @@ def delete_activity(request, pk):
         activity.delete()
         return redirect("dashboard") 
     return render(request, "activitytracker/delete_activity.html", {"activity": activity})
-
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
@@ -218,5 +201,3 @@ def record_activity(request):
         activity.save()
         return Response({"message": "Activity recorded successfully"}, status=201)
     return Response({"errors": form.errors}, status=400)
-
-
