@@ -23,7 +23,7 @@ urlpatterns = [
     path("api/login/", login_view, name="api-login"),
     path("accounts/", include("django.contrib.auth.urls")),
     path("api/activities/<int:pk>/", activitytracker_views.ActivityDetailView.as_view(), name="activity-detail"),
-    path('accounts/csrf/', get_csrf_token, name='get-csrf-token'),
+    path('api/accounts/csrf/', get_csrf_token, name='get-csrf-token'),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     re_path(r'^(?!api/|admin/|accounts/).*', FrontendAppView.as_view(), name='frontend'),

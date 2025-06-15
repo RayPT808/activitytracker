@@ -50,7 +50,7 @@ const DashboardPage = () => {
     setLoading(true);
     try {
       const accessToken = localStorage.getItem("authToken");
-      const res = await axiosInstance.get("/api/activities/", {
+      const res = await axiosInstance.get("/api/activitytracker/activities/", {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -84,7 +84,7 @@ const DashboardPage = () => {
     if (window.confirm("Are you sure you want to delete this activity?")) {
       try {
         const accessToken = localStorage.getItem("access");
-        await axiosInstance.delete(`/api/activities/${id}/`, {
+        await axiosInstance.delete(`/api/activitytracker/activities/${id}/`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
