@@ -2,7 +2,6 @@ from cloudinary_storage.storage import MediaCloudinaryStorage
 from django.contrib.auth.models import User
 from django.db import models
 
-
 class Activity(models.Model):
 
     ACTIVITY_CHOICES = [
@@ -14,13 +13,14 @@ class Activity(models.Model):
         ("strength_training", "Strength Training"),
         ("yoga", "Yoga"),
         ("crossfit", "CrossFit"),
-        ('dancing', 'Dancing'),
-        ('gym', 'Gym'), 
+        ("dancing", "Dancing"),
+        ("gym", "Gym"),
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_CHOICES)
-    duration = models.DurationField(help_text="Duration of activity in hh:mm:ss format")
+    # Store duration in seconds only
+    duration = models.IntegerField(help_text="Duration of activity in seconds")
     date = models.DateField()
     notes = models.TextField(
         blank=True, null=True, help_text="Optional notes about the activity"
@@ -28,7 +28,6 @@ class Activity(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     excerpt = models.TextField(blank=True)
-    
     activity_name = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:

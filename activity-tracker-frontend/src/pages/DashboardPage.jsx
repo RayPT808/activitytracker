@@ -55,6 +55,16 @@ const DashboardPage = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
+      
+      console.log("Fetched activities from API:", res.data);
+
+      res.data.forEach((act) => {
+        console.log(
+          `Activity ${act.id} duration raw:`, act.duration,
+          'parsed:', parseDuration(act.duration)
+        );
+      });
+
 
       setActivities(res.data);
       applyFilterAndSort(res.data, activityTypeFilter, sortBy);

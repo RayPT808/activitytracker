@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Activity
-from datetime import timedelta
 
 # ----------------------------------------
 # User Serializer
@@ -31,42 +30,22 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         )
 
 # ----------------------------------------
-# Activity Serializer
+# Activity Serializer (Final, correct version for integer duration)
 
 class ActivitySerializer(serializers.ModelSerializer):
+    # Optional: include a read-only formatted duration for display purposes
+    duration_formatted = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Activity
         fields = '__all__'
         read_only_fields = ['user']
 
-    def to_representation(self, instance):
-        rep = super().to_representation(instance)
-        if instance.duration:
-            total_seconds = int(instance.duration.total_seconds())
-            hours = total_seconds // 3600
-            minutes = (total_seconds % 3600) // 60
-            seconds = total_seconds % 60
-            rep['duration'] = f"{hours:02}:{minutes:02}:{seconds:02}"
-        else:
-            rep['duration'] = "00:00:00"
-        return rep
+    def get_duration_formatted(self, obj):
+        total_seconds = int(obj.duration or 0)
+        hours = total_seconds // 3600
+        minutes = (total_seconds % 3600) // 60
+        seconds = total_seconds % 60
+        return f"{hours:02}:{minutes:02}:{seconds:02}"
 
-    def create(self, validated_data):
-        request = self.context.get("request")
-        duration_str = request.data.get('duration') if request else '00:00:00'
-        validated_data['duration'] = self.parse_duration_string(duration_str)
-        return super().create(validated_data)
-
-    def update(self, instance, validated_data):
-        request = self.context.get("request")
-        duration_str = request.data.get('duration') if request else '00:00:00'
-        validated_data['duration'] = self.parse_duration_string(duration_str)
-        return super().update(instance, validated_data)
-
-    def parse_duration_string(self, duration_str):
-        try:
-            hours, minutes, seconds = map(int, duration_str.split(":"))
-            return timedelta(hours=hours, minutes=minutes, seconds=seconds)
-        except Exception as e:
-            print("❌ Failed to parse duration:", e)
-            return timedelta(seconds=0)
+    # No custom create(), update(), or to_representation() needed!

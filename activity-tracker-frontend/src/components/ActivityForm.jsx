@@ -112,9 +112,11 @@ const ActivityForm = ({ onActivityAdded }) => {
     }
 
     const { hours, minutes, seconds, ...rest } = formData;
-    const duration = `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}:${seconds.padStart(2, '0')}`;
+    const duration =
+      parseInt(hours, 10) * 3600 +
+      parseInt(minutes, 10) * 60 +
+      parseInt(seconds, 10);
     const payload = { ...rest, duration };
-
 
     const token = localStorage.getItem("authToken");
 
