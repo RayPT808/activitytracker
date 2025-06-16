@@ -6,24 +6,10 @@ const AboutPage = () => {
     document.title = "About Us - Activity Tracker";
   }, []);
 
-  const backgroundStyle = {
-    backgroundImage: "url('/background.jpg')", // ✅ This works with public/
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    minHeight: '100vh',
-    color: 'white',
-    textShadow: '1px 1px 2px black',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '40px',
-    textAlign: 'center',
-  };
 
   return (
     <Layout>
-      <div style={backgroundStyle}>
+      <div className="about-overlay">
         <h1>About Us</h1>
         <p>
           Welcome to our activity tracker application. Here, you can record and track your daily activities.

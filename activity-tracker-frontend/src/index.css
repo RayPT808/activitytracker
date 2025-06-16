@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background-image: url('/background.jpg'); /* Path to your background image */
+  background-image: url('../public/background.jpg'); /* Path to your background image */
   background-size: cover; /* Ensures the image covers the entire screen */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   background-attachment: fixed; /* Makes the background image static */
@@ -34,4 +34,25 @@ body {
   body {
     padding-top: 100px; /* Taller padding for expanded mobile navbar */
   }
+}
+
+
+.about-overlay {
+  background-color: rgba(255, 255, 255, 0.4); /* semi-transparent dark overlay */
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: #222;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-overlay {
+  background-color: rgba(255, 255, 255, 0.4); /* adjust transparency here */
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  color: #222;
+  max-width: 800px;
+  margin: 0 auto;
 }

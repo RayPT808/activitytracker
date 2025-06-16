@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import Layout from '../components/Layout'; // Adjust the path as needed
+import Layout from '../components/Layout';
+
 
 const HomePage = () => {
   useEffect(() => {
@@ -8,10 +9,13 @@ const HomePage = () => {
 
   return (
     <Layout>
-      <div className="container text-center mt-5">
+      <div className="page-overlay">
+
         <h1>Welcome to Activity Tracker</h1>
         <p>Track your activities efficiently.</p>
+
       </div>
+    
     </Layout>
   );
 };
