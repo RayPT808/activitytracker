@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Layout from '../components/Layout';
+import '../styles/AboutPage.css'; 
 
 const AboutPage = () => {
   useEffect(() => {
@@ -8,18 +9,20 @@ const AboutPage = () => {
 
   return (
     <Layout>
-      <div className="container text-center">
-        <h1>About Us</h1>
-        <p>
-          Welcome to our activity tracker application. Here, you can record and track your daily activities.
-        </p>
-        <p>
-          Our goal is to help you stay organized and motivated while you track your personal progress.
-        </p>
+      <div className="about-page-container">
+        <div className="about-overlay">
+          <h1>About Us</h1>
+          <p>
+            Welcome to our activity tracker application. Here, you can record and track your daily activities.
+          </p>
+          <p>
+            Whether you're a Weekend Warrior or an experienced runner, our platform lets you log workouts without distraction.
+            Stay organized, stay motivated, and stay on top of your progress.
+          </p>
+        </div>
       </div>
     </Layout>
   );
 };
 
 export default AboutPage;
-
