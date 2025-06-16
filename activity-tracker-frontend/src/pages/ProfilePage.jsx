@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import axiosInstance from '../api/axiosInstance';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfilePage = () => {
   const [user, setUser] = useState({
@@ -43,7 +45,7 @@ const ProfilePage = () => {
     try {
       const response = await axiosInstance.put('/api/profile/', user);
       console.log("Profile updated successfully:", response.data);
-      alert("Profile updated successfully!");
+      toast.success("✅ Profile updated successfully!");
     } catch (error) {
       console.error("Failed to update profile:", error.response?.data || error.message);
       alert("Update failed. Check console for details.");

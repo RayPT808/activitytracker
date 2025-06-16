@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useCallback } from "react";
 import axiosInstance from "../api/axiosInstance";
 import { Link } from "react-router-dom";
 import Layout from "../components/Layout";
+import { toast } from 'react-toastify';
+import ConfirmModal from '../components/ConfirmModal';
+import { useState, useEffect, useCallback } from 'react';
 
 // Duration helpers
 const parseDuration = (duration) => {
@@ -32,6 +34,9 @@ const DashboardPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
   const applyFilterAndSort = useCallback((activityList, filterType, sortField) => {
     let filtered = filterType === "all"
       ? [...activityList]
@@ -55,8 +60,7 @@ const DashboardPage = () => {
           Authorization: `Bearer ${accessToken}`,
         },
       });
-      
-      
+
       setActivities(res.data);
       applyFilterAndSort(res.data, activityTypeFilter, sortBy);
     } catch (err) {
@@ -71,21 +75,31 @@ const DashboardPage = () => {
     fetchActivities();
   }, [fetchActivities]);
 
-  const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this activity?")) {
-      try {
-        const accessToken = localStorage.getItem("access");
-        await axiosInstance.delete(`/api/activitytracker/activities/${id}/`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        const updated = activities.filter(act => act.id !== id);
-        setActivities(updated);
-        applyFilterAndSort(updated, activityTypeFilter, sortBy);
-      } catch (err) {
-        console.error("Delete failed", err);
-      }
+  const handleDelete = (id) => {
+    setSelectedId(id);
+    setShowConfirm(true);
+  };
+
+  const confirmDelete = async () => {
+    try {
+      const accessToken = localStorage.getItem("access");
+      await axiosInstance.delete(`/api/activitytracker/activities/${selectedId}/`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+      const updated = activities.filter(act => act.id !== selectedId);
+      setActivities(updated);
+      applyFilterAndSort(updated, activityTypeFilter, sortBy);
+
+      toast.success("🗑️ Activity deleted successfully!");
+    } catch (err) {
+      console.error("Delete failed", err);
+      toast.error("❌ Failed to delete activity. Please try again.");
+    } finally {
+      setShowConfirm(false);
+      setSelectedId(null);
     }
   };
 
@@ -201,9 +215,16 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
+
+      {showConfirm && (
+        <ConfirmModal
+          message="Are you sure you want to delete this activity?"
+          onConfirm={confirmDelete}
+          onCancel={() => setShowConfirm(false)}
+        />
+      )}
     </Layout>
   );
 };
 
 export default DashboardPage;
-

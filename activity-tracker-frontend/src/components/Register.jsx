@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../assets/css/register.css';
+import { toast } from 'react-toastify';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -69,7 +70,12 @@ const Register = () => {
 
       const res = await axios.post(`${BASE_URL}/api/register/`, payload);
       const username = res.data?.username || formData.username;
-      alert(`✅ Registration successful for ${username}! Redirecting to login...`);
+      toast.success(`🎉 Registration successful for ${username}! Redirecting to login...`);
+      
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000); 
+
       navigate('/login');
     } catch (error) {
       console.error('Registration error:', error.response?.data || error.message);
