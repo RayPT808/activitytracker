@@ -11,7 +11,7 @@ body {
 }
 
 body {
-  background-image: url('./assets/images/background.jpg'); /* Path to your background image */
+  background-image: url('/background.jpg'); /* Path to your background image */
   background-size: cover; /* Ensures the image covers the entire screen */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   background-attachment: fixed; /* Makes the background image static */
