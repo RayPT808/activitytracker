@@ -85,6 +85,13 @@ def logout_view(request):
     response.delete_cookie("jwt")
     return response
 
+@api_view(["GET"])
+@permission_classes([AllowAny])  
+def get_csrf_token(request):
+    token = get_token(request)
+    return Response({'csrfToken': token})
+
+
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 

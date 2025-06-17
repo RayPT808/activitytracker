@@ -6,6 +6,7 @@ from activitytracker.views import (
     update_activity, delete_activity, record_activity,
     user_profile,
 )
+from .views import get_csrf_token
 
 
 urlpatterns = [
@@ -25,6 +26,9 @@ urlpatterns = [
     path("register-page/", register_page, name="register"),
     path("profile-page/", profile, name="profile"),
     path("about/", about, name="about"),
+
+    path("api/csrf-token/", get_csrf_token, name="csrf_token"),
+
 ]
 
 

@@ -8,7 +8,7 @@ from activitytracker.models import Activity
 class ActivityCreationTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="testpass")
-        self.client.force_authenticate(user=self.user)  # ✅ Authenticate client
+        self.client.force_authenticate(user=self.user)  
 
     def test_create_activity(self):
         url = reverse("record_activity")
@@ -27,14 +27,14 @@ class ActivityCreationTest(APITestCase):
 class InvalidActivityCreationTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser2", password="testpass2")
-        self.client.force_authenticate(user=self.user)  # ✅ Authenticate client
+        self.client.force_authenticate(user=self.user)  
 
     def test_invalid_activity_creation(self):
         url = reverse("record_activity")
         data = {
             "activity_type": "cycling",
             "activity_name": "No Duration",
-            # Missing 'duration_input'
+        
             "date": "2025-03-16",
             "notes": "Forgot duration",
         }
@@ -47,12 +47,12 @@ class InvalidActivityCreationTest(APITestCase):
 class ActivityLogTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser3", password="testpass3")
-        self.client.force_authenticate(user=self.user)  # ✅ Authenticate client
+        self.client.force_authenticate(user=self.user)
 
         # Create sample activity
         Activity.objects.create(
             user=self.user,
-            activity_type="walking",
+            activity_type="walking"
             activity_name="Evening Walk",
             duration=1800,
             date="2025-03-15",
@@ -69,10 +69,10 @@ class ActivityLogTest(APITestCase):
 class ActivityUpdateTest(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser4", password="testpass4")
-        self.client.force_login(self.user)  # Use force_login for Django form views
+        self.client.force_login(self.user)  
 
         self.activity = Activity.objects.create(
-            user=self.user,
+            user=self.user
             activity_type="yoga",
             activity_name="Morning Yoga",
             duration=1800,
@@ -85,7 +85,7 @@ class ActivityUpdateTest(APITestCase):
         updated_data = {
             "activity_type": self.activity.activity_type,
             "activity_name": self.activity.activity_name,
-            "duration_input": "00:30:00",  # ✅ Correct form field
+            "duration_input": "00:30:00",  
             "date": "2025-03-14",
             "notes": "Updated: Felt energized!"
     }
