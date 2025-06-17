@@ -1,8 +1,50 @@
 # 🏃‍♂️ Activity Tracker – A Full Stack MVP for Simplified Activity Logging
 
-![Activity Tracker](assets/images/Activity%20Tracker%20Logged%20in%20view.png)
+![Amiresponsive](assets/images/amiresponsive.png)
 
-> “Not all metrics matter. Sometimes, the best data is the simplest.”
+“Not all metrics matter. Sometimes, the best data is the simplest.”
+
+## 1. Purpose
+
+The Activity Tracker saves the key details of a training or recreactional activity  in the most simple, straightforward way. It is useful for anyone who wants to record their sport or recreational activities, and wants to monitor their progress over time. Because of it's simplicity it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead brings back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, they provide a lot more details, which eventually becomes the problem. The usres will focus much more on certain metrics and when some targets are not met it will have a negative impact on the users' behavoiur, motivation. Certanly when one is competeing for her/his country or doing competitive sports for living all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full stack web application and was built using Django, Python, Bootstrap, PostgreSQL, React.
+
+## 2. Features
+
+- **Navbar** Clean, consitent navbar across the page. Clicking on the icon/logo directs the user back to the main page.
+
+![Navbar](assets/images/navbar.png)
+
+- **About Field** The About (Us) page gives a short description for the visitor of what the application does.
+
+![About](assets/images/desktopabout.png)
+
+
+- **Registration Validation** The registration form is using standard validations to highlight any error for the user in case of wrong or missing details.
+
+
+    - **Existing User**: Registration will not proceed when a new user selects a previously saved user name.
+
+    ![Existing User](assets/images/validationexistinguser.png)
+
+
+    -**Missing Password** The registration will not proceed if one of the passwords is missing.
+
+    ![Missing Password](assets/images/validationmissingpassword.png)
+
+
+    -**Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in don not match fully.
+
+    ![Password Mismatch](assets/images/validationpasswordnomatch.png)
+
+
+    -**Missing Username** The registration will not go ahead if the username is missing.
+
+    ![Missing Username](assets/images/validationusername.png)
+
+
+    -**Missing Email** The registration will not go ahead if the email is missing.
+
+    ![Missing Email](assets/images/validationemail.png)
 
 ##  Overview
 
@@ -214,6 +256,8 @@ Unfotunately based on the Lighthouse report, the website has poor performance wi
 
 + For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
 
+![Stravamobile](assets/images/Stravamobile.jpg)
+
 #### Code
 
 + The initial structure is based on CI's own boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
@@ -259,5 +303,5 @@ There is a huge potential in full stack applications, regardless what is it for.
 
 
 
-![Stravamobile](assets/images/Stravamobile.jpg)
+
 
