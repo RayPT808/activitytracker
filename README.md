@@ -10,7 +10,7 @@ The Activity Tracker saves the key details of a training or recreactional activi
 
 ## 2. Features
 
-- **Navbar** Clean, consitent navbar across the page. Clicking on the icon/logo directs the user back to the main page.
+- **Navbar** Clean, consitent navbar across the pages. Clicking on the icon/logo directs the user back to the main page.
 
 ![Navbar](assets/images/navbar.png)
 
@@ -32,7 +32,7 @@ The Activity Tracker saves the key details of a training or recreactional activi
     ![Missing Password](assets/images/validationmissingpassword.png)
 
 
-    -**Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in don not match fully.
+    -**Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
 
     ![Password Mismatch](assets/images/validationpasswordnomatch.png)
 
@@ -45,6 +45,28 @@ The Activity Tracker saves the key details of a training or recreactional activi
     -**Missing Email** The registration will not go ahead if the email is missing.
 
     ![Missing Email](assets/images/validationemail.png)
+
+
+-**Password Visibility Toggle** In case the user is not sure about the password input or wants to check them the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
+
+![Password Visibility](assets/images/passwordvisibility.png)
+
+
+-**Login Validation**
+
+    -**Missing Password** Previously registered user won't be able to log in if the password is missing
+
+    ![No Password](assets/images/loginvalidationmissingpswrd.png)
+
+
+
+
+
+
+
+
+
+
 
 ##  Overview
 
