@@ -52,7 +52,7 @@ class ActivityLogTest(APITestCase):
         # Create sample activity
         Activity.objects.create(
             user=self.user,
-            activity_type="walking"
+            activity_type="walking",
             activity_name="Evening Walk",
             duration=1800,
             date="2025-03-15",
@@ -72,7 +72,7 @@ class ActivityUpdateTest(APITestCase):
         self.client.force_login(self.user)  
 
         self.activity = Activity.objects.create(
-            user=self.user
+            user=self.user,
             activity_type="yoga",
             activity_name="Morning Yoga",
             duration=1800,

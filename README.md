@@ -259,4 +259,5 @@ There is a huge potential in full stack applications, regardless what is it for.
 
 
 
+![Stravamobile](assets/images/Stravamobile.jpg)
 
