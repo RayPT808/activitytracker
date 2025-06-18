@@ -229,27 +229,27 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 - User Flow:  
 
-  1. Regitration
+  1\. Regitration
 
   ![Registration](assets/images/userflowregister.png)
 
-  2. Login
+  2\. Login
 
   ![Login](assets/images/userflowlogin.png)
 
-  3. Profile Update
+  3\. Profile Update
 
   ![Profile Update](assets/images/userflowupdateprofile.png)
 
-  4. Add Activity
+  4\. Add Activity
 
   ![Add Activity](assets/images/userflowaddactivity.png)
 
-  5. Edit Activity
+  5\. Edit Activity
 
   ![Edit Activity](assets/images/userfloweditactivity.png)
 
-  6. Delete Activity
+  6\. Delete Activity
 
   ![Delete Activity](assets/images/userflowdeleteactivity.png)
 
