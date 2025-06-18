@@ -553,7 +553,7 @@ This project followed a simplified Agile methodology to support iterative develo
 ###  Workflow Approach
 
 A **Kanban-style board** was used to track tasks through the following stages:
-
+![Backlog](assets/images/backlog.png)
 
 - **Backlog**: Initial ideas or planned features
 - **In Progress**: Tasks being actively developed
