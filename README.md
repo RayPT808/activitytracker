@@ -474,6 +474,76 @@ All fixes were committed with descriptive messages and, where applicable, linked
 
 ---
 
+## 5. Deployment
+
+The application was deployed using **Heroku**, with the frontend and backend hosted as **separate apps** to maintain modularity and flexibility.
+
+---
+
+###  Backend Deployment (Django)
+
+The Django API server is deployed independently, with proper environment variables and Heroku configurations for production.
+
+#### Key Deployment Steps:
+- Environment variables were set on Heroku:
+  - `DJANGO_SECRET_KEY`
+  - `DJANGO_DEBUG=False`
+  - `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS`
+  - `DATABASE_URL` and any storage service credentials (e.g., Cloudinary)
+
+- Project was prepared using:
+  ```bash
+  pip freeze > requirements.txt
+  python manage.py collectstatic --noinput
+  python manage.py migrate
+  ```
+
+- Deployed using:
+  ```bash
+  git push heroku-backend main
+  heroku run python manage.py migrate 
+  ```
+
+---
+
+### 🎨 Frontend Deployment (React)
+
+The React frontend was built and deployed separately to a dedicated Heroku app.
+
+#### Key Deployment Steps:
+- Built using:
+  ```bash
+  npm run build
+  ```
+
+- `.env.production` configured with:
+  ```env
+  REACT_APP_API_URL=https://activitytracking-bf7924cd3676.herokuapp.com/
+
+- Deployed with:
+  ```bash
+  git push heroku-frontend main
+  ```
+
+---
+
+###  Post-deployment Checklist
+
+After both apps were deployed, the following checks were performed:
+
+- Verified login, registration, and form submissions
+- Tested links and page navigation
+- Checked browser console for JS errors
+- Verified API requests and CORS handling in the network tab
+- Inspected live styling, image paths, and media responsiveness
+
+---
+
+###  Tips & Debugging
+
+- Used `heroku logs --tail -activity-tracker` to monitor production logs
+- Disable `DEBUG` mode and ensure no development tools are exposed
+
 ##  Tech Stack
 
 | Layer        | Technology                     |
