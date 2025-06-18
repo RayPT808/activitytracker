@@ -506,7 +506,7 @@ The Django API server is deployed independently, with proper environment variabl
 
 ---
 
-### 🎨 Frontend Deployment (React)
+###  Frontend Deployment (React)
 
 The React frontend was built and deployed separately to a dedicated Heroku app.
 
@@ -544,183 +544,66 @@ After both apps were deployed, the following checks were performed:
 - Used `heroku logs --tail -activity-tracker` to monitor production logs
 - Disable `DEBUG` mode and ensure no development tools are exposed
 
-##  Tech Stack
+##  Agile Methodology
 
-| Layer        | Technology                     |
-|--------------|--------------------------------|
-| Frontend     | React, Bootstrap               |
-| Backend      | Django, Django REST Framework  |
-| Database     | PostgreSQL                     |
-| Auth         | JWT Authentication (DRF SimpleJWT) |
-| Hosting      | Heroku                         |
-| Media Storage| Cloudinary                     |
-| Versioning   | Git + GitHub                   |
+This project followed a simplified Agile methodology to support iterative development and continuous improvement throughout the application's lifecycle. Development was managed using GitHub Projects, Issues, and a custom roadmap to organize tasks and track progress over time.
 
 ---
 
-## Environment Setup
+###  Workflow Approach
 
-Essential variables: 
-
-- DJANGO_SECRET_KEY
-
-- DATABASE_URL
-
-- CLOUD_NAME
-
-- API_KEY
-
-- API_SECRET
-
-- CORS_ALLOWED_ORIGINS
-
-- CSRF_TRUSTED_ORIGINS
+A **Kanban-style board** was used to track tasks through the following stages:
 
 
+- **Backlog**: Initial ideas or planned features
+- **In Progress**: Tasks being actively developed
+- **Done**: Completed features or fixes
+- **Won’t Have This Time**: Items intentionally deferred or de-scoped
 
-##  ERD (Entity Relationship Diagram)
-
-[Diagram](assets/images/diagram.png)
-
-
+Each issue represented a single task or user story, and many were linked to GitHub Milestones for sprint tracking.
 
 ---
 
-##  Features
+###  Issue Prioritization
 
-###  Existing Features
-- Registration and Login using JWT
-- Add new activity with:
-  - Activity type (dropdown)
-  - Name
-  - Duration (HH:MM:SS picker)
-  - Date (datepicker)
-  - Notes (optional)
-- Dashboard to view all activities
-- Edit and Delete options for each entry
-- Sorting: Most recent first
-- Duration auto-conversion to total seconds
-- Password field toggle (eye icon)
-- Responsive UI across devices
-- Basic frontend/backend separation
+Tasks were organized using MoSCoW-style labels:
+- **Must Have**: Critical to MVP (e.g., registration, login)
+- **Should Have**: Valuable features but not core (e.g., delete/edit activity)
+- **Could Have**: Optional improvements (e.g., activity search)
+- **Won’t Have This Time**: Features to postpone (e.g., distance tracking)
 
-###  Future Features
-- Password reset email
-- Weekly/monthly activity summary
-- Upload `.gpx` or `.fit` files
-- Stats: Time spent by activity type
-- Enhanced user profile (avatar, bio)
+This approach ensured clarity around scope and helped keep development focused and realistic.
 
 ---
 
-##  Reusable React Components
+###  Sprint and Timeline Tracking
 
-| Component         | Purpose                                |
-|-------------------|----------------------------------------|
-| `ActivityForm`    | Add/Edit activity form (shared logic)  |
-| `Layout`          | Page wrapper + shared Navbar           |
-| `DashboardPage`   | Activity list, delete/edit handling    |
-| `LoginPage`       | Auth form with password toggle         |
-| `Register`        | New user registration form             |
+The roadmap view showed a chronological rollout of tasks across the month of June. Tasks like form validation, filtering, and core CRUD operations were distributed across the weeks and tracked by ID.
 
----
-
-##  Responsive Design
-
-Tested with Chrome DevTools and real devices.
-
-- Mobile-first responsive
-- Navbar collapses to hamburger
-- Forms scale smoothly
-
-![Responsive](assets/images/responsive.png)
+Notable features completed:
+- Registration & Login flow
+- Activity logging with type, date, and duration
+- Activity list display with filters and search
+- UI/UX improvements like password visibility toggle
 
 ---
 
-##  Testing
+###  Tools Used
 
-![Activitytest](assets/images/activitytest.png)
-
-
-###  Manual Testing Table
-
-| Feature             | Test Scenario                     | Expected Outcome                   |
-|---------------------|-----------------------------------|------------------------------------|
-| Register new user   | Fill form and submit              | New account created, redirected    |
-| Login with token    | Valid credentials                 | Token stored, redirect to dashboard |
-| Add activity        | Fill all fields                   | Activity saved and appears in list |
-| Edit activity       | Click Edit, update fields         | Changes saved                      |
-| Delete activity     | Click Delete, confirm popup       | Entry removed                      |
-| Toggle password     | Click eye icon                    | Password reveals/hides             |
-| Date restrictions   | Choose future date                | Error message shown                |
-
-###  Unfixed Bugs
-
-- Duration sometimes not saved on first submit
-- Date field allows future entries (minor logic bug)
-- Activity name not shown in dashboard list
-- Form doesn't auto-scroll or show toast on save
+- **GitHub Projects** for board-based issue tracking
+- **GitHub Issues** to represent features and bugs
+- **GitHub Roadmap** to visualize delivery timeline
+- Manual sprint retrospectives to assess progress and re-prioritize
 
 ---
 
-##  Deployment
+###  Summary
 
-###  Backend (Django) – Heroku
-
-1. Create Heroku app & PostgreSQL DB
-2. Add environment variables (`DEBUG=False`, `ALLOWED_HOSTS`, `SECRET_KEY`, etc.)
-3. Update `settings.py`:
-   - Add `whitenoise`, `corsheaders`
-   - Setup `STATIC_ROOT`, `MEDIA_ROOT`, `Cloudinary`
-4. Add `Procfile`:  
-5. Push code to Heroku or GitHub → Connect repo
-6. Run:
-```bash
-python manage.py migrate
-python manage.py createsuperuser
-
-
-### User Experience
-
-#### First time visitor goals
-
-+ As a first time visitor the goal and the purpose of the website is easily understandable.
-
-+ As a first time visitor I can easily navigate through the page and locate functions.
-
-#### Returning visitor goals
-
-+ After some contemplation as a returning visitor to the website I can find and carry out a registration.
-
-+ As a registered user I can log in to my account, where my data and details are stored securely.
-
-+ As a logged in user I can choose from different types of activities.
-
-+ As a logged in user I can save my chosen actyvity type, date, duration.
-
-#### Frequent user goals
-
-+ As a frequently returning user I can see my past activities on a list.
-
-+ As a frequently returning user I can modify details of past activities or I can delete past activities.
-
-
-
-#### Browser compatibility
-
-Tested the website on **Chrome**, **Safari**, **Firefox**.
-Appearance was good on all three browsers.
-Intended responsiveness also good on all three.
-
-![responsive](/assets/images/responsive.png)
-
-#### Lighthouse report
-
-Unfotunately based on the Lighthouse report, the website has poor performance with several issues.
-
-![LighthouseReport](/assets/images/Lighthouse-Report.png)
-
-
+Adopting Agile principles helped structure the solo development effort by:
+- Breaking down the application into manageable chunks
+- Prioritizing the most impactful features first
+- Iterating and improving based on testing and feedback
+  
 #### Login credentials
 
 + Django admin - Username: Runner1  Password: Sunday12
