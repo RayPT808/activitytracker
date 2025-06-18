@@ -384,8 +384,21 @@ The codebase adheres to modern standards through regular linting and formatting 
 
 ### Accessibility
 Accessibility best practices were applied using:
-- **Lighthouse Audits** to check color contrast and semantic HTML usage
-- **Keyboard navigation** tested manually
+- **Lighthouse Audits** to check color contrast and semantic HTML usage.  I have recorded the final results for each page below:
+- | Page | Result |
+|----|----|
+| Register | ![Lighthouse Screenshot](assets/images/lighthousedesktopregister)  |
+| Registration |![Lighthouse Screenshot](documentation/lighthouse-register.png)  |
+| Forgotten Password | ![Lighthouse Screenshot](documentation/lighthouse-password-reset.png) |
+| Issue Listing (home page) | ![Lighthouse Screenshot](documentation/lighthouse-issue-listing.png)  |
+| Issue Detail |![Lighthouse Screenshot](documentation/lighthouse-issue-detail.png) |
+| Edit Issue | ![Lighthouse Screenshot](documentation/lighthouse-edit-issue.png) |
+| Change History |  ![Lighthouse Screenshot](documentation/lighthouse-change-history.png) |
+| Create Issue |![Lighthouse Screenshot](documentation/lighthouse-new-issue.png)   |
+| Create Project | ![Lighthouse Screenshot](documentation/lighthouse-new-project.png)  |
+| Project Listing | ![Lighthouse Screenshot](documentation/lighthouse-project-listing.png)   |
+
+- - **Keyboard navigation** tested manually
 
 ---
 
