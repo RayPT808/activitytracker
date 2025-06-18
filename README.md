@@ -544,7 +544,7 @@ After both apps were deployed, the following checks were performed:
 - Used `heroku logs --tail -activity-tracker` to monitor production logs
 - Disable `DEBUG` mode and ensure no development tools are exposed
 
-##  Agile Methodology
+## 6.  Agile Methodology
 
 This project followed a simplified Agile methodology to support iterative development and continuous improvement throughout the application's lifecycle. Development was managed using GitHub Projects, Issues, and a custom roadmap to organize tasks and track progress over time.
 
