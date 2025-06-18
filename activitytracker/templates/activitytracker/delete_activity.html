@@ -1,16 +1,13 @@
-{% extends 'activitytracker/base.html' %}
-
-{% block title %}Delete Activity{% endblock %}
-
-{% block content %}
+{% extends 'activitytracker/base.html' %} {% block title %}Delete Activity{%
+endblock %} {% block content %}
 <div class="container mt-5">
-<h2 class="text-center">Delete Activity</h2>
-<p>Are you sure you want to delete this activity?</p>
+  <h2 class="text-center">Delete Activity</h2>
+  <p>Are you sure you want to delete this activity?</p>
 
-<form method="post">
-{% csrf_token %}
-<button type="submit" class="btn btn-danger">Delete</button>
-<a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
-</form>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">Cancel</a>
+  </form>
 </div>
 {% endblock %}

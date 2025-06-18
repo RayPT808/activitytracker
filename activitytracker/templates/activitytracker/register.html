@@ -1,120 +1,149 @@
-{% extends 'activitytracker/base.html' %}
+{% extends 'activitytracker/base.html' %} {% block title %}Register - Activity
+Tracker{% endblock %} {% load static %} {% block content %}
 
-{% block title %}Register - Activity Tracker{% endblock %}
-
-{% load static %}
-
-{% block content %}
-
-<link rel="stylesheet" href="{% static 'css/register.css' %}">
+<link rel="stylesheet" href="{% static 'css/register.css' %}" />
 
 <div class="container mt-4">
-    <h2 class="mb-4 text-center">Create an Account</h2>
-    <form method="POST" class="needs-validation register-form" novalidate>
-        {% csrf_token %}
+  <h2 class="mb-4 text-center">Create an Account</h2>
+  <form method="POST" class="needs-validation register-form" novalidate>
+    {% csrf_token %}
 
-        <div class="form-group mb-3">
-            <label for="id_username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="id_username" name="username" required
-                placeholder="Enter your username" value="{{ form.username.value|default:'' }}">
-            {% if form.username.errors %}
-            <div class="text-danger">
-                {{ form.username.errors }}
-            </div>
-            {% endif %}
-        </div>
+    <div class="form-group mb-3">
+      <label for="id_username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="id_username"
+        name="username"
+        required
+        placeholder="Enter your username"
+        value="{{ form.username.value|default:'' }}"
+      />
+      {% if form.username.errors %}
+      <div class="text-danger">{{ form.username.errors }}</div>
+      {% endif %}
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="id_email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="id_email" name="email" required placeholder="Enter your email"
-                value="{{ form.email.value|default:'' }}">
-            {% if form.email.errors %}
-            <div class="text-danger">
-                {{ form.email.errors }}
-            </div>
-            {% endif %}
-        </div>
+    <div class="form-group mb-3">
+      <label for="id_email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="id_email"
+        name="email"
+        required
+        placeholder="Enter your email"
+        value="{{ form.email.value|default:'' }}"
+      />
+      {% if form.email.errors %}
+      <div class="text-danger">{{ form.email.errors }}</div>
+      {% endif %}
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="id_password1" class="form-label">Password</label>
-            <div class="input-group">
-                <input type="password" class="form-control" id="id_password1" name="password1" required
-                    placeholder="Enter a password">
-                <span class="input-group-text" id="togglePassword1" style="cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </span>
-            </div>
-            {% if form.password1.errors %}
-            <div class="text-danger">
-                {{ form.password1.errors }}
-            </div>
-            {% endif %}
-        </div>
+    <div class="form-group mb-3">
+      <label for="id_password1" class="form-label">Password</label>
+      <div class="input-group">
+        <input
+          type="password"
+          class="form-control"
+          id="id_password1"
+          name="password1"
+          required
+          placeholder="Enter a password"
+        />
+        <span
+          class="input-group-text"
+          id="togglePassword1"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-eye"></i>
+        </span>
+      </div>
+      {% if form.password1.errors %}
+      <div class="text-danger">{{ form.password1.errors }}</div>
+      {% endif %}
+    </div>
 
-        <div class="form-group mb-3">
-            <label for="id_password2" class="form-label">Confirm Password</label>
-            <div class="input-group">
-                <input type="password" class="form-control" id="id_password2" name="password2" required
-                    placeholder="Confirm your password">
-                <span class="input-group-text" id="togglePassword2" style="cursor: pointer;">
-                    <i class="fas fa-eye"></i>
-                </span>
-            </div>
-            {% if form.password2.errors %}
-            <div class="text-danger">
-                {{ form.password2.errors }}
-            </div>
-            {% endif %}
-        </div>
+    <div class="form-group mb-3">
+      <label for="id_password2" class="form-label">Confirm Password</label>
+      <div class="input-group">
+        <input
+          type="password"
+          class="form-control"
+          id="id_password2"
+          name="password2"
+          required
+          placeholder="Confirm your password"
+        />
+        <span
+          class="input-group-text"
+          id="togglePassword2"
+          style="cursor: pointer"
+        >
+          <i class="fas fa-eye"></i>
+        </span>
+      </div>
+      {% if form.password2.errors %}
+      <div class="text-danger">{{ form.password2.errors }}</div>
+      {% endif %}
+    </div>
 
-        <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
-    </form>
+    <button type="submit" class="btn btn-primary w-100 mt-3">Register</button>
+  </form>
 </div>
 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
 <script>
-    document.getElementById("togglePassword1").addEventListener("click", function () {
-        var passwordField = document.getElementById("id_password1");
-        var icon = this.querySelector("i");
+  document
+    .getElementById("togglePassword1")
+    .addEventListener("click", function () {
+      var passwordField = document.getElementById("id_password1");
+      var icon = this.querySelector("i");
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
     });
 
-    document.getElementById("togglePassword2").addEventListener("click", function () {
-        var passwordField = document.getElementById("id_password2");
-        var icon = this.querySelector("i");
+  document
+    .getElementById("togglePassword2")
+    .addEventListener("click", function () {
+      var passwordField = document.getElementById("id_password2");
+      var icon = this.querySelector("i");
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            icon.classList.remove("fa-eye");
-            icon.classList.add("fa-eye-slash");
-        } else {
-            passwordField.type = "password";
-            icon.classList.remove("fa-eye-slash");
-            icon.classList.add("fa-eye");
-        }
+      if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+      } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+      }
     });
 
-    document.querySelector('.needs-validation').addEventListener('submit', function (e) {
-        e.preventDefault();
-        var password1 = document.getElementById('id_password1').value;
-        var password2 = document.getElementById('id_password2').value;
+  document.querySelector(".needs-validation").addEventListener(
+    "submit",
+    function (e) {
+      e.preventDefault();
+      var password1 = document.getElementById("id_password1").value;
+      var password2 = document.getElementById("id_password2").value;
 
-        if (password1 !== password2) {
-            alert('Passwords do not match!');
-        } else {
-            this.submit();
-        }
-    }, false);
+      if (password1 !== password2) {
+        alert("Passwords do not match!");
+      } else {
+        this.submit();
+      }
+    },
+    false,
+  );
 </script>
 
 {% endblock %}

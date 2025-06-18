@@ -2,5 +2,10 @@
   "name": "heroku-build-root",
   "version": "1.0.0",
   "private": true,
-  "workspaces": ["activity-tracker-frontend"]
+  "workspaces": [
+    "activity-tracker-frontend"
+  ],
+  "devDependencies": {
+    "prettier": "^3.5.3"
+  }
 }

@@ -8,6 +8,7 @@
 
 The Activity Tracker saves the key details of a training or recreational activity  in the simplest, straightforward way. It is useful for anyone who wants to record their sport or recreational activities and wants to monitor their progress over time. Because of its simplicity, it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead bringing back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, which provide a lot more details, which eventually become the problem. The users will focus much more on certain metrics, and when some targets are not met, it will have a negative impact on the users' behavior, motivation. Certainly, when one is competing for her/his country or doing competitive sports for a living, all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full-stack web application and was built using Django, Python, Bootstrap, PostgreSQL, and React.
 
+The Activity Tracker saves the key details of a training or recreational activity  in the most simple, straightforward way. It is useful for anyone who wants to record their sport or recreational activities, and wants to monitor their progress over time. Because of its simplicity it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead brings back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, they provide a lot more details, which eventually becomes the problem. The users will focus much more on certain metrics and when some targets are not met it will have a negative impact on the users' behaviour, motivation. Certainly when one is competing for her/his country or doing competitive sports for living all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full stack web application and was built using Django, Python, Bootstrap, PostgreSQL, React.
 
 ## 2. Features
 
@@ -19,29 +20,25 @@ The Activity Tracker saves the key details of a training or recreational activit
 
 ![About](assets/images/desktopabout.png)
 
-
 - **Registration Validation** The registration form uses standard validations to highlight any errors for the user in case of wrong or missing details.
 
+- **Registration Validation** The registration form is using standard validations to highlight any error for the user in case of wrong or missing details.
 
     - **Existing User**: Registration will not proceed when a new user selects a previously saved user name.
 
     ![Existing User](assets/images/validationexistinguser.png)
 
-
     - **Missing Password** The registration will not proceed if one of the passwords is missing.
 
     ![Missing Password](assets/images/validationmissingpassword.png)
-
 
     - **Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
 
     ![Password Mismatch](assets/images/validationpasswordnomatch.png)
 
-
     - **Missing Username** The registration will not go ahead if the username is missing.
 
     ![Missing Username](assets/images/validationusername.png)
-
 
     - **Missing Email** The registration will not go ahead if the email is missing.
 
@@ -59,11 +56,9 @@ The Activity Tracker saves the key details of a training or recreational activit
 
   ![No Password](assets/images/loginvalidationmissingpswrd.png)
 
-
   - **Missing Username** A previously registered user won't be able to log in if the username is missing.
 
   ![Missing User](assets/images/loginvalidationmissingusern.png)
-
 
   - **Invalid Details** A previously registered user won't be able to log in if the username and/or password are not correct.
 
@@ -137,17 +132,15 @@ Mobile version (Redmi Note 13)
   _Validation_: This field is optional and does not require input.  
   ![](assets/images/notesoptional.png)
 
-
 ---
 - **Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply to the input fields in the New Activity form.
+- **Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fields in the New Activity form.
 
 ![Edit Activity](assets/images/editactivity.png)
-
 
 - **Delete Activities** The user has the option to delete previously saved activities from the list. To proceed, the user has to confirm the deletion of the activity.
 
 ![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
-
 
 ---
 - **Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
@@ -169,8 +162,6 @@ _Validation_: Validation applies to the Username and the Email address fields.
 - **Update Button**  
   Submits the updated profile information and provides feedback on success or validation errors.  
   ![](assets/images/profileupdate.png)
-
-
 
 ## 3.  Requirement Gathering and Planning
 
@@ -197,26 +188,29 @@ To keep it simple, I designed a **simplified user interface** to support key use
 -  View records in a clean dashboard
 -  Edit or delete records anytime
 
-
 ---
 
 ###  Stakeholders & Target Users
 - Primary Users: Individuals who want to track time spent with physical activities, training. 
   Individuals who need a simple tool to keep up their healthy habits, regardless of age, fitness level, or sports background
+  Individuals who need a simple tool to keep up their healthy habits regardless of age, fitness level or sport background
 - Stakeholders: Product owner, development team, end users.
 ---
+
 ###  Functional Requirements
 - Users can log new activities with name, type, duration, and date.
 - Users can edit or delete saved activities.
 - Filtering and sorting options are available on the dashboard.
 - Secure login and registration are required to access personal data.
 ---
+
 ###  Non-Functional Requirements
 - Application must respond in under 2 seconds.
 - Fully responsive UI.
 - Secure user authentication.
 - Validation on both the frontend and backend.
 ---
+
 ###  Planning Tools & Visuals
 - ERD (Entity Relationship Diagram):  
   ![](assets/images/erdactivitytracker.png)
@@ -229,7 +223,7 @@ To keep it simple, I designed a **simplified user interface** to support key use
 
 - User Flow:  
 
-  1\. Regitration
+  1\. Registration
 
   ![Registration](assets/images/userflowregister.png)
 
@@ -252,7 +246,6 @@ To keep it simple, I designed a **simplified user interface** to support key use
   6\. Delete Activity
 
   ![Delete Activity](assets/images/userflowdeleteactivity.png)
-
 
 ---
 
@@ -281,11 +274,8 @@ To keep it simple, I designed a **simplified user interface** to support key use
 **Activity List**
 ![Activity List](assets/images/wireframemobileactivitylist.png)
 
-
 **New Activity**
 ![New Activity](assets/images/wireframemobilenewactivity.png)
-
-
 
 ---
 
@@ -304,17 +294,14 @@ To keep it simple, I designed a **simplified user interface** to support key use
 | `rgba(0, 0, 0, 0.15)`| 3         | Shadows / overlays               |
 | `#ffffff`           | 3           | Alternate for `#fff`             |
 
-
-
 Color Usage and Purpose
 ![Color](assets/images/colorusage.png)
-
-
 
 RGB Breakdown
 ![RGB](assets/images/rgbbreakdown.png)
 
 ---
+
 ### Reusable React Components
 
 To promote scalability, maintainability, and consistency across the frontend, the application was developed using modular and reusable React components. These components are divided by responsibility and reusability within the application interface.
@@ -377,6 +364,7 @@ These components extend the functionality of core screens like Dashboard and Pro
 ---
 
 Together, these reusable components helped keep the codebase modular and DRY (Don't Repeat Yourself), simplifying development and making future updates easier to implement.
+
 ## 4. Testing
 
 ### Testing Strategy
@@ -470,7 +458,6 @@ During testing, several minor bugs were identified and resolved:
 - [x] Fixed broken image paths in `README.md`
 - [x] Corrected input validation logic on registration form
 All fixes were committed with descriptive messages and, where applicable, linked to specific issues or pull requests.
-
 
 ---
 
@@ -729,11 +716,13 @@ These improvements aim to increase user engagement, reliability, and scalability
 
 + For the responsiveness test and adjusting smaller design flaws, Google Chrome Developer Tools was used.
 
++ For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
 
 #### Code
 
 + The initial structure is based on CI's boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
 
++ Code snippets, ideas were taken from the following repositories:
 + Code snippets, ideas were taken from the following repositories:
 
 + <https://docs.fittrackee.org/en/features.html>
@@ -761,3 +750,22 @@ and eye for detail, I was guided in the right direction to make this project hap
 
 
 
+
+She always gave a different perspective on the issues and with her experience
+and eyes for details I was guided in the right direction to make this project happen.
+
+### Lessons & Final Thoughts
+
+This project taught me:
+
+Full-stack coordination between frontend and backend
+
+How tricky real-world deployments can get
+
+Managing form data and authentication securely
+
+Leveraging DRF with JWT for APIs
+
+React component reuse and prop management
+
+There is a huge potential in full stack applications, regardless what is it for.
