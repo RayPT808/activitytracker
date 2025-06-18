@@ -578,7 +578,7 @@ This approach ensured clarity around scope and helped keep development focused a
 
 ###  Sprint and Timeline Tracking
 
-The roadmap view showed a chronological rollout of tasks across the month of June. Tasks like form validation, filtering, and core CRUD operations were distributed across the weeks and tracked by ID.
+The roadmap view showed a chronological rollout of tasks across the month of May and June. Tasks like form validation, filtering, and core CRUD operations were distributed across the weeks and tracked by ID.
 
 Notable features completed:
 - Registration & Login flow
@@ -603,12 +603,123 @@ Adopting Agile principles helped structure the solo development effort by:
 - Breaking down the application into manageable chunks
 - Prioritizing the most impactful features first
 - Iterating and improving based on testing and feedback
-  
-#### Login credentials
 
-+ Django admin - Username: Runner1  Password: Sunday12
+##  Sprint One
 
-+ Activity Tracker user - Username: Runner2 Password: Sunday13
+**Sprint Duration:** June 2–6, 2025  
+**Focus:** Project setup, user registration and authentication, and basic frontend architecture.
+
+---
+
+###  Objectives
+- Set up the backend and frontend environments
+- Implement user registration and login functionality
+- Establish the activity tracker’s basic UI layout
+- Handle initial form and input validation
+
+---
+
+###  Completed Tasks
+- `#1` Registration
+- `#2` Login
+- `#3` Choosing activity type
+- `#10` List view of activities
+- `#17` Password visibility toggle
+
+## Sprint Two
+
+**Sprint Duration:** June 09–13, 2025  
+**Focus:** Core activity tracking functionality and dashboard UI integration.
+
+---
+
+###  Objectives
+- Enable users to log activities with required metadata
+- Implement activity form with duration and date selection
+- Display logged activities in a scrollable dashboard view
+- Establish base for filtering and updating activities
+
+---
+
+###  Completed Tasks
+- `#4` Title of activity
+- `#5` Record Date of activity
+- `#6` Adding duration of recorded activity
+- `#8` Description field/box
+- `#15` Current date display in activity form
+
+---
+
+###  Features Developed
+- Dynamic activity form with validation for duration, date, and required fields
+- Scrollable dashboard showing previously saved entries
+- Component structure created for `ActivityForm` and `ActivityList`
+- Responsive layout for mobile and desktop views
+-   
+
+##  Future Development
+
+While the current version of the Activity Tracker fulfills its core purpose, I thought of several enhancements for future releases to improve functionality, usability, and user engagement.
+
+---
+
+###  Feature Enhancements
+
+- **Search Functionality**  
+  Add a keyword-based search bar to allow users to quickly find past activities by name or notes content.
+
+- **Activity Categories Customization**  
+  Allow users to create and manage their own activity types, rather than selecting from a fixed list.
+
+- **Activity Charts & Analytics**  
+  Visual summaries (e.g. bar or pie charts) showing time spent per activity type or week to help users understand their habits better.
+
+- **Pagination or Infinite Scroll**  
+  Improve performance and navigation for users with many saved activities.
+
+---
+
+###  Authentication & Profile Improvements
+
+- **Password Reset via Email**  
+  Enable users to recover their accounts through secure email verification.
+
+- **Multi-Device Session Management**  
+  Allow users to see and manage logged-in sessions across devices.
+
+---
+
+###  User Interface & Accessibility
+
+- **Dark Mode Toggle**  
+  Add theme-switching for accessibility and user comfort.
+
+- **Accessibility Improvements**  
+  Improve screen reader support and keyboard navigation across forms and buttons.
+
+---
+
+###  Mobile Optimization
+
+- **PWA (Progressive Web App) Support**  
+  Enable offline use and add-to-home functionality to boost mobile engagement.
+
+- **Touch Gestures**  
+  Improve mobile interaction with swipe-to-delete or edit gestures on the activity list.
+
+---
+
+###  Testing & Quality
+
+- **End-to-End Testing with Cypress**  
+  Automate full user journey tests to ensure consistent performance across features.
+
+- **Improved Error Handling**  
+  Provide more informative feedback for failed API calls or form issues.
+
+---
+
+These improvements aim to increase user engagement, reliability, and scalability of the app over time.
 
 ### Credits
 
@@ -618,7 +729,6 @@ Adopting Agile principles helped structure the solo development effort by:
 
 + For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
 
-![Stravamobile](assets/images/Stravamobile.jpg)
 
 #### Code
 
