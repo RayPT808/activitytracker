@@ -315,8 +315,68 @@ RGB Breakdown
 ![RGB](assets/images/rgbbreakdown.png)
 
 ---
+### Reusable React Components
 
+To promote scalability, maintainability, and consistency across the frontend, the application was developed using modular and reusable React components. These components are divided by responsibility and reusability within the application interface.
 
+---
+
+#### 1. Page-Level Components
+These components correspond to specific routes or views in the application:
+
+- `HomePage`
+- `LoginPage`
+- `Register`
+- `AboutPage`
+- `DashboardPage`
+- `ProfilePage`
+- `NotFoundPage`
+
+Each of these handles user-specific views, logic, and layout for a dedicated part of the application.
+
+---
+
+#### 2.  Layout and Navigation
+These components manage the persistent UI structure and navigation:
+
+- `Navbar`: Main navigation bar visible across authenticated views
+- `Layout`: Shared page layout wrapper for protected routes
+- `App`: The root-level component used for routing and app shell
+
+---
+
+#### 3.  Reusable UI Components
+These are standalone components reused across multiple pages and forms:
+
+- `ActivityForm`: Reusable form used for creating and editing activities
+- `ActivityList`: Component that renders filtered or sorted lists of saved activities
+- `ConfirmModal`: A generic confirmation modal used for delete actions
+
+These are composable and used in different views like Dashboard, Edit, and Delete workflows.
+
+---
+
+#### 4.  Authentication and Context
+These components manage authentication state and user context globally via React Context API:
+
+- `AuthContext` / `AuthProvider`: Handles login state, token storage, and protected routing
+- `UserContext` / `UserProvider`: Manages user profile data across the app
+
+These ensure consistent user experience and allow state sharing across components.
+
+---
+
+#### 5.  CRUD-Specific or Utility Components
+These support specific operations but aren't tied to a single view:
+
+- `DeleteActivity`: Component for confirming and performing delete actions
+- `UpdateActivity`: Component used to handle updates to previously logged activities
+
+These components extend functionality of core screens like Dashboard and Profile, and promote separation of concerns.
+
+---
+
+Together, these reusable components helped keep the codebase modular and DRY (Don't Repeat Yourself), simplifying development and making future updates easier to implement.
 ## 4. Testing
 
 ### Testing Strategy
