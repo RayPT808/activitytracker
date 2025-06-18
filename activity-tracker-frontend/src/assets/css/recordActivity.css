@@ -1,48 +1,47 @@
 /* src/assets/css/recordActivity.css */
 .activity-form {
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    padding: 1.5rem;
-    border-radius: 8px;
-    max-width: 500px;
-    margin: 2rem auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .activity-form h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  
-  .activity-form label {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-weight: bold;
-  }
-  
-  .activity-form input,
-  .activity-form textarea,
-  .activity-form select {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .activity-form button {
-    width: 100%;
-    padding: 0.75rem;
-    background-color: #3498db;
-    border: none;
-    color: #fff;
-    font-size: 1.1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .activity-form button:hover {
-    background-color: #2980b9;
-  }
-  
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.activity-form h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.activity-form label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: bold;
+}
+
+.activity-form input,
+.activity-form textarea,
+.activity-form select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.activity-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.activity-form button:hover {
+  background-color: #2980b9;
+}

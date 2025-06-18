@@ -1,53 +1,53 @@
 /* Existing rules for the form styling */
 .container {
-    max-width: 500px; 
-    margin-top: 10px; /* Adjust this to give space for the fixed navbar */
+  max-width: 500px;
+  margin-top: 10px; /* Adjust this to give space for the fixed navbar */
 }
 
 .form-group {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .form-control {
-    padding: 10px;
+  padding: 10px;
 }
 
 .btn {
-    width: 100%;
+  width: 100%;
 }
 
 h2.text-center {
-    text-align: center; 
+  text-align: center;
 }
 
 /* Fix navbar to stay on top without stretching */
 body {
-    margin-top: 0;
-    padding-top: 0;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .navbar {
-    position: fixed; /* Keep navbar fixed at the top */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 10; /* Ensure it stays on top of other content */
-    width: 100%;
-    background-color: #fff; /* Optional: Adjust based on your navbar style */
+  position: fixed; /* Keep navbar fixed at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10; /* Ensure it stays on top of other content */
+  width: 100%;
+  background-color: #fff; /* Optional: Adjust based on your navbar style */
 }
 
 .navbar-nav {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    justify-content: flex-start; /* Align navbar items to the left */
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: flex-start; /* Align navbar items to the left */
 }
 
 .navbar-brand {
-    margin-left: 10px; /* Optionally space the logo */
+  margin-left: 10px; /* Optionally space the logo */
 }
 
 /* Adjust content position to avoid overlap with the fixed navbar */
 .container {
-    margin-top: 100px; /* Adjust as needed for spacing from navbar */
+  margin-top: 100px; /* Adjust as needed for spacing from navbar */
 }
