@@ -325,7 +325,7 @@ This project followed a practical testing strategy combining both automated and 
 ---
 
 ### Continuous Testing
-We employed a continuous testing approach by running validation steps on each commit. ESLint and Prettier were integrated locally to enforce code standards, and GitHub Actions was configured to run basic checks automatically during pull requests, helping catch syntax and logic issues early.
+I employed a continuous testing approach by running validation steps on each commit. ESLint and Prettier were integrated locally to enforce code standards, and GitHub Actions was configured to run basic checks automatically during pull requests, helping catch syntax and logic issues early.
 
 ---
 
@@ -334,7 +334,7 @@ Automated tests were written to cover reusable frontend components and backend r
 - **Frontend**: Jest and React Testing Library were used to test UI rendering, input validation, and component logic.
 - **Backend**: Unit tests for models and route handlers were written using `unittest` (or `pytest`, if using Python).
 - Example: `npm test` or `pytest` to execute tests.
-- Test files are located in `frontend/src/__tests__/` and `backend/tests/`.
+- Test file is located in /activitytracker/test.py.
 
 ---
 
@@ -369,7 +369,7 @@ Common edge cases (e.g., empty form fields, invalid dates, short passwords) were
 ### Browser & Responsiveness
 The application was manually tested for responsiveness and layout accuracy on the following environments:
 - **Browsers**: Chrome, Firefox, Safari, Edge
-- **Devices**: iPhone SE, iPhone 14, iPad, 13" Laptop, 27" Monitor
+- **Devices**: Redmi Note 13, MacBook Pro, 13" Laptop, 27" Monitor
 Media queries and flexible units were used to ensure consistent behavior across screen sizes.
 
 ---
@@ -382,10 +382,9 @@ The codebase adheres to modern standards through regular linting and formatting 
 
 ---
 
-### ♿ Accessibility
+### Accessibility
 Accessibility best practices were applied using:
 - **Lighthouse Audits** to check color contrast and semantic HTML usage
-- **ARIA Labels** for form inputs and icons
 - **Keyboard navigation** tested manually
 
 ---
