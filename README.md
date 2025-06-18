@@ -2,11 +2,12 @@
 
 ![Amiresponsive](assets/images/amiresponsive.png)
 
-“Not all metrics matter. Sometimes, the best data is the simplest.”
+“Not all metrics matter. Sometimes, the best data is the simplest.”  To visit the deployed version of the Activity Tracker [click here](https://reactivity-789dd5d26427.herokuapp.com/).
 
 ## 1. Purpose
 
 The Activity Tracker saves the key details of a training or recreactional activity  in the most simple, straightforward way. It is useful for anyone who wants to record their sport or recreational activities, and wants to monitor their progress over time. Because of it's simplicity it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead brings back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, they provide a lot more details, which eventually becomes the problem. The usres will focus much more on certain metrics and when some targets are not met it will have a negative impact on the users' behavoiur, motivation. Certanly when one is competeing for her/his country or doing competitive sports for living all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full stack web application and was built using Django, Python, Bootstrap, PostgreSQL, React.
+
 
 ## 2. Features
 
@@ -27,63 +28,239 @@ The Activity Tracker saves the key details of a training or recreactional activi
     ![Existing User](assets/images/validationexistinguser.png)
 
 
-    -**Missing Password** The registration will not proceed if one of the passwords is missing.
+    - **Missing Password** The registration will not proceed if one of the passwords is missing.
 
     ![Missing Password](assets/images/validationmissingpassword.png)
 
 
-    -**Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
+    - **Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
 
     ![Password Mismatch](assets/images/validationpasswordnomatch.png)
 
 
-    -**Missing Username** The registration will not go ahead if the username is missing.
+    - **Missing Username** The registration will not go ahead if the username is missing.
 
     ![Missing Username](assets/images/validationusername.png)
 
 
-    -**Missing Email** The registration will not go ahead if the email is missing.
+    - **Missing Email** The registration will not go ahead if the email is missing.
 
     ![Missing Email](assets/images/validationemail.png)
 
 
--**Password Visibility Toggle** In case the user is not sure about the password input or wants to check them the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
+- **Password Visibility Toggle** In case the user is not sure about the password input or wants to check them the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
 
 ![Password Visibility](assets/images/passwordvisibility.png)
 
 
--**Login Validation**
+- **Login Validation**
 
-    -**Missing Password** Previously registered user won't be able to log in if the password is missing
+  - **Missing Password** Previously registered user won't be able to log in if the password is missing.
 
-    ![No Password](assets/images/loginvalidationmissingpswrd.png)
-
-
+  ![No Password](assets/images/loginvalidationmissingpswrd.png)
 
 
+  - **Missing Username** Previously registered user won't be able to log in if the username is missing.
+
+  ![Missing User](assets/images/loginvalidationmissingusern.png)
+
+
+  - **Invalid Details** Previously registered user won't be able to log in if the username and/or password is not correct.
+
+  ![Invalid Details](assets/images/loginvalidationwrongpswrd.jpg)
+
+
+- **Dashboard** The Dashboard is the where the main functionalities can be found, the dashboard itself is the activity tracker. Simple design both for desktop and for mobile.
+
+![Desktop](assets/images/desktopdashboard.png)
+
+Mobile version (Redmi Note 13)
+
+![Mobile](assets/images/mobiledashboard.jpg)
+
+
+- **Dashboard Functions**
+
+- **Activity Filter by Type**  
+  Users can quickly filter activities by type (e.g., Running, Swimming, Gym).  
+  ![Type Filter](assets/images/filtertype.png)
+
+- **Activity Filter by Date (Newest First)**  
+  Sorts the activities to display the most recently added entries at the top of the list.  
+  ![Activity Date](assets/images/filterdateduration.png)
+
+- **Activity Filter by Duration (Shortest First)**  
+  Allows users to sort activities based on their tracked time, starting with the shortest duration.  
+  ![Activity Duration](assets/images/filterdateduration.png)
+
+- **Total Time Tracked**  
+  A dynamic field that shows the cumulative duration of all logged activities, helping users see their overall time investment.  
+  ![Total Time](assets/images/totalactivities.png)
+
+- **Total Activities**  
+  Displays the total number of activities logged, giving users a quick summary of their productivity.  
+  ![Total Activities](assets/images/mobiledashboard.jpg)
+
+- **Scrollable List of Saved Activities**  
+  Previously saved activities are displayed in an easy-to-navigate scrollable list for convenient browsing and review.  
+  ![Activity List](assets/images/savedactivitieslist.png)
+
+- **Add New Activity Button**  
+  A prominent button that allows users to quickly log new activities, including relevant details such as title, duration, and type.  
+  ![Add New](assets/images/desktopdashboard.png)
+
+
+- **Add New Activity Form** The "Add New Activity" form enables users to log new activities with structured input and built-in validation to ensure data quality. Key components include:
+
+  - **Activity Type Selector**  
+  A dropdown list allowing users to select a category or type of activity (e.g., Running, Swimming, Hiking).  
+  _Validation_: The user must select a valid activity type before submission.  
+  ![](assets/images/activitylist.png)
+
+- **Activity Name Field (Mandatory)**  
+  A required text input for naming the activity, ensuring all entries are clearly labeled.  
+  _Validation_: This field cannot be left blank.  
+  ![](assets/images/activitynamevalidation.png)
+
+- **Activity Duration Picker (Mandatory)**  
+  Allows users to input the time spent on an activity using a time selector.  
+  _Validation_: A value of `00:00:00` is not accepted.  
+  ![](assets/images/durationvalidation.png)
+
+- **Activity Date Picker (Mandatory)**  
+  Users select the date the activity was completed.  
+  _Validation_: Future dates are disabled and cannot be selected.  
+  ![](assets/images/mobiledatepicker.jpg)
+
+- **Notes Field (Optional)**  
+  A free-text area for users to include additional information or context about the activity.  
+  _Validation_: This field is optional and does not require input.  
+  ![](assets/images/notesoptional.png)
 
 
 
+-**Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fileds in the New Activity form.
+
+![Edit Activity](assets/images/editactivity.png)
+
+
+-**Delete Activities** The user has the option to delete previously saved activities from the list. To proceed the user has to confirm the deletion of the activity.
+
+![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
 
 
 
+-**Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
+_Validation_: Validation applies to the Username and to the Email address fields.
+  Key elements include:
 
-##  Overview
+- **Username (Pre-Populated)**  
+  Displays the user’s unique username, which is pre-filled.  
 
-As a personal trainer and hobby triathlete, I always try to keep track of my activities using platforms like **Strava** and **Garmin Connect**. While powerful, these tools often overwhelm with complex metrics. This app is a **minimal viable product (MVP)** built to address this: _track your activities simply and clearly_.
+- **Email (Pre-Populated)**  
+  Shows the registered email address of the user, pre-filled in the form for reference.  
 
-This is my fifth and final milestone project at Code Institute – a **full stack web app** using **React**, **Django**, and **PostgreSQL**, designed for everyday users who just want to log, view, and manage their activities.
+- **First Name (Editable)**  
+  Allows users to enter or update their first name. This field is optional but enhances personalization.  
 
----
+- **Last Name (Editable)**  
+  Allows users to enter or update their last name. Optional, but contributes to a more complete profile. 
 
-##  The Vision
+- **Update Button**  
+  Submits the updated profile information and provides feedback on success or validation errors.  
+  ![](assets/images/profileupdate.png)
 
-Platforms like [Strava](https://developers.strava.com/) and [Garmin](https://developer.garmin.com/) are the giants. I drew inspiration from them but opted to avoid the complexities of their APIs and licenses.
 
-Instead, I designed a **simplified user interface** to support key use cases:
+
+##  Requirement Gathering and Planning
+
+###  Project Summary
+The activity tracker app was designed to help users record and monitor how they spend their time through a simple and user-friendly interface.
+The goal of this project was to build an intuitive activity tracker app that allows users to log, manage, and review their daily/weekly activities. 
+Planning focused on user needs such as accessibility, ease of use, and data accuracy.”
+Platforms like [Strava](https://developers.strava.com/docs/reference/) and [Garmin](https://developer.garmin.com/gc-developer-program/activity-api/) are the giants. 
+I drew inspiration from them but opted to avoid the complexities of their APIs and licenses. Both of those well known platforms at their core have the same functionality that I wanted to have for the users.
+
+**Strava**
+
+![Strava Manual Activity](assets/images/stravamobile.jpg)
+
+**Garmin**
+
+![Garmin Manual Activity](assets/images/garmindesktop.png)
+
+The main difference is that while they treat this feature as an add on or extra, I want this feature to be the core of an activity tracker.
+In case of future development other functionalities would be added to this and not the other way round.
+
+To keep it simple I designed a **simplified user interface** to support key use cases:
 -  Log activities with type, name, date, and duration
 -  View past records in a clean dashboard
 -  Edit or delete records anytime
+
+
+
+
+###  Stakeholders & Target Users
+- Primary Users: Individuals who want to track time spent with physical activities, training. 
+  Individuals who need a simple tool to keep up their healthy habits regardelss of age, fitness level or sport background
+- Stakeholders: Product owner, development team, end users.
+
+###  Functional Requirements
+- Users can log new activities with name, type, duration, and date.
+- Users can edit or delete saved activities.
+- Filtering and sorting options are available on the dashboard.
+- Secure login and registration are required to access personal data.
+
+###  Non-Functional Requirements
+- Application must respond in under 2 seconds.
+- Fully responsive UI.
+- Secure user authentication.
+- Validation on both frontend and backend.
+
+###  Planning Tools & Visuals
+- ERD (Entity Relationship Diagram):  
+  ![](assets/images/erdactivitytracker.png)
+
+
+- Github Projects:  
+  [Link to Planning Board](https://github.com/users/RayPT808/projects/16/views/2)
+
+
+
+- User Flow:  
+
+  1. Regitration
+
+  ![Registration](assets/images/userflowregister.png)
+
+  2. Login
+
+  ![Login](assets/images/userflowlogin.png)
+
+  3. Profile Update
+
+  ![Profile Update](assets/images/userflowupdateprofile.png)
+
+  4. Add Activity
+
+  ![Add Activity](assets/images/userflowaddactivity.png)
+
+  5. Edit Activity
+
+  ![Edit Activity](assets/images/userfloweditactivity.png)
+
+  6. Delete Activity
+
+  ![Delete Activity](assets/images/userflowdeleteactivity.png)
+
+
+
+
+
+---
+
+
+
 
 ---
 
