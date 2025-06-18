@@ -387,17 +387,18 @@ The codebase adheres to modern standards through regular linting and formatting 
 Accessibility best practices were applied using:
 
 - **Lighthouse Audits** to check color contrast and semantic HTML usage. I have recorded the final results for each page below:
-- | Page | Result |
-|----|----|
-| Register | ![Lighthouse Screenshot](assets/images/lighthousedesktopregister.png)  |
-| Login |![Lighthouse Screenshot](assets/images/lighthousedesktoplogin.png)  |
-| Home | ![Lighthouse Screenshot](assets/images/lighthousedesktophome.png) |
-| About | ![Lighthouse Screenshot](assets/images/lighthousedesktopaboutus.png)  |
-| Dashboard |![Lighthouse Screenshot](assets/images/lighthousemobiledashboard.png) |
-| Mobile Register | ![Lighthouse Screenshot](assets/images/lighthousemobileregister.png) |
-| Mobile Login |  ![Lighthouse Screenshot](assets/images/lighthousemobilelogin.png) |
-| Mobile About |![Lighthouse Screenshot](assets/images/lighthousemobileaboutus.png)   |
-| Mobile Dashboard | ![Lighthouse Screenshot](assets/images/lighthousemobiledashboard.png)  |
+
+| Page              | Result |
+|-------------------|--------|
+| Register          | <img src="assets/images/lighthousedesktopregister.png" width="300"/> |
+| Login             | <img src="assets/images/lighthousedesktoplogin.png" width="300"/> |
+| Home              | <img src="assets/images/lighthousedesktophome.png" width="300"/> |
+| About             | <img src="assets/images/lighthousedesktopaboutus.png" width="300"/> |
+| Dashboard         | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
+| Mobile Register   | <img src="assets/images/lighthousemobileregister.png" width="300"/> |
+| Mobile Login      | <img src="assets/images/lighthousemobilelogin.png" width="300"/> |
+| Mobile About      | <img src="assets/images/lighthousemobileaboutus.png" width="300"/> |
+| Mobile Dashboard  | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
 
 - - **Keyboard navigation** tested manually
 
