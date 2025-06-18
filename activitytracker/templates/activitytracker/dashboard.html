@@ -1,88 +1,83 @@
-{% extends 'activitytracker/base.html' %} {% load static %} {% block title
-%}Dashboard{% endblock %} {% block content %}
-<div class="container mt-5">
-  <h2 class="text-center title-adjust">Dashboard</h2>
-
-  <div class="row">
-    <!-- Activity Log Section -->
-    <div class="col-md-6">
-      <h3>Past Activities</h3>
-      <!-- Scrollable list of activities using Bootstrap -->
-      <div
-        id="activity-log"
-        class="overflow-auto border rounded"
-        style="max-height: 400px"
-      >
-        <ul class="list-group">
-          {% for activity in activities %}
-          <li class="list-group-item">
-            <strong>{{ activity.date }}</strong> - {{ activity.activity_type }}
-            for {{ activity.duration }} minutes
-            <p>{{ activity.notes }}</p>
-            <a
-              href="{% url 'update_activity' activity.pk %}"
-              class="btn btn-primary btn-sm"
-              >Edit</a
-            >
-            <a
-              href="{% url 'delete_activity' activity.pk %}"
-              class="btn btn-danger btn-sm"
-              >Delete</a
-            >
-          </li>
-          {% endfor %}
-        </ul>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.6.0">
+  <title></title>
+</head>
+<body>
+  {% extends 'activitytracker/base.html' %} {% load static %} {%
+  block title %}Dashboard{% endblock %} {% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center title-adjust">Dashboard</h2>
+    <div class="row">
+      <!-- Activity Log Section -->
+      <div class="col-md-6">
+        <h3>Past Activities</h3>
+        <!-- Scrollable list of activities using Bootstrap -->
+        <div id="activity-log" class="overflow-auto border rounded"
+        style="max-height: 400px">
+          <ul class="list-group">
+            {% for activity in activities %}
+            <li class="list-group-item">
+              <strong>{{ activity.date }}</strong> - {{
+              activity.activity_type }} for {{ activity.duration }}
+              minutes
+              <p>{{ activity.notes }}</p><a href=
+              "{%%20url%20'update_activity'%20activity.pk%20%}"
+              class="btn btn-primary btn-sm">Edit</a> <a href=
+              "{%%20url%20'delete_activity'%20activity.pk%20%}"
+              class="btn btn-danger btn-sm">Delete</a>
+            </li>{% endfor %}
+          </ul>
+        </div>
+      </div><!-- Activity Form Section -->
+      <div class="col-md-6">
+        <h3>Add New Activity</h3>
+        <form method="post" enctype="multipart/form-data" action=
+        "{%%20url%20'dashboard'%20%}">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ form.activity_type.label_tag }} {{
+            form.activity_type }}
+          </div>
+          <div class="form-group">
+            {{ form.activity_name.label_tag }} {{
+            form.activity_name }}
+          </div>
+          <div class="form-group">
+            {{ form.duration_input.label_tag }} {{
+            form.duration_input }}
+          </div>
+          <div class="form-group">
+            {{ form.date.label_tag }} {{ form.date }}
+          </div>
+          <div class="form-group">
+            {{ form.notes.label_tag }} {{ form.notes }}
+          </div>
+          <div class="form-group">
+            {{ form.file.label_tag }} {{ form.file }}
+          </div>{% for field in form %} {% for error in
+          field.errors %}
+          <div class="alert alert-danger">
+            {{ error }}
+          </div>{% endfor %} {% endfor %} <button type="submit"
+          class="btn btn-primary mt-3">Add Activity</button>
+        </form>
       </div>
     </div>
+  </div>{% endblock %} {% block extra_css %}
+  <link rel="stylesheet" href=
+  "{% static 'css/activity_list.css' %}">{% endblock %} {% block
+  extra_js %} 
+  <script>
 
-    <!-- Activity Form Section -->
-    <div class="col-md-6">
-      <h3>Add New Activity</h3>
-      <form
-        method="post"
-        enctype="multipart/form-data"
-        action="{% url 'dashboard' %}"
-      >
-        {% csrf_token %}
-
-        <div class="form-group">
-          {{ form.activity_type.label_tag }} {{ form.activity_type }}
-        </div>
-
-        <div class="form-group">
-          {{ form.activity_name.label_tag }} {{ form.activity_name }}
-        </div>
-
-        <div class="form-group">
-          {{ form.duration_input.label_tag }} {{ form.duration_input }}
-        </div>
-
-        <div class="form-group">{{ form.date.label_tag }} {{ form.date }}</div>
-
-        <div class="form-group">
-          {{ form.notes.label_tag }} {{ form.notes }}
-        </div>
-
-        <div class="form-group">{{ form.file.label_tag }} {{ form.file }}</div>
-
-        {% for field in form %} {% for error in field.errors %}
-        <div class="alert alert-danger">{{ error }}</div>
-        {% endfor %} {% endfor %}
-
-        <button type="submit" class="btn btn-primary mt-3">Add Activity</button>
-      </form>
-    </div>
-  </div>
-</div>
-{% endblock %} {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/activity_list.css' %}" />
-{% endblock %} {% block extra_js %}
-<script>
   document.addEventListener("DOMContentLoaded", function () {
     var activityLog = document.getElementById("activity-log");
     if (activityLog) {
       activityLog.scrollTop = activityLog.scrollHeight;
     }
   });
-</script>
-{% endblock %}
+  </script> {% endblock %}
+</body>
+</html>

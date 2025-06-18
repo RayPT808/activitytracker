@@ -1,27 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="csrf-token" content="{{ csrf_token }}" />
-    <title>{% block title %}Activity Tracker{% endblock %}</title>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for HTML5 for Linux version 5.6.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content=
+  "width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <title>{% block title %}Activity Tracker{% endblock %}</title>
+  <link href=
+  "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  rel="stylesheet">
+  <link rel="stylesheet" href=
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    {% load static %}
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="{% static 'activitytracker/images/favicon.ico' %}"
-    />
-
-    <style>
+  <style>
       body {
         background: url("{% static 'activitytracker/images/backgroundimage.jpg' %}")
           no-repeat center center fixed;
@@ -64,71 +57,59 @@
       .logout-button:hover {
         color: #ddd;
       }
-    </style>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container">
-        <a class="navbar-brand" href="/">
-          <img
-            src="{% static 'activitytracker/images/trackerlogo.jpg' %}"
-            alt="Logo"
-          />
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-            </li>
-            <li class="nav-item">
-              <form
-                method="post"
-                action="{% url 'logout' %}"
-                class="logout-form"
-              >
-                {% csrf_token %}
-                <button
-                  type="submit"
-                  class="btn btn-link nav-link logout-button"
-                >
-                  Logout
-                </button>
-              </form>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'about' %}">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'login' %}">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'register' %}">Register</a>
-            </li>
-            {% endif %}
-          </ul>
-        </div>
+  </style>
+</head>
+<body>
+  {% load static %}
+  <link rel="icon" type="image/x-icon" href=
+  "{% static 'activitytracker/images/favicon.ico' %}">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/"><img src=
+      "{%%20static%20'activitytracker/images/trackerlogo.jpg'%20%}"
+      alt="Logo"></a>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'dashboard'%20%}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'about'%20%}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'profile'%20%}">Profile</a>
+          </li>
+          <li class="nav-item">
+            <form method="post" action="{%%20url%20'logout'%20%}"
+            class="logout-form">
+              {% csrf_token %} <button type="submit" class=
+              "btn btn-link nav-link logout-button">Logout</button>
+            </form>
+          </li>{% else %}
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'about'%20%}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'login'%20%}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=
+            "{%%20url%20'register'%20%}">Register</a>
+          </li>{% endif %}
+        </ul>
       </div>
-    </nav>
-
-    <div class="container mt-5 pt-5">{% block content %}{% endblock %}</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+    </div>
+  </nav>
+  <div class="container mt-5 pt-5">
+    {% block content %}{% endblock %}
+  </div>
+  <script src=
+  "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

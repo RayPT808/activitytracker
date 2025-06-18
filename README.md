@@ -2,7 +2,7 @@
 
 ![Amiresponsive](assets/images/amiresponsive.png)
 
-“Not all metrics matter. Sometimes, the best data is the simplest.”  To visit the deployed version of the Activity Tracker [click here](https://reactivity-789dd5d26427.herokuapp.com/).
+“Not all metrics matter. Sometimes, the best data is the simplest.” To visit the deployed version of the Activity Tracker [click here](https://reactivity-789dd5d26427.herokuapp.com/).
 
 ## 1. Purpose
 
@@ -24,25 +24,25 @@ The Activity Tracker saves the key details of a training or recreational activit
 
 - **Registration Validation** The registration form is using standard validations to highlight any error for the user in case of wrong or missing details.
 
-    - **Existing User**: Registration will not proceed when a new user selects a previously saved user name.
+  - **Existing User**: Registration will not proceed when a new user selects a previously saved user name.
 
-    ![Existing User](assets/images/validationexistinguser.png)
+  ![Existing User](assets/images/validationexistinguser.png)
 
-    - **Missing Password** The registration will not proceed if one of the passwords is missing.
+  - **Missing Password** The registration will not proceed if one of the passwords is missing.
 
-    ![Missing Password](assets/images/validationmissingpassword.png)
+  ![Missing Password](assets/images/validationmissingpassword.png)
 
-    - **Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
+  - **Mismatched Passwords** The registration will not proceed if the two passwords that the user puts in do not match fully.
 
-    ![Password Mismatch](assets/images/validationpasswordnomatch.png)
+  ![Password Mismatch](assets/images/validationpasswordnomatch.png)
 
-    - **Missing Username** The registration will not go ahead if the username is missing.
+  - **Missing Username** The registration will not go ahead if the username is missing.
 
-    ![Missing Username](assets/images/validationusername.png)
+  ![Missing Username](assets/images/validationusername.png)
 
-    - **Missing Email** The registration will not go ahead if the email is missing.
+  - **Missing Email** The registration will not go ahead if the email is missing.
 
-    ![Missing Email](assets/images/validationemail.png)
+  ![Missing Email](assets/images/validationemail.png)
 
 ---
 - **Password Visibility Toggle** In case the user is not sure about the password input or wants to check it, the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
@@ -50,6 +50,7 @@ The Activity Tracker saves the key details of a training or recreational activit
 ![Password Visibility](assets/images/passwordvisibility.png)
 
 ---
+
 - **Login Validation**
 
   - **Missing Password** A previously registered user won't be able to log in if the password is missing.
@@ -74,6 +75,7 @@ Mobile version (Redmi Note 13)
 ![Mobile](assets/images/mobiledashboard.jpg)
 
 ---
+
 - **Dashboard Functions**
 
 - **Activity Filter by Type**  
@@ -105,12 +107,13 @@ Mobile version (Redmi Note 13)
   ![Add New](assets/images/desktopdashboard.png)
 
 ---
+
 - **Add New Activity Form** The "Add New Activity" form enables users to log new activities with structured input and built-in validation to ensure data quality. Key components include:
 
   - **Activity Type Selector**  
-  A dropdown list allowing users to select a category or type of activity (e.g., Running, Swimming, Hiking).  
-  _Validation_: The user must select a valid activity type before submission.  
-  ![](assets/images/activitylist.png)
+    A dropdown list allowing users to select a category or type of activity (e.g., Running, Swimming, Hiking).  
+    _Validation_: The user must select a valid activity type before submission.  
+    ![](assets/images/activitylist.png)
 
   - **Activity Name Field (Mandatory)**  
   A required text input for naming the activity, ensuring all entries are clearly labeled.  
@@ -143,31 +146,34 @@ Mobile version (Redmi Note 13)
 ![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
 
 ---
+
+-**Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
 - **Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
 _Validation_: Validation applies to the Username and the Email address fields.
   Key elements include:
 
 - **Username (Pre-Populated)**  
-  Displays the user’s unique username, which is pre-filled.  
+  Displays the user’s unique username, which is pre-filled.
 
 - **Email (Pre-Populated)**  
-  Shows the registered email address of the user, pre-filled in the form for reference.  
+  Shows the registered email address of the user, pre-filled in the form for reference.
 
 - **First Name (Editable)**  
-  Allows users to enter or update their first name. This field is optional but enhances personalization.  
+  Allows users to enter or update their first name. This field is optional but enhances personalization.
 
 - **Last Name (Editable)**  
-  Allows users to enter or update their last name. Optional, but contributes to a more complete profile. 
+  Allows users to enter or update their last name. Optional, but contributes to a more complete profile.
 
 - **Update Button**  
   Submits the updated profile information and provides feedback on success or validation errors.  
   ![](assets/images/profileupdate.png)
 
-## 3.  Requirement Gathering and Planning
+## 3. Requirement Gathering and Planning
 
-###  Project Summary
+### Project Summary
+
 The activity tracker app was designed to help users record and monitor how they spend their time through a simple and user-friendly interface.
-The goal of this project was to build an intuitive activity tracker app that allows users to log, manage, and review their daily/weekly activities. 
+The goal of this project was to build an intuitive activity tracker app that allows users to log, manage, and review their daily/weekly activities.
 Planning focused on user needs such as accessibility, ease of use, and data accuracy.”
 Platforms like [Strava](https://developers.strava.com/docs/reference/) and [Garmin](https://developer.garmin.com/gc-developer-program/activity-api/) are the giants. 
 I drew inspiration from them but opted to avoid the complexities of their APIs and licenses. Both of those well-known platforms, at their core, have the same functionality that I wanted to have for the users.
@@ -195,35 +201,41 @@ To keep it simple, I designed a **simplified user interface** to support key use
   Individuals who need a simple tool to keep up their healthy habits, regardless of age, fitness level, or sports background
   Individuals who need a simple tool to keep up their healthy habits regardless of age, fitness level or sport background
 - Stakeholders: Product owner, development team, end users.
+
 ---
 
-###  Functional Requirements
+### Functional Requirements
+
 - Users can log new activities with name, type, duration, and date.
 - Users can edit or delete saved activities.
 - Filtering and sorting options are available on the dashboard.
 - Secure login and registration are required to access personal data.
+
 ---
 
-###  Non-Functional Requirements
+### Non-Functional Requirements
+
 - Application must respond in under 2 seconds.
 - Fully responsive UI.
 - Secure user authentication.
 - Validation on both the frontend and backend.
 ---
 
-###  Planning Tools & Visuals
+### Planning Tools & Visuals
+
 - ERD (Entity Relationship Diagram):  
   ![](assets/images/erdactivitytracker.png)
 
 ---
+
 - Github Projects:  
   [Link to Planning Board](https://github.com/users/RayPT808/projects/16/views/2)
 
 ---
 
-- User Flow:  
+- User Flow:
 
-  1\. Registration
+  1\. Regitration
 
   ![Registration](assets/images/userflowregister.png)
 
@@ -266,6 +278,7 @@ To keep it simple, I designed a **simplified user interface** to support key use
 ![Edit Activity](assets/images/wireframeeditactivity.png)
 
 ---
+
 - Mobile Wireframes: Mobile wireframes were created to ensure responsive design across devices, focusing on a clean and simplified layout for optimal usability on smaller screens.
 
 **Login**
@@ -281,18 +294,18 @@ To keep it simple, I designed a **simplified user interface** to support key use
 
 - Colour Scheme Specification: This document outlines the main color palette and typography settings used in the Activity Tracker frontend application. Below are the most frequently used colors in the app's stylesheets:
 
-| Color                | Usage Count | Purpose                          |
-|---------------------|-------------|----------------------------------|
-| `#fff`              | 7           | Common background                |
-| `#ccc`              | 6           | Borders or secondary accents     |
-| `#333`              | 5           | Primary text color               |
-| `#ddd`              | 4           | UI separators / borders          |
-| `#e0e0e0`           | 4           | Light backgrounds / sections     |
-| `rgba(0, 0, 0, 0.1)`| 4           | Box shadows / overlays           |
-| `#ffc`              | 3           | Highlights / alert backgrounds   |
-| `#264b5d`           | 3           | Navigation bar / primary color   |
-| `rgba(0, 0, 0, 0.15)`| 3         | Shadows / overlays               |
-| `#ffffff`           | 3           | Alternate for `#fff`             |
+| Color                 | Usage Count | Purpose                        |
+| --------------------- | ----------- | ------------------------------ |
+| `#fff`                | 7           | Common background              |
+| `#ccc`                | 6           | Borders or secondary accents   |
+| `#333`                | 5           | Primary text color             |
+| `#ddd`                | 4           | UI separators / borders        |
+| `#e0e0e0`             | 4           | Light backgrounds / sections   |
+| `rgba(0, 0, 0, 0.1)`  | 4           | Box shadows / overlays         |
+| `#ffc`                | 3           | Highlights / alert backgrounds |
+| `#264b5d`             | 3           | Navigation bar / primary color |
+| `rgba(0, 0, 0, 0.15)` | 3           | Shadows / overlays             |
+| `#ffffff`             | 3           | Alternate for `#fff`           |
 
 Color Usage and Purpose
 ![Color](assets/images/colorusage.png)
@@ -364,10 +377,10 @@ These components extend the functionality of core screens like Dashboard and Pro
 ---
 
 Together, these reusable components helped keep the codebase modular and DRY (Don't Repeat Yourself), simplifying development and making future updates easier to implement.
-
 ## 4. Testing
 
 ### Testing Strategy
+
 This project followed a practical testing strategy combining both automated and manual testing. The goal was to ensure the core functionalities of the activity tracker remained reliable and user-friendly throughout development. Testing was applied to both frontend and backend components, with a focus on user-facing features like form validation and activity management.
 
 ---
@@ -378,7 +391,9 @@ I employed a continuous testing approach by running validation steps on each com
 ---
 
 ### Automated Testing
-Automated tests were written to cover reusable frontend components and backend routes. 
+
+Automated tests were written to cover reusable frontend components and backend routes.
+
 - **Frontend**: Jest and React Testing Library were used to test UI rendering, input validation, and component logic.
 - **Backend**: Unit tests for models and route handlers were written using `unittest` (or `pytest`, if using Python).
 - Example: `npm test` or `pytest` to execute tests.
@@ -387,11 +402,12 @@ Automated tests were written to cover reusable frontend components and backend r
 ---
 
 ### Manual Testing
+
 Manual testing covered user flows such as registration, login/logout, adding/editing activities, and profile updates. Each major feature was tested on multiple browsers and devices to simulate real-world usage.
 Common edge cases (e.g., empty form fields, invalid dates, short passwords) were manually triggered to validate error handling.
 
 | Test Element    | The Test                                 | The Outcome                                             |
-|:----------------|:-----------------------------------------|:--------------------------------------------------------|
+| :-------------- | :--------------------------------------- | :------------------------------------------------------ |
 | Registration    | Submit form with all valid fields        | ✅ Pass: User account created and redirected to login   |
 | Registration    | Submit form with empty required fields   | ✅ Pass: Error messages displayed for missing input     |
 | Registration    | Enter mismatched passwords               | ✅ Pass: Validation error shown and submission blocked  |
@@ -415,18 +431,25 @@ Common edge cases (e.g., empty form fields, invalid dates, short passwords) were
 ---
 
 ### Browser & Responsiveness
+
 The application was manually tested for responsiveness and layout accuracy on the following environments:
+
 - **Browsers**: Chrome, Firefox, Safari, Edge
 - **Devices**: Redmi Note 13, MacBook Pro, 13" Laptop, 27" Monitor
-Media queries and flexible units were used to ensure consistent behavior across screen sizes.
+  Media queries and flexible units were used to ensure consistent behavior across screen sizes.
 
 ---
 
 ### Code Validation
+
 The codebase adheres to modern standards through regular linting and formatting tools:
-- **HTML** validated with [W3C Validator](https://validator.w3.org/)
-- **CSS** formatted using Prettier
-- **JavaScript** checked using ESLint (Airbnb style guide)
+
+| Language   | Validation Method               | Outcome                          |
+|------------|----------------------------------|----------------------------------|
+| HTML       | W3C HTML Validator               | No critical issues found         |
+| CSS        | W3C CSS Validator / Prettier     | Stylesheet validated successfully|
+| JavaScript | ESLint (Airbnb config)           | No major linting errors detected |
+| Python     | Flake8 / Black Formatter         | Code style and format verified   |
 
 ---
 
@@ -436,31 +459,213 @@ Accessibility best practices were applied using:
 
 - **Lighthouse Audits** to check color contrast and semantic HTML usage. I have recorded the final results for each page below:
 
-| Page              | Result |
-|-------------------|--------|
-| Register          | <img src="assets/images/lighthousedesktopregister.png" width="300"/> |
-| Login             | <img src="assets/images/lighthousedesktoplogin.png" width="300"/> |
-| Home              | <img src="assets/images/lighthousedesktophome.png" width="300"/> |
-| About             | <img src="assets/images/lighthousedesktopaboutus.png" width="300"/> |
-| Dashboard         | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
-| Mobile Register   | <img src="assets/images/lighthousemobileregister.png" width="300"/> |
-| Mobile Login      | <img src="assets/images/lighthousemobilelogin.png" width="300"/> |
-| Mobile About      | <img src="assets/images/lighthousemobileaboutus.png" width="300"/> |
-| Mobile Dashboard  | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
+| Page             | Result                                                               |
+| ---------------- | -------------------------------------------------------------------- |
+| Register         | <img src="assets/images/lighthousedesktopregister.png" width="300"/> |
+| Login            | <img src="assets/images/lighthousedesktoplogin.png" width="300"/>    |
+| Home             | <img src="assets/images/lighthousedesktophome.png" width="300"/>     |
+| About            | <img src="assets/images/lighthousedesktopaboutus.png" width="300"/>  |
+| Dashboard        | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
+| Mobile Register  | <img src="assets/images/lighthousemobileregister.png" width="300"/>  |
+| Mobile Login     | <img src="assets/images/lighthousemobilelogin.png" width="300"/>     |
+| Mobile About     | <img src="assets/images/lighthousemobileaboutus.png" width="300"/>   |
+| Mobile Dashboard | <img src="assets/images/lighthousemobiledashboard.png" width="300"/> |
 
 - - **Keyboard navigation** tested manually
 
 ---
 
 ### Bugs and Fixes
+
 During testing, several minor bugs were identified and resolved:
+
 - [x] Prevented saving activities with duration `00:00:00`
 - [x] Fixed broken image paths in `README.md`
 - [x] Corrected input validation logic on registration form
-All fixes were committed with descriptive messages and, where applicable, linked to specific issues or pull requests.
+      All fixes were committed with descriptive messages and, where applicable, linked to specific issues or pull requests.
 
 ---
 
+## Tech Stack
+
+| Layer         | Technology                         |
+| ------------- | ---------------------------------- |
+| Frontend      | React, Bootstrap                   |
+| Backend       | Django, Django REST Framework      |
+| Database      | PostgreSQL                         |
+| Auth          | JWT Authentication (DRF SimpleJWT) |
+| Hosting       | Heroku                             |
+| Media Storage | Cloudinary                         |
+| Versioning    | Git + GitHub                       |
+
+---
+
+## Environment Setup
+
+Essential variables:
+
+- DJANGO_SECRET_KEY
+
+- DATABASE_URL
+
+- CLOUD_NAME
+
+- API_KEY
+
+- API_SECRET
+
+- CORS_ALLOWED_ORIGINS
+
+- CSRF_TRUSTED_ORIGINS
+
+## ERD (Entity Relationship Diagram)
+
+[Diagram](assets/images/diagram.png)
+
+---
+
+## Features
+
+### Existing Features
+
+- Registration and Login using JWT
+- Add new activity with:
+  - Activity type (dropdown)
+  - Name
+  - Duration (HH:MM:SS picker)
+  - Date (datepicker)
+  - Notes (optional)
+- Dashboard to view all activities
+- Edit and Delete options for each entry
+- Sorting: Most recent first
+- Duration auto-conversion to total seconds
+- Password field toggle (eye icon)
+- Responsive UI across devices
+- Basic frontend/backend separation
+
+### Future Features
+
+- Password reset email
+- Weekly/monthly activity summary
+- Upload `.gpx` or `.fit` files
+- Stats: Time spent by activity type
+- Enhanced user profile (avatar, bio)
+
+---
+
+## Reusable React Components
+
+| Component       | Purpose                               |
+| --------------- | ------------------------------------- |
+| `ActivityForm`  | Add/Edit activity form (shared logic) |
+| `Layout`        | Page wrapper + shared Navbar          |
+| `DashboardPage` | Activity list, delete/edit handling   |
+| `LoginPage`     | Auth form with password toggle        |
+| `Register`      | New user registration form            |
+
+---
+
+## Responsive Design
+
+Tested with Chrome DevTools and real devices.
+
+- Mobile-first responsive
+- Navbar collapses to hamburger
+- Forms scale smoothly
+
+![Responsive](assets/images/responsive.png)
+
+---
+
+## Testing
+
+![Activitytest](assets/images/activitytest.png)
+
+### Manual Testing Table
+
+| Feature           | Test Scenario               | Expected Outcome                    |
+| ----------------- | --------------------------- | ----------------------------------- |
+| Register new user | Fill form and submit        | New account created, redirected     |
+| Login with token  | Valid credentials           | Token stored, redirect to dashboard |
+| Add activity      | Fill all fields             | Activity saved and appears in list  |
+| Edit activity     | Click Edit, update fields   | Changes saved                       |
+| Delete activity   | Click Delete, confirm popup | Entry removed                       |
+| Toggle password   | Click eye icon              | Password reveals/hides              |
+| Date restrictions | Choose future date          | Error message shown                 |
+
+### Unfixed Bugs
+
+- Duration sometimes not saved on first submit
+- Date field allows future entries (minor logic bug)
+- Activity name not shown in dashboard list
+- Form doesn't auto-scroll or show toast on save
+
+---
+
+## Deployment
+
+### Backend (Django) – Heroku
+
+1. Create Heroku app & PostgreSQL DB
+2. Add environment variables (`DEBUG=False`, `ALLOWED_HOSTS`, `SECRET_KEY`, etc.)
+3. Update `settings.py`:
+   - Add `whitenoise`, `corsheaders`
+   - Setup `STATIC_ROOT`, `MEDIA_ROOT`, `Cloudinary`
+4. Add `Procfile`:
+5. Push code to Heroku or GitHub → Connect repo
+6. Run:
+
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+
+
+### User Experience
+
+#### First time visitor goals
+
++ As a first time visitor the goal and the purpose of the website is easily understandable.
+
++ As a first time visitor I can easily navigate through the page and locate functions.
+
+#### Returning visitor goals
+
++ After some contemplation as a returning visitor to the website I can find and carry out a registration.
+
++ As a registered user I can log in to my account, where my data and details are stored securely.
+
++ As a logged in user I can choose from different types of activities.
+
++ As a logged in user I can save my chosen actyvity type, date, duration.
+
+#### Frequent user goals
+
++ As a frequently returning user I can see my past activities on a list.
+
++ As a frequently returning user I can modify details of past activities or I can delete past activities.
+
+
+
+#### Browser compatibility
+
+Tested the website on **Chrome**, **Safari**, **Firefox**.
+Appearance was good on all three browsers.
+Intended responsiveness also good on all three.
+
+![responsive](/assets/images/responsive.png)
+
+#### Lighthouse report
+
+Unfotunately based on the Lighthouse report, the website has poor performance with several issues.
+
+![LighthouseReport](/assets/images/Lighthouse-Report.png)
+
+
+#### Login credentials
+
++ Django admin - Username: Runner1  Password: Sunday12
+
++ Activity Tracker user - Username: Runner2 Password: Sunday13
 ## 5. Deployment
 
 The application was deployed using **Heroku**, with the frontend and backend hosted as **separate apps** to maintain modularity and flexibility.
@@ -718,6 +923,7 @@ These improvements aim to increase user engagement, reliability, and scalability
 
 + For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
 
+
 #### Code
 
 + The initial structure is based on CI's boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
@@ -754,6 +960,7 @@ and eye for detail, I was guided in the right direction to make this project hap
 She always gave a different perspective on the issues and with her experience
 and eyes for details I was guided in the right direction to make this project happen.
 
+
 ### Lessons & Final Thoughts
 
 This project taught me:
@@ -769,3 +976,9 @@ Leveraging DRF with JWT for APIs
 React component reuse and prop management
 
 There is a huge potential in full stack applications, regardless what is it for.
+
+
+
+
+
+```
