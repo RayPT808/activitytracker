@@ -11,7 +11,7 @@ The Activity Tracker saves the key details of a training or recreactional activi
 
 ## 2. Features
 
-- **Navbar** Clean, consitent navbar across the pages. Clicking on the icon/logo directs the user back to the main page.
+- **Navbar** Clean, consitent navbar across the pages. Clicking on the icon/logo directs the user back to the main page. 
 
 ![Navbar](assets/images/navbar.png)
 
@@ -47,12 +47,12 @@ The Activity Tracker saves the key details of a training or recreactional activi
 
     ![Missing Email](assets/images/validationemail.png)
 
-
+---
 - **Password Visibility Toggle** In case the user is not sure about the password input or wants to check them the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
 
 ![Password Visibility](assets/images/passwordvisibility.png)
 
-
+---
 - **Login Validation**
 
   - **Missing Password** Previously registered user won't be able to log in if the password is missing.
@@ -69,7 +69,7 @@ The Activity Tracker saves the key details of a training or recreactional activi
 
   ![Invalid Details](assets/images/loginvalidationwrongpswrd.jpg)
 
-
+---
 - **Dashboard** The Dashboard is the where the main functionalities can be found, the dashboard itself is the activity tracker. Simple design both for desktop and for mobile.
 
 ![Desktop](assets/images/desktopdashboard.png)
@@ -78,7 +78,7 @@ Mobile version (Redmi Note 13)
 
 ![Mobile](assets/images/mobiledashboard.jpg)
 
-
+---
 - **Dashboard Functions**
 
 - **Activity Filter by Type**  
@@ -109,7 +109,7 @@ Mobile version (Redmi Note 13)
   A prominent button that allows users to quickly log new activities, including relevant details such as title, duration, and type.  
   ![Add New](assets/images/desktopdashboard.png)
 
-
+---
 - **Add New Activity Form** The "Add New Activity" form enables users to log new activities with structured input and built-in validation to ensure data quality. Key components include:
 
   - **Activity Type Selector**  
@@ -138,7 +138,7 @@ Mobile version (Redmi Note 13)
   ![](assets/images/notesoptional.png)
 
 
-
+---
 -**Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fileds in the New Activity form.
 
 ![Edit Activity](assets/images/editactivity.png)
@@ -149,7 +149,7 @@ Mobile version (Redmi Note 13)
 ![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
 
 
-
+---
 -**Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
 _Validation_: Validation applies to the Username and to the Email address fields.
   Key elements include:
@@ -172,7 +172,7 @@ _Validation_: Validation applies to the Username and to the Email address fields
 
 
 
-##  Requirement Gathering and Planning
+## 3.  Requirement Gathering and Planning
 
 ###  Project Summary
 The activity tracker app was designed to help users record and monitor how they spend their time through a simple and user-friendly interface.
@@ -198,34 +198,34 @@ To keep it simple I designed a **simplified user interface** to support key use 
 -  Edit or delete records anytime
 
 
-
+---
 
 ###  Stakeholders & Target Users
 - Primary Users: Individuals who want to track time spent with physical activities, training. 
   Individuals who need a simple tool to keep up their healthy habits regardelss of age, fitness level or sport background
 - Stakeholders: Product owner, development team, end users.
-
+---
 ###  Functional Requirements
 - Users can log new activities with name, type, duration, and date.
 - Users can edit or delete saved activities.
 - Filtering and sorting options are available on the dashboard.
 - Secure login and registration are required to access personal data.
-
+---
 ###  Non-Functional Requirements
 - Application must respond in under 2 seconds.
 - Fully responsive UI.
 - Secure user authentication.
 - Validation on both frontend and backend.
-
+---
 ###  Planning Tools & Visuals
 - ERD (Entity Relationship Diagram):  
   ![](assets/images/erdactivitytracker.png)
 
-
+---
 - Github Projects:  
   [Link to Planning Board](https://github.com/users/RayPT808/projects/16/views/2)
 
-
+---
 
 - User Flow:  
 
@@ -254,28 +254,26 @@ To keep it simple I designed a **simplified user interface** to support key use 
   ![Delete Activity](assets/images/userflowdeleteactivity.png)
 
 
-
+---
 
 - User Interface Design
 
-  - Computer Wireframes : The wireframes I created illustrate the core user interface and functionality of Activity Tracker from both a desktop/laptop perspective and a mobileperspective. These visual guides serve as a blueprint for the design and structure of the application, ensuring a cohesive and intuitive user experience. The aim was to provide better understandig of the inital layout and illustrate the user facing fields and structure.
+  - Computer Wireframes : The wireframes I created illustrate the core user interface and functionality of Activity Tracker from both a desktop/laptop perspective and a mobile perspective. These visual guides serve as a blueprint for the design and structure of the application, ensuring a cohesive and intuitive user experience. The aim was to provide better understanding of the initial layout and illustrate the user facing fields and structure.
 
-  Registration
-  ![Registration](assets/images/wireframeregistration.png)
+**Registration**
+![Registration](assets/images/wireframeregistration.png)
 
+**Login**
+![Login](assets/images/wireframelogin.png)
 
-  Login
-  ![Login](assets/images/wireframelogin.png)
-
-
-  Dashboard, Add Activity
-  ![Dashboard](assets/images/wireframedashboard.png)
+**Dashboard, Add Activity**
+![Dashboard](assets/images/wireframedashboard.png)
 
 
   Edit Activity
   ![Edit Activity](assets/images/wireframeeditactivity.png)
 
-
+---
   - Mobile Wireframes: Mobile wireframes were created to ensure responsive design across devices, focusing on a clean and simplified layout for optimal usability on smaller screens.
 
   Login
@@ -290,7 +288,7 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 
 
-
+---
 
 - Colour Scheme Specification: This document outlines the main color palette and typography settings used in the Activity Tracker frontend application.Below are the most frequently used colors in the app's stylesheets:
 
@@ -320,6 +318,85 @@ RGB Breakdown
 ---
 
 
+## 4. Testing
+
+### Testing Strategy
+This project followed a practical testing strategy combining both automated and manual testing. The goal was to ensure the core functionalities of the activity tracker remained reliable and user-friendly throughout development. Testing was applied to both frontend and backend components, with a focus on user-facing features like form validation and activity management.
+
+---
+
+### Continuous Testing
+We employed a continuous testing approach by running validation steps on each commit. ESLint and Prettier were integrated locally to enforce code standards, and GitHub Actions was configured to run basic checks automatically during pull requests, helping catch syntax and logic issues early.
+
+---
+
+### Automated Testing
+Automated tests were written to cover reusable frontend components and backend routes. 
+- **Frontend**: Jest and React Testing Library were used to test UI rendering, input validation, and component logic.
+- **Backend**: Unit tests for models and route handlers were written using `unittest` (or `pytest`, if using Python).
+- Example: `npm test` or `pytest` to execute tests.
+- Test files are located in `frontend/src/__tests__/` and `backend/tests/`.
+
+---
+
+### Manual Testing
+Manual testing covered user flows such as registration, login/logout, adding/editing activities, and profile updates. Each major feature was tested on multiple browsers and devices to simulate real-world usage.
+Common edge cases (e.g., empty form fields, invalid dates, short passwords) were manually triggered to validate error handling.
+
+| Test Element    | The Test                                 | The Outcome                                             |
+|:----------------|:-----------------------------------------|:--------------------------------------------------------|
+| Registration    | Submit form with all valid fields        | ✅ Pass: User account created and redirected to login   |
+| Registration    | Submit form with empty required fields   | ✅ Pass: Error messages displayed for missing input     |
+| Registration    | Enter mismatched passwords               | ✅ Pass: Validation error shown and submission blocked  |
+| Registration    | Attempt to register with existing email  | ✅ Pass: Duplicate email warning displayed              |
+| Login           | Login with valid credentials             | ✅ Pass: User redirected to dashboard                   |
+| Login           | Login with incorrect password            | ✅ Pass: Error message shown, access denied             |
+| Login           | Attempt to login with unregistered email | ✅ Pass: Error message shown                            |
+| Add Activity    | Open form and submit with valid data     | ✅ Pass: Activity saved and visible on dashboard        |
+| Add Activity    | Leave required fields empty              | ✅ Pass: Validation errors prevent submission           |
+| Add Activity    | Select date in the future                | ✅ Pass: Date picker prevents future date selection     |
+| Add Activity    | Set duration to 00:00:00                 | ✅ Pass: Validation prevents submission                 |
+| Edit Activity   | Update name and duration, then save      | ✅ Pass: Changes reflected immediately                  |
+| Edit Activity   | Attempt to save with empty name          | ✅ Pass: Validation error shown                         |
+| Delete Activity | Confirm deletion prompt                  | ✅ Pass: Activity removed from list                     |
+| Delete Activity | Cancel deletion prompt                   | ✅ Pass: Activity remains unchanged                     |
+| Profile         | Update first and last name and save      | ✅ Pass: Profile updated with success message           |
+| Profile         | Leave names empty and save               | ✅ Pass: Optional fields allow submission without error |
+| Responsiveness  | Resize browser to mobile width           | ✅ Pass: Layout adjusts for small screen                |
+| Responsiveness  | Open site on mobile device               | ✅ Pass: All functions accessible and readable          |
+
+---
+
+### Browser & Responsiveness
+The application was manually tested for responsiveness and layout accuracy on the following environments:
+- **Browsers**: Chrome, Firefox, Safari, Edge
+- **Devices**: iPhone SE, iPhone 14, iPad, 13" Laptop, 27" Monitor
+Media queries and flexible units were used to ensure consistent behavior across screen sizes.
+
+---
+
+### Code Validation
+The codebase adheres to modern standards through regular linting and formatting tools:
+- **HTML** validated with [W3C Validator](https://validator.w3.org/)
+- **CSS** formatted using Prettier
+- **JavaScript** checked using ESLint (Airbnb style guide)
+
+---
+
+### ♿ Accessibility
+Accessibility best practices were applied using:
+- **Lighthouse Audits** to check color contrast and semantic HTML usage
+- **ARIA Labels** for form inputs and icons
+- **Keyboard navigation** tested manually
+
+---
+
+### Bugs and Fixes
+During testing, several minor bugs were identified and resolved:
+- [x] Prevented saving activities with duration `00:00:00`
+- [x] Fixed broken image paths in `README.md`
+- [x] Corrected input validation logic on registration form
+All fixes were committed with descriptive messages and, where applicable, linked to specific issues or pull requests.
 
 
 ---
