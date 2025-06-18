@@ -269,22 +269,21 @@ To keep it simple I designed a **simplified user interface** to support key use 
 **Dashboard, Add Activity**
 ![Dashboard](assets/images/wireframedashboard.png)
 
-
-  Edit Activity
-  ![Edit Activity](assets/images/wireframeeditactivity.png)
+**Edit Activity**
+![Edit Activity](assets/images/wireframeeditactivity.png)
 
 ---
-  - Mobile Wireframes: Mobile wireframes were created to ensure responsive design across devices, focusing on a clean and simplified layout for optimal usability on smaller screens.
+- Mobile Wireframes: Mobile wireframes were created to ensure responsive design across devices, focusing on a clean and simplified layout for optimal usability on smaller screens.
 
-  Login
-  ![Login](assets/images/wireframemobilelogin.png)
+**Login**
+![Login](assets/images/wireframemobilelogin.png)
 
-  Activity List
-  ![Activity List](assets/images/wireframemobileactivitylist.png)
+**Activity List**
+![Activity List](assets/images/wireframemobileactivitylist.png)
 
 
-  New Activity
-  ![New Activity](assets/images/wireframemobilenewactivity.png)
+**New Activity**
+![New Activity](assets/images/wireframemobilenewactivity.png)
 
 
 
