@@ -256,6 +256,66 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 
 
+- User Interface Design
+
+  - Computer Wireframes : The wireframes I created illustrate the core user interface and functionality of Activity Tracker from both a desktop/laptop perspective and a mobileperspective. These visual guides serve as a blueprint for the design and structure of the application, ensuring a cohesive and intuitive user experience. The aim was to provide better understandig of the inital layout and illustrate the user facing fields and structure.
+
+  Registration
+  ![Registration](assets/images/wireframeregistration.png)
+
+
+  Login
+  ![Login](assets/images/wireframelogin.png)
+
+
+  Dashboard, Add Activity
+  ![Dashboard](assets/images/wireframedashboard.png)
+
+
+  Edit Activity
+  ![Edit Activity](assets/images/wireframeeditactivity.png)
+
+
+  - Mobile Wireframes: Mobile wireframes were created to ensure responsive design across devices, focusing on a clean and simplified layout for optimal usability on smaller screens.
+
+  Login
+  ![Login](assets/images/wireframemobilelogin.png)
+
+  Activity List
+  ![Activity List](assets/images/wireframemobileactivitylist.png)
+
+
+  New Activity
+  ![New Activity](assets/images/wireframemobilenewactivity.png)
+
+
+
+
+
+- Colour Scheme Specification: This document outlines the main color palette and typography settings used in the Activity Tracker frontend application.Below are the most frequently used colors in the app's stylesheets:
+
+| Color                | Usage Count | Purpose                          |
+|---------------------|-------------|----------------------------------|
+| `#fff`              | 7           | Common background                |
+| `#ccc`              | 6           | Borders or secondary accents     |
+| `#333`              | 5           | Primary text color               |
+| `#ddd`              | 4           | UI separators / borders          |
+| `#e0e0e0`           | 4           | Light backgrounds / sections     |
+| `rgba(0, 0, 0, 0.1)`| 4           | Box shadows / overlays           |
+| `#ffc`              | 3           | Highlights / alert backgrounds   |
+| `#264b5d`           | 3           | Navigation bar / primary color   |
+| `rgba(0, 0, 0, 0.15)`| 3         | Shadows / overlays               |
+| `#ffffff`           | 3           | Alternate for `#fff`             |
+
+
+
+Color Usage and Purpose
+![Color](assets/images/colorusage.png)
+
+
+
+RGB Breakdown
+![RGB](assets/images/rgbbreakdown.png)
 
 ---
 
