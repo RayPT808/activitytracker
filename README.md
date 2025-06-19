@@ -500,242 +500,106 @@ During testing, several minor bugs were identified and resolved:
 
 ---
 
-## Environment Setup
-
-Essential variables:
-
-- DJANGO_SECRET_KEY
-
-- DATABASE_URL
-
-- CLOUD_NAME
-
-- API_KEY
-
-- API_SECRET
-
-- CORS_ALLOWED_ORIGINS
-
-- CSRF_TRUSTED_ORIGINS
-
-## ERD (Entity Relationship Diagram)
-
-[Diagram](assets/images/diagram.png)
-
----
-
-## Features
-
-### Existing Features
-
-- Registration and Login using JWT
-- Add new activity with:
-  - Activity type (dropdown)
-  - Name
-  - Duration (HH:MM:SS picker)
-  - Date (datepicker)
-  - Notes (optional)
-- Dashboard to view all activities
-- Edit and Delete options for each entry
-- Sorting: Most recent first
-- Duration auto-conversion to total seconds
-- Password field toggle (eye icon)
-- Responsive UI across devices
-- Basic frontend/backend separation
-
-### Future Features
-
-- Password reset email
-- Weekly/monthly activity summary
-- Upload `.gpx` or `.fit` files
-- Stats: Time spent by activity type
-- Enhanced user profile (avatar, bio)
-
----
-
-## Reusable React Components
-
-| Component       | Purpose                               |
-| --------------- | ------------------------------------- |
-| `ActivityForm`  | Add/Edit activity form (shared logic) |
-| `Layout`        | Page wrapper + shared Navbar          |
-| `DashboardPage` | Activity list, delete/edit handling   |
-| `LoginPage`     | Auth form with password toggle        |
-| `Register`      | New user registration form            |
-
----
-
-## Responsive Design
-
-Tested with Chrome DevTools and real devices.
-
-- Mobile-first responsive
-- Navbar collapses to hamburger
-- Forms scale smoothly
-
-![Responsive](assets/images/responsive.png)
-
----
-
-## Testing
-
-![Activitytest](assets/images/activitytest.png)
-
-### Manual Testing Table
-
-| Feature           | Test Scenario               | Expected Outcome                    |
-| ----------------- | --------------------------- | ----------------------------------- |
-| Register new user | Fill form and submit        | New account created, redirected     |
-| Login with token  | Valid credentials           | Token stored, redirect to dashboard |
-| Add activity      | Fill all fields             | Activity saved and appears in list  |
-| Edit activity     | Click Edit, update fields   | Changes saved                       |
-| Delete activity   | Click Delete, confirm popup | Entry removed                       |
-| Toggle password   | Click eye icon              | Password reveals/hides              |
-| Date restrictions | Choose future date          | Error message shown                 |
-
-### Unfixed Bugs
-
-- Duration sometimes not saved on first submit
-- Date field allows future entries (minor logic bug)
-- Activity name not shown in dashboard list
-- Form doesn't auto-scroll or show toast on save
-
----
-
-## Deployment
-
-### Backend (Django) – Heroku
-
-1. Create Heroku app & PostgreSQL DB
-2. Add environment variables (`DEBUG=False`, `ALLOWED_HOSTS`, `SECRET_KEY`, etc.)
-3. Update `settings.py`:
-   - Add `whitenoise`, `corsheaders`
-   - Setup `STATIC_ROOT`, `MEDIA_ROOT`, `Cloudinary`
-4. Add `Procfile`:
-5. Push code to Heroku or GitHub → Connect repo
-6. Run:
-
-```bash
-python manage.py migrate
-python manage.py createsuperuser
-
-
-### User Experience
-
-#### First time visitor goals
-
-+ As a first time visitor the goal and the purpose of the website is easily understandable.
-
-+ As a first time visitor I can easily navigate through the page and locate functions.
-
-#### Returning visitor goals
-
-+ After some contemplation as a returning visitor to the website I can find and carry out a registration.
-
-+ As a registered user I can log in to my account, where my data and details are stored securely.
-
-+ As a logged in user I can choose from different types of activities.
-
-+ As a logged in user I can save my chosen actyvity type, date, duration.
-
-#### Frequent user goals
-
-+ As a frequently returning user I can see my past activities on a list.
-
-+ As a frequently returning user I can modify details of past activities or I can delete past activities.
-
-
-
-#### Browser compatibility
-
-Tested the website on **Chrome**, **Safari**, **Firefox**.
-Appearance was good on all three browsers.
-Intended responsiveness also good on all three.
-
-![responsive](/assets/images/responsive.png)
-
-#### Lighthouse report
-
-Unfotunately based on the Lighthouse report, the website has poor performance with several issues.
-
-![LighthouseReport](/assets/images/Lighthouse-Report.png)
-
-
-#### Login credentials
-
-+ Django admin - Username: Runner1  Password: Sunday12
-
-+ Activity Tracker user - Username: Runner2 Password: Sunday13
 ## 5. Deployment
 
 The application was deployed using **Heroku**, with the frontend and backend hosted as **separate apps** to maintain modularity and flexibility.
 
----
+###  Monorepo Structure (Example)
 
-###  Backend Deployment (Django)
-
-The Django API server is deployed independently, with proper environment variables and Heroku configurations for production.
-
-#### Key Deployment Steps:
-- Environment variables were set on Heroku:
-  - `DJANGO_SECRET_KEY`
-  - `DJANGO_DEBUG=False`
-  - `ALLOWED_HOSTS`, `CORS_ALLOWED_ORIGINS`, `CSRF_TRUSTED_ORIGINS`
-  - `DATABASE_URL` and any storage service credentials (e.g., Cloudinary)
-
-- Project was prepared using:
-  ```bash
-  pip freeze > requirements.txt
-  python manage.py collectstatic --noinput
-  python manage.py migrate
-  ```
-
-- Deployed using:
-  ```bash
-  git push heroku-backend main
-  heroku run python manage.py migrate 
-  ```
+```
+/my-app/
+├── backend/         # Django app
+├── frontend/        # React app
+├── Procfile
+├── requirements.txt
+└── ...
+```
 
 ---
 
-###  Frontend Deployment (React)
+## Setup Environment Variables
 
-The React frontend was built and deployed separately to a dedicated Heroku app.
+### Django (Backend)
+Heroku config vars setup:
 
-#### Key Deployment Steps:
-- Built using:
-  ```bash
-  npm run build
-  ```
+- `DJANGO_SECRET_KEY`: Keep this value secret.
+- `DJANGO_DEBUG=False`: Ensures production safety.
+- `ALLOWED_HOSTS`: Set to your Heroku domain.
+- `DATABASE_URL`: Provided by Heroku Postgres.
+- `CORS_ALLOWED_ORIGINS`: Whitelist frontend domain.
+- `CSRF_TRUSTED_ORIGINS`: Trust domain for CSRF protection.
+- `CLOUDINARY_STORAGE`: (If used for media files)
 
-- `.env.production` configured with:
-  ```env
-  REACT_APP_API_URL=https://activitytracking-bf7924cd3676.herokuapp.com/
-
-- Deployed with:
-  ```bash
-  git push heroku-frontend main
-  ```
-
----
-
-###  Post-deployment Checklist
-
-After both apps were deployed, the following checks were performed:
-
-- Verified login, registration, and form submissions
-- Tested links and page navigation
-- Checked browser console for JS errors
-- Verified API requests and CORS handling in the network tab
-- Inspected live styling, image paths, and media responsiveness
+### React (Frontend)
+In `frontend/.env.production`:
+```env
+REACT_APP_API_URL=https://activitytracking-bf7924cd3676.herokuapp.com/```
 
 ---
 
-###  Tips & Debugging
+### Build & Prepare
 
-- Used `heroku logs --tail -activity-tracker` to monitor production logs
-- Disable `DEBUG` mode and ensure no development tools are exposed
+### Backend (Django)
+From `/backend` directory:
+```bash
+pip install -r requirements.txt
+python manage.py collectstatic --noinput
+python manage.py makemigrations
+python manage.py migrate
+```
 
+### Frontend (React)
+From `/frontend` directory:
+```bash
+npm install
+npm run build
+```
+
+Output static files correctly to be served by Django or via a CDN/static host.
+
+---
+
+### Deploy to Heroku
+
+### Option 1: Multi-buildpack (Procfile-based)
+In root `Procfile`:
+```
+web: gunicorn backend.wsgi
+```
+
+Set the following Heroku buildpacks:
+1. Node.js (for frontend)
+2. Python (for backend)
+
+Ensure build script in root handles both builds:
+```bash
+cd frontend && npm install && npm run build && cd ..
+```
+
+### Option 2: Docker (Container-based)
+Use a `Dockerfile` or `docker-compose.yml` to define services and deploy using Heroku's container registry:
+```bash
+heroku container:push web -a your-app
+heroku container:release web -a your-app
+```
+
+---
+
+## ✅ Post-deployment Checklist
+
+- [ ] Open site and test all features (login, APIs, forms).
+- [ ] Check browser console for frontend errors.
+- [ ] Validate network requests for CORS/403 errors.
+- [ ] Use `heroku logs --tail -a <your-app>` for debugging.
+
+---
+
+### Tips
+
+- Turn off debug mode in production to prevent sensitive logs.
+- Use a CDN (like Cloudinary or S3) for media/static files if possible.
+- Monitor performance using Heroku dashboard or third-party services.
+- 
 ## 6.  Agile Methodology
 
 This project followed a simplified Agile methodology to support iterative development and continuous improvement throughout the application's lifecycle. Development was managed using GitHub Projects, Issues, and a custom roadmap to organize tasks and track progress over time.
