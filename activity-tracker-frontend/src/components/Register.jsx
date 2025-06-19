@@ -61,7 +61,7 @@ const Register = () => {
 
     setIsLoading(true);
     try {
-      const BASE_URL = 'https://psychic-lamp-pj7rjp4jvgg7f7jxr-8000.app.github.dev';
+      const BASE_URL = process.env.REACT_APP_API_URL;
       const payload = {
         username: formData.username,
         email: formData.email,
