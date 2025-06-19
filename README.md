@@ -6,21 +6,21 @@
 
 ## 1. Purpose
 
-The Activity Tracker saves the key details of a training or recreactional activity  in the most simple, straightforward way. It is useful for anyone who wants to record their sport or recreational activities, and wants to monitor their progress over time. Because of it's simplicity it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead brings back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, they provide a lot more details, which eventually becomes the problem. The usres will focus much more on certain metrics and when some targets are not met it will have a negative impact on the users' behavoiur, motivation. Certanly when one is competeing for her/his country or doing competitive sports for living all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full stack web application and was built using Django, Python, Bootstrap, PostgreSQL, React.
+The Activity Tracker saves the key details of a training or recreational activity  in the simplest, straightforward way. It is useful for anyone who wants to record their sport or recreational activities and wants to monitor their progress over time. Because of its simplicity, it doesn't create an overwhelming feeling in the user caused by too much and complicated data, instead bringing back the focus on the key thing, the training itself. There are far more advanced applications/ platforms out there, which provide a lot more details, which eventually become the problem. The users will focus much more on certain metrics, and when some targets are not met, it will have a negative impact on the users' behavior, motivation. Certainly, when one is competing for her/his country or doing competitive sports for a living, all the data is needed to make improvements. But for the majority few key details are enough to be healthy and create good habits. The Activity Tracker is a full-stack web application and was built using Django, Python, Bootstrap, PostgreSQL, and React.
 
 
 ## 2. Features
 
-- **Navbar** Clean, consitent navbar across the pages. Clicking on the icon/logo directs the user back to the main page. 
+- **Navbar** Clean, consistent navbar across the pages. Clicking on the icon/logo directs the user back to the main page. 
 
 ![Navbar](assets/images/navbar.png)
 
-- **About Field** The About (Us) page gives a short description for the visitor of what the application does.
+- **About Field** The About (Us) page gives a short description to the visitor of what the application does.
 
 ![About](assets/images/desktopabout.png)
 
 
-- **Registration Validation** The registration form is using standard validations to highlight any error for the user in case of wrong or missing details.
+- **Registration Validation** The registration form uses standard validations to highlight any errors for the user in case of wrong or missing details.
 
 
     - **Existing User**: Registration will not proceed when a new user selects a previously saved user name.
@@ -48,29 +48,29 @@ The Activity Tracker saves the key details of a training or recreactional activi
     ![Missing Email](assets/images/validationemail.png)
 
 ---
-- **Password Visibility Toggle** In case the user is not sure about the password input or wants to check them the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
+- **Password Visibility Toggle** In case the user is not sure about the password input or wants to check it, the password toggle feature makes the hidden characters visible.    The feature is available both on the Registration and on the Login form.
 
 ![Password Visibility](assets/images/passwordvisibility.png)
 
 ---
 - **Login Validation**
 
-  - **Missing Password** Previously registered user won't be able to log in if the password is missing.
+  - **Missing Password** A previously registered user won't be able to log in if the password is missing.
 
   ![No Password](assets/images/loginvalidationmissingpswrd.png)
 
 
-  - **Missing Username** Previously registered user won't be able to log in if the username is missing.
+  - **Missing Username** A previously registered user won't be able to log in if the username is missing.
 
   ![Missing User](assets/images/loginvalidationmissingusern.png)
 
 
-  - **Invalid Details** Previously registered user won't be able to log in if the username and/or password is not correct.
+  - **Invalid Details** A previously registered user won't be able to log in if the username and/or password are not correct.
 
   ![Invalid Details](assets/images/loginvalidationwrongpswrd.jpg)
 
 ---
-- **Dashboard** The Dashboard is the where the main functionalities can be found, the dashboard itself is the activity tracker. Simple design both for desktop and for mobile.
+- **Dashboard** The Dashboard is where the main functionalities can be found; the dashboard itself is the activity tracker. Simple design both for desktop and for mobile.
 
 ![Desktop](assets/images/desktopdashboard.png)
 
@@ -139,19 +139,19 @@ Mobile version (Redmi Note 13)
 
 
 ---
-- **Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fileds in the New Activity form.
+- **Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply to the input fields in the New Activity form.
 
 ![Edit Activity](assets/images/editactivity.png)
 
 
-- **Delete Activities** The user has the option to delete previously saved activities from the list. To proceed the user has to confirm the deletion of the activity.
+- **Delete Activities** The user has the option to delete previously saved activities from the list. To proceed, the user has to confirm the deletion of the activity.
 
 ![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
 
 
 ---
 - **Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
-_Validation_: Validation applies to the Username and to the Email address fields.
+_Validation_: Validation applies to the Username and the Email address fields.
   Key elements include:
 
 - **Username (Pre-Populated)**  
@@ -179,7 +179,7 @@ The activity tracker app was designed to help users record and monitor how they 
 The goal of this project was to build an intuitive activity tracker app that allows users to log, manage, and review their daily/weekly activities. 
 Planning focused on user needs such as accessibility, ease of use, and data accuracy.”
 Platforms like [Strava](https://developers.strava.com/docs/reference/) and [Garmin](https://developer.garmin.com/gc-developer-program/activity-api/) are the giants. 
-I drew inspiration from them but opted to avoid the complexities of their APIs and licenses. Both of those well known platforms at their core have the same functionality that I wanted to have for the users.
+I drew inspiration from them but opted to avoid the complexities of their APIs and licenses. Both of those well-known platforms, at their core, have the same functionality that I wanted to have for the users.
 
 **Strava**
 
@@ -189,12 +189,12 @@ I drew inspiration from them but opted to avoid the complexities of their APIs a
 
 ![Garmin Manual Activity](assets/images/garmindesktop.png)
 
-The main difference is that while they treat this feature as an add on or extra, I want this feature to be the core of an activity tracker.
-In case of future development other functionalities would be added to this and not the other way round.
+The main difference is that while they treat this feature as an add-on or extra, I want this feature to be the core of an activity tracker.
+In case of future development, other functionalities would be added to this and not the other way round.
 
-To keep it simple I designed a **simplified user interface** to support key use cases:
+To keep it simple, I designed a **simplified user interface** to support key use cases:
 -  Log activities with type, name, date, and duration
--  View past records in a clean dashboard
+-  View records in a clean dashboard
 -  Edit or delete records anytime
 
 
@@ -202,7 +202,7 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 ###  Stakeholders & Target Users
 - Primary Users: Individuals who want to track time spent with physical activities, training. 
-  Individuals who need a simple tool to keep up their healthy habits regardelss of age, fitness level or sport background
+  Individuals who need a simple tool to keep up their healthy habits, regardless of age, fitness level, or sports background
 - Stakeholders: Product owner, development team, end users.
 ---
 ###  Functional Requirements
@@ -215,7 +215,7 @@ To keep it simple I designed a **simplified user interface** to support key use 
 - Application must respond in under 2 seconds.
 - Fully responsive UI.
 - Secure user authentication.
-- Validation on both frontend and backend.
+- Validation on both the frontend and backend.
 ---
 ###  Planning Tools & Visuals
 - ERD (Entity Relationship Diagram):  
@@ -258,7 +258,7 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 - User Interface Design
 
-  - Computer Wireframes : The wireframes I created illustrate the core user interface and functionality of Activity Tracker from both a desktop/laptop perspective and a mobile perspective. These visual guides serve as a blueprint for the design and structure of the application, ensuring a cohesive and intuitive user experience. The aim was to provide better understanding of the initial layout and illustrate the user facing fields and structure.
+  - Computer Wireframes: The wireframes I created illustrate the core user interface and functionality of Activity Tracker from both a desktop/laptop perspective and a mobile perspective. These visual guides serve as a blueprint for the design and structure of the application, ensuring a cohesive and intuitive user experience. The aim was to provide a better understanding of the initial layout and illustrate the user-facing fields and structure.
 
 **Registration**
 ![Registration](assets/images/wireframeregistration.png)
@@ -289,7 +289,7 @@ To keep it simple I designed a **simplified user interface** to support key use 
 
 ---
 
-- Colour Scheme Specification: This document outlines the main color palette and typography settings used in the Activity Tracker frontend application.Below are the most frequently used colors in the app's stylesheets:
+- Colour Scheme Specification: This document outlines the main color palette and typography settings used in the Activity Tracker frontend application. Below are the most frequently used colors in the app's stylesheets:
 
 | Color                | Usage Count | Purpose                          |
 |---------------------|-------------|----------------------------------|
@@ -362,7 +362,7 @@ These components manage authentication state and user context globally via React
 - `AuthContext` / `AuthProvider`: Handles login state, token storage, and protected routing
 - `UserContext` / `UserProvider`: Manages user profile data across the app
 
-These ensure consistent user experience and allow state sharing across components.
+These ensure a consistent user experience and allow state sharing across components.
 
 ---
 
@@ -372,7 +372,7 @@ These support specific operations but aren't tied to a single view:
 - `DeleteActivity`: Component for confirming and performing delete actions
 - `UpdateActivity`: Component used to handle updates to previously logged activities
 
-These components extend functionality of core screens like Dashboard and Profile, and promote separation of concerns.
+These components extend the functionality of core screens like Dashboard and Profile, and promote the separation of concerns.
 
 ---
 
@@ -385,7 +385,7 @@ This project followed a practical testing strategy combining both automated and 
 ---
 
 ### Continuous Testing
-I employed a continuous testing approach by running validation steps on each commit. ESLint and Prettier were integrated locally to enforce code standards, and GitHub Actions was configured to run basic checks automatically during pull requests, helping catch syntax and logic issues early.
+I employed a continuous testing approach by running validation steps on each commit. ESLint and Prettier were integrated locally to enforce code standards, and GitHub Actions were configured to run basic checks automatically during pull requests, helping catch syntax and logic issues early.
 
 ---
 
@@ -394,7 +394,7 @@ Automated tests were written to cover reusable frontend components and backend r
 - **Frontend**: Jest and React Testing Library were used to test UI rendering, input validation, and component logic.
 - **Backend**: Unit tests for models and route handlers were written using `unittest` (or `pytest`, if using Python).
 - Example: `npm test` or `pytest` to execute tests.
-- Test file is located in /activitytracker/test.py.
+- The test file is located in /activitytracker/test.py.
 
 ---
 
@@ -578,7 +578,7 @@ This approach ensured clarity around scope and helped keep development focused a
 
 ###  Sprint and Timeline Tracking
 
-The roadmap view showed a chronological rollout of tasks across the month of May and June. Tasks like form validation, filtering, and core CRUD operations were distributed across the weeks and tracked by ID.
+The roadmap view showed a chronological rollout of tasks across May and June. Tasks like form validation, filtering, and core CRUD operations were distributed across the weeks and tracked by ID.
 
 Notable features completed:
 - Registration & Login flow
@@ -637,7 +637,7 @@ Adopting Agile principles helped structure the solo development effort by:
 - Enable users to log activities with required metadata
 - Implement activity form with duration and date selection
 - Display logged activities in a scrollable dashboard view
-- Establish base for filtering and updating activities
+- Establish a base for filtering and updating activities
 
 ---
 
@@ -666,13 +666,13 @@ While the current version of the Activity Tracker fulfills its core purpose, I t
 ###  Feature Enhancements
 
 - **Search Functionality**  
-  Add a keyword-based search bar to allow users to quickly find past activities by name or notes content.
+  Add a keyword-based search bar to allow users to quickly find past activities by name or note content.
 
 - **Activity Categories Customization**  
-  Allow users to create and manage their own activity types, rather than selecting from a fixed list.
+  Allow users to create and manage their activity types, rather than selecting from a fixed list.
 
 - **Activity Charts & Analytics**  
-  Visual summaries (e.g. bar or pie charts) showing time spent per activity type or week to help users understand their habits better.
+  Visual summaries (e.g., bar or pie charts) showing time spent per activity type or week to help users understand their habits better.
 
 - **Pagination or Infinite Scroll**  
   Improve performance and navigation for users with many saved activities.
@@ -725,16 +725,16 @@ These improvements aim to increase user engagement, reliability, and scalability
 
 #### Content
 
-+ Favicon were taken from Favicon.io.
++ Favicons were taken from Favicon.io.
 
-+ For responsiveness test and adjusting smaller design flaws Google Chrome Developer Tools was used.
++ For the responsiveness test and adjusting smaller design flaws, Google Chrome Developer Tools was used.
 
 
 #### Code
 
-+ The initial structure is based on CI's own boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
++ The initial structure is based on CI's boilerplate code. <https://github.com/Code-Institute-Org/ci-full-template>
 
-+ Code snipets, ideas were taken from the following repositories:
++ Code snippets, ideas were taken from the following repositories:
 
 + <https://docs.fittrackee.org/en/features.html>
 
@@ -748,13 +748,13 @@ These improvements aim to increase user engagement, reliability, and scalability
 
 #### Media
 
-+ Images for illustration and design were taken from open source site Pixabay.com.
++ Images for illustration and design were taken from open open-source site Pixabay.com.
 
 ### Acknowledgement
 
 Grateful for the help and the input from my mentor **Iuliia Konovalova**.
-She always gave a different perspective on the issues and with her experience
-and eyes for details I was guided in the right direction to make this project happen.
+She always gave a different perspective on the issues, and with her experience
+and eye for detail, I was guided in the right direction to make this project happen.
 
 
 ### Lessons & Final Thoughts
@@ -771,7 +771,7 @@ Leveraging DRF with JWT for APIs
 
 React component reuse and prop management
 
-There is a huge potential in full stack applications, regardless what is it for. 
+There is huge potential in full-stack applications, regardless of what it is for. 
 
 
 
