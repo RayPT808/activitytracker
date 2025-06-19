@@ -585,7 +585,7 @@ heroku container:release web -a your-app
 
 ---
 
-## ✅ Post-deployment Checklist
+### Post-deployment Checklist
 
 - [ ] Open site and test all features (login, APIs, forms).
 - [ ] Check browser console for frontend errors.
