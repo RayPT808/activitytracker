@@ -117,40 +117,40 @@ Mobile version (Redmi Note 13)
   _Validation_: The user must select a valid activity type before submission.  
   ![](assets/images/activitylist.png)
 
-- **Activity Name Field (Mandatory)**  
+  - **Activity Name Field (Mandatory)**  
   A required text input for naming the activity, ensuring all entries are clearly labeled.  
   _Validation_: This field cannot be left blank.  
   ![](assets/images/activitynamevalidation.png)
 
-- **Activity Duration Picker (Mandatory)**  
+  - **Activity Duration Picker (Mandatory)**  
   Allows users to input the time spent on an activity using a time selector.  
   _Validation_: A value of `00:00:00` is not accepted.  
   ![](assets/images/durationvalidation.png)
 
-- **Activity Date Picker (Mandatory)**  
+  - **Activity Date Picker (Mandatory)**  
   Users select the date the activity was completed.  
   _Validation_: Future dates are disabled and cannot be selected.  
   ![](assets/images/mobiledatepicker.jpg)
 
-- **Notes Field (Optional)**  
+  - **Notes Field (Optional)**  
   A free-text area for users to include additional information or context about the activity.  
   _Validation_: This field is optional and does not require input.  
   ![](assets/images/notesoptional.png)
 
 
 ---
--**Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fileds in the New Activity form.
+- **Edit Activity** The user has the option to edit, update previously saved activities. The same validations apply for the input fileds in the New Activity form.
 
 ![Edit Activity](assets/images/editactivity.png)
 
 
--**Delete Activities** The user has the option to delete previously saved activities from the list. To proceed the user has to confirm the deletion of the activity.
+- **Delete Activities** The user has the option to delete previously saved activities from the list. To proceed the user has to confirm the deletion of the activity.
 
 ![Delete Activity](assets/images/mobiledeleteconfirm.jpg)
 
 
 ---
--**Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
+- **Profile Page** The Profile page allows users to view and update their personal account details in a user-friendly form.
 _Validation_: Validation applies to the Username and to the Email address fields.
   Key elements include:
 
