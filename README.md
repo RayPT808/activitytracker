@@ -657,7 +657,7 @@ Adopting Agile principles helped structure the solo development effort by:
 - Responsive layout for mobile and desktop views
 -   
 
-##  Future Development
+## 7.  Future Development
 
 While the current version of the Activity Tracker fulfills its core purpose, I thought of several enhancements for future releases to improve functionality, usability, and user engagement.
 
