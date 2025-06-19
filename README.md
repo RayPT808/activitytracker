@@ -704,6 +704,11 @@ These improvements aim to increase user engagement, reliability, and scalability
 
 ## 8. Credits
 
+### Test User Credentials
+
++ Username: Biker2 Password: Green30!
++ Username: Biker4 Password: Purple30!
+
 ### Content
 
 + Favicons were taken from Favicon.io.
