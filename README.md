@@ -721,7 +721,7 @@ While the current version of the Activity Tracker fulfills its core purpose, I t
 
 These improvements aim to increase user engagement, reliability, and scalability of the app over time.
 
-### Credits
+## 8. Credits
 
 #### Content
 
@@ -756,22 +756,6 @@ Grateful for the help and the input from my mentor **Iuliia Konovalova**.
 She always gave a different perspective on the issues, and with her experience
 and eye for detail, I was guided in the right direction to make this project happen.
 
-
-### Lessons & Final Thoughts
-
-This project taught me:
-
-Full-stack coordination between frontend and backend
-
-How tricky real-world deployments can get
-
-Managing form data and authentication securely
-
-Leveraging DRF with JWT for APIs
-
-React component reuse and prop management
-
-There is huge potential in full-stack applications, regardless of what it is for. 
 
 
 
