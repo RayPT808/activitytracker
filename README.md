@@ -740,3 +740,5 @@ These improvements aim to increase user engagement, reliability, and scalability
 Grateful for the help and the input from my mentor **Iuliia Konovalova**.
 She always gave a different perspective on the issues, and with her experience
 and eye for detail, I was guided in the right direction to make this project happen.
+
+# Trigger deploy
