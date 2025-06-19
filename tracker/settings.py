@@ -1,10 +1,11 @@
 import os
+import sys
 from pathlib import Path
-import environ
+
 import dj_database_url
+import environ
 from corsheaders.defaults import default_headers
 from django.core.exceptions import ImproperlyConfigured
-import sys
 
 # Load environment variables
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -13,7 +14,8 @@ env_path = BASE_DIR / ".env"
 if env_path.exists():
     env.read_env(env_path)
     print(f"✅ .env file loaded successfully from: {env_path}")
-    print("✅ DATABASE_URL loaded from .env:", env("DATABASE_URL", default=None))
+    print("✅ DATABASE_URL loaded from .env:",
+          env("DATABASE_URL", default=None))
 else:
     print("❌ .env file not found at:", env_path)
 
@@ -21,17 +23,21 @@ else:
 # Safety check for secret key
 SECRET_KEY = env("DJANGO_SECRET_KEY", default=None)
 if not SECRET_KEY:
-    raise ImproperlyConfigured("DJANGO_SECRET_KEY not found in environment variables.")
+    raise ImproperlyConfigured(
+        "DJANGO_SECRET_KEY not found in environment variables.")
 
 # Debug mode
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
 
 # Allowed hosts
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[
-    "localhost",
-    "127.0.0.1",
-])
+ALLOWED_HOSTS = env.list(
+    "ALLOWED_HOSTS",
+    default=[
+        "localhost",
+        "127.0.0.1",
+    ],
+)
 
 
 # Application definition
@@ -64,22 +70,25 @@ MIDDLEWARE = [
 ]
 
 
-CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS", default=[
-    "http://localhost:3000",
-    "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
-    "https://reactivity-789dd5d26427.herokuapp.com",
-])
+CORS_ALLOWED_ORIGINS = env.list(
+    "CORS_ALLOWED_ORIGINS",
+    default=[
+        "http://localhost:3000",
+        "https://psychic-lamp-pj7rjp4jvgg7f7jxr-3000.app.github.dev",
+        "https://reactivity-789dd5d26427.herokuapp.com",
+    ],
+)
 
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = env.list("CSRF_TRUSTED_ORIGINS", default=[])
-CORS_ALLOW_HEADERS = list(default_headers) + ['access-control-allow-origin']
+CORS_ALLOW_HEADERS = list(default_headers) + ["access-control-allow-origin"]
 CORS_ALLOW_METHODS = ["DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"]
 
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = "None"
 
 ROOT_URLCONF = "tracker.urls"
 
@@ -87,7 +96,6 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
         # "rest_framework.authentication.SessionAuthentication",
-        
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
@@ -96,10 +104,10 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            BASE_DIR / 'react-build-temp',
+            BASE_DIR / "react-build-temp",
             BASE_DIR / "activity-tracker-frontend" / "build",
             BASE_DIR / "activitytracker" / "templates",
-            ],
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -122,23 +130,21 @@ if not DATABASE_URL:
     raise ImproperlyConfigured("DATABASE_URL must be set in .env")
 
 
-
-
-DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL)
-}
+DATABASES = {"default": dj_database_url.config(default=DATABASE_URL)}
 if "ENGINE" not in DATABASES["default"]:
     DATABASES["default"]["ENGINE"] = "django.db.backends.postgresql"
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+    },
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 LOGIN_REDIRECT_URL = "dashboard"
 LOGOUT_REDIRECT_URL = "/"
 

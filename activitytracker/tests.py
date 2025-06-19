@@ -1,14 +1,16 @@
+from django.contrib.auth.models import User
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
-from django.contrib.auth.models import User
+
 from activitytracker.models import Activity
 
 
 class ActivityCreationTest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser", password="testpass")
-        self.client.force_authenticate(user=self.user)  
+        self.user = User.objects.create_user(
+            username="testuser", password="testpass")
+        self.client.force_authenticate(user=self.user)
 
     def test_create_activity(self):
         url = reverse("record_activity")
@@ -26,15 +28,15 @@ class ActivityCreationTest(APITestCase):
 
 class InvalidActivityCreationTest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser2", password="testpass2")
-        self.client.force_authenticate(user=self.user)  
+        self.user = User.objects.create_user(
+            username="testuser2", password="testpass2")
+        self.client.force_authenticate(user=self.user)
 
     def test_invalid_activity_creation(self):
         url = reverse("record_activity")
         data = {
             "activity_type": "cycling",
             "activity_name": "No Duration",
-        
             "date": "2025-03-16",
             "notes": "Forgot duration",
         }
@@ -46,7 +48,8 @@ class InvalidActivityCreationTest(APITestCase):
 
 class ActivityLogTest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser3", password="testpass3")
+        self.user = User.objects.create_user(
+            username="testuser3", password="testpass3")
         self.client.force_authenticate(user=self.user)
 
         # Create sample activity
@@ -56,7 +59,7 @@ class ActivityLogTest(APITestCase):
             activity_name="Evening Walk",
             duration=1800,
             date="2025-03-15",
-            notes="Relaxing walk"
+            notes="Relaxing walk",
         )
 
     def test_activity_log(self):
@@ -66,10 +69,12 @@ class ActivityLogTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertGreaterEqual(len(response.data), 1)
 
+
 class ActivityUpdateTest(APITestCase):
     def setUp(self):
-        self.user = User.objects.create_user(username="testuser4", password="testpass4")
-        self.client.force_login(self.user)  
+        self.user = User.objects.create_user(
+            username="testuser4", password="testpass4")
+        self.client.force_login(self.user)
 
         self.activity = Activity.objects.create(
             user=self.user,
@@ -77,7 +82,7 @@ class ActivityUpdateTest(APITestCase):
             activity_name="Morning Yoga",
             duration=1800,
             date="2025-03-14",
-            notes="Very relaxing"
+            notes="Very relaxing",
         )
 
     def test_update_activity_notes(self):
@@ -85,10 +90,10 @@ class ActivityUpdateTest(APITestCase):
         updated_data = {
             "activity_type": self.activity.activity_type,
             "activity_name": self.activity.activity_name,
-            "duration_input": "00:30:00",  
+            "duration_input": "00:30:00",
             "date": "2025-03-14",
-            "notes": "Updated: Felt energized!"
-    }
+            "notes": "Updated: Felt energized!",
+        }
 
         response = self.client.post(url, updated_data)
         print("DEBUG RESPONSE HTML:", response.content.decode())

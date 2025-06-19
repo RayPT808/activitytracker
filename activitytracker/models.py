@@ -17,12 +17,15 @@ class Activity(models.Model):
         ("gym", "Gym"),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="activities")
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="activities")
     activity_type = models.CharField(max_length=20, choices=ACTIVITY_CHOICES)
-    
+
     # Duration stored as integer (in seconds)
     duration = models.IntegerField(help_text="Duration of activity in seconds")
-    
+
     date = models.DateField()
     notes = models.TextField(
         blank=True, null=True, help_text="Optional notes about the activity"
@@ -60,4 +63,6 @@ class ChangeHistory(models.Model):
     changed_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Change Log for {self.activity.activity_name} on {self.changed_at}"
+        return f"Change Log for {
+            self.activity.activity_name} on {
+            self.changed_at}"

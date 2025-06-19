@@ -1,22 +1,21 @@
 from django.contrib.auth import authenticate, login
-from rest_framework.response import Response
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.http import JsonResponse  
-from django.middleware.csrf import get_token 
+from django.http import JsonResponse
+from django.middleware.csrf import get_token
 from django.views.decorators.csrf import ensure_csrf_cookie
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
-from activitytracker.serializers import UserSerializer
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 
+from activitytracker.serializers import UserSerializer
 
 
 @ensure_csrf_cookie
 @api_view(["GET"])
 @permission_classes([AllowAny])
 def get_csrf_token(request):
-    token = get_token(request)  
+    token = get_token(request)
     return JsonResponse({"csrfToken": token})
-
 
 
 @api_view(["POST"])
@@ -31,12 +30,16 @@ def login_view(request):
         refresh = RefreshToken.for_user(user)
         user_data = UserSerializer(user).data  # 🧠 serialize user
 
-        return Response({
-            "refresh": str(refresh),
-            "access": str(refresh.access_token),
-            "user": user_data  # ✅ include user info
-        })
-    return Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response(
+            {
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+                "user": user_data,  # ✅ include user info
+            }
+        )
+    return Response(
+        {"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED
+    )
 
 
 @api_view(["POST", "OPTIONS"])
